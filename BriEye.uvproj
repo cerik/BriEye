@@ -472,11 +472,6 @@
               <FilePath>.\Src\crc.c</FilePath>
             </File>
             <File>
-              <FileName>database.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Src\database.c</FilePath>
-            </File>
-            <File>
               <FileName>cmd.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Src\cmd.c</FilePath>
@@ -490,6 +485,16 @@
               <FileName>UartDrv.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Src\UartDrv.c</FilePath>
+            </File>
+            <File>
+              <FileName>utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>sysdb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\sysdb.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -510,11 +515,6 @@
               <FileName>usb_desc.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\usb\usb_desc.c</FilePath>
-            </File>
-            <File>
-              <FileName>usb_endp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\usb\usb_endp.c</FilePath>
             </File>
             <File>
               <FileName>usb_init.c</FileName>

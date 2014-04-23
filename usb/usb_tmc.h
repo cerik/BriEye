@@ -1,12 +1,11 @@
-/*
- ***************************************************** 
- * File Name    : protocol.c
- * Author       : CCZY & LYS
- * Version      : V6.1
- * Date         : 11/15/2011
- * Description  : Header file TMC protocol layer.
- *******************************************************
- */
+//====================================================================
+// File Name    : usb_tmc.c
+// Author       : Cerik
+// Version      : V6.1
+// Date         : 11/15/2011
+// Description  : Header file TMC protocol layer.
+//====================================================================
+
 #ifndef __USB_REPORT_H
 #define __USB_REPORT_H
 
@@ -18,11 +17,6 @@
 #pragma anon_unions
 #endif
 
-#define EP_MAXPKGSIZE      64 //Must be aligned with 4 byte
-#define MAXHRADERDATASIZE  (EP_MAXPKGSIZE - TMC_HEADER_SIZE)
-
-#define TMC_HEADER_SIZE 12
-#define USB_BUF_SIZE    1024
 
 typedef enum {
     DEV_DEP_MSG_OUT=1,
@@ -32,11 +26,9 @@ typedef enum {
     VENDOR_SPECIFIC_IN=127
 }TMC_MSG_ID;
 
-/*
- ***************************************
- *  big endian
- ***************************************
- */
+//====================================================================
+//  big endian
+//====================================================================
 typedef struct {  
     UINT8 msgId;
     UINT8 bTag;
@@ -83,6 +75,13 @@ typedef struct {
     };
 }tagTmcBulkInHeader;
 
+#define TMC_HEADER_SIZE    sizeof(tagTmcBulkOutHeader) //12 Byte
+#define USB_BUF_SIZE       1024
+
+#define EP_MAXPKGSIZE      64 //Must be aligned with 4 byte
+#define MAXHEADERDATASIZE  (EP_MAXPKGSIZE - TMC_HEADER_SIZE)
+
+
 /*
  ***********************************************************************
  *flag the transfer status: 
@@ -113,38 +112,27 @@ typedef enum
     DONE=1,     //finished the receive or transfer of data.
 }USB_STATE;
 
-/* Private typedef -----------------------------------------------------------*/
+
 typedef struct 
 {
     tagTmcBulkOutHeader lastTmcBulkOutHeader;
     tagTmcBulkInHeader  lastTmcBulkInHeader;
 
     tagTmcStatus        rxState;       // TMC bulk-out receive state
-    tagTmcStatus        txState;       // TMC bulk-in transmit state
-
     tagTmcError         tmcLastError;  //
 
+    UINT32              rxDatCount;    // received byte count of one transfer,not include header info.
+    UINT32              txDatCount;    // already xmited byte of bulk-in response,not include header info
+    
     BOOL                rxFinished;    // wheaher the bulk-out msg have been received completelly.
-    UINT32              rxCount;       // received byte count of one transfer,not include header info.
-
     BOOL                txFinished;    // wheaher the respone msg have been send completely. 
-    UINT32              txCount;       // already xmited byte of bulk-in response,not include header info
-
-    BOOL                hostRead;      // host read respone msg.
-    BOOL                hostWrite;     // host write command
 }tagTmcLayerInfo;
 
-typedef struct tmc_pkg_manger
-{
-    USB_STATE state;
-}TMC_PKG_MGR;
-
-extern TMC_PKG_MGR tmc_pkg_mgr;
 extern tagTmcLayerInfo gTmcLayerInfo;
 
 tagTmcError tmcLastError(void);
+void tmcMsgAnalize(void);
 
-void tmcCmdAnalize(void);
 /*
  **********************************************************
  * Description:
@@ -171,7 +159,6 @@ void tmcRxFinishedClear(void);
  *   transmited count;
  **********************************************************
  */
-//UINT32  tmcSendDat(const void * pBuffer,UINT32 bufLen);
 UINT32 tmcSendDat(const void * const pBuffer,const UINT32 bufLen);
 
 /*
@@ -190,12 +177,7 @@ UINT32  tmcGetDat( void *buffer, UINT32 bufSize);
 void *tmcGetLastBulkOutHeader(void);
 void *tmcGetTxBufPtr(void);
 
-BOOL tmcIsHostWrite(void);
-BOOL tmcIsHostRead(void);
-void tmcHostReadClear(void);
-void tmcHostWriteClear(void);
-
 UINT32 tmcHostReqSize(void);
-UINT32 tmcTxCount(void);
+UINT32 tmcTxDatCount(void);
 
 #endif

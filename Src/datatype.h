@@ -7,20 +7,20 @@
 
 #ifndef _MSP_TYPES_H_
 #define _MSP_TYPES_H_
-typedef void VOID;
-typedef unsigned char       UINT8;
-typedef signed char         INT8;
-typedef unsigned short      UINT16;
-typedef signed short        INT16;
-typedef unsigned int        UINT32;
-typedef signed int          INT32;
-typedef float               FLOAT32;
-typedef double              FLOAT64;
-typedef unsigned long long  UINT64;
-typedef signed long  long   INT64;
 
-typedef volatile   signed int VINT32;
-typedef volatile unsigned int VUINT32;
+typedef         unsigned char  UINT8;
+typedef           signed char  INT8;
+typedef        unsigned short  UINT16;
+typedef          signed short  INT16;
+typedef          unsigned int  UINT32;
+typedef            signed int  INT32;
+typedef                 float  FLOAT32;
+typedef                double  FLOAT64;
+typedef    unsigned long long  UINT64;
+typedef     signed long  long  INT64;
+
+typedef volatile   signed int  VINT32;
+typedef volatile unsigned int  VUINT32;
 
 typedef enum {false=0,true=1} BOOL;
 typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
@@ -44,7 +44,7 @@ typedef struct {
         UINT32 bflick:1;//continue flick flag,1 = execute flick continue and report data to host.
         UINT32 bwave :1;//flick wave fliag,1= execute flick wave and report data to host.
     }devStatus;
-}dev_status_t;
+}tatDevStatus;
 
 typedef enum{GPIO_IN_MODE=0,GPIO_OUT_MODE=1}GPIOMODE;
 
@@ -65,7 +65,6 @@ typedef struct{
 * Return         : None
 *******************************************************************************/ 
 #define assert_param(expr) ((expr) ? (void)0 : assert_failed((UINT8 *)__FILE__, __LINE__))
-/* Exported functions ------------------------------------------------------- */
 __inline  void assert_failed(UINT8* file, UINT32 line);
 #else
   #define assert_param(expr) ((void)0)

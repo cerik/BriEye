@@ -228,10 +228,10 @@ u8 *TMC_check_abort_bulk_out_status(u16 Length)
     gCtrlCmdBuffer[3]=0x00;
 
     //NBYTES_RXD
-    gCtrlCmdBuffer[4]=(gTmcLayerInfo.rxCount>>0) & 0xFF;
-    gCtrlCmdBuffer[5]=(gTmcLayerInfo.rxCount>>8) & 0xFF;
-    gCtrlCmdBuffer[6]=(gTmcLayerInfo.rxCount>>16)& 0xFF;;
-    gCtrlCmdBuffer[7]=(gTmcLayerInfo.rxCount>>24)& 0xFF;
+    gCtrlCmdBuffer[4]=(gTmcLayerInfo.rxDatCount>>0) & 0xFF;
+    gCtrlCmdBuffer[5]=(gTmcLayerInfo.rxDatCount>>8) & 0xFF;
+    gCtrlCmdBuffer[6]=(gTmcLayerInfo.rxDatCount>>16)& 0xFF;;
+    gCtrlCmdBuffer[7]=(gTmcLayerInfo.rxDatCount>>24)& 0xFF;
     pInformation->Ctrl_Info.Usb_wLength=8;
     return gCtrlCmdBuffer;
 }

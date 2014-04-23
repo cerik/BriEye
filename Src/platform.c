@@ -52,12 +52,6 @@
 
 /*
  **********************************************************
- * External Function Declaration
- **********************************************************
- */
-
-/*
- **********************************************************
  * Local Function Definition
  **********************************************************
  */
@@ -146,10 +140,6 @@ void InitCounterTimer(void)
     NVIC_Init(&NVIC_InitStructure);
 
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4 , ENABLE);
-    //RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;             // enable clock for TIM4
-    //TIM4->PSC   = __ARR(__TIMXCLK, __TIM4_PERIOD);  // set prescaler,f=1kHz
-    //TIM4->ARR   = __TIM4_ARR;                       // set auto-reload
-    //TIM4->CR1 = __TIM4_CR1;                         // set command register 1
 
     TIM_DeInit(TIM4);
     /* Time Base configuration */
@@ -251,7 +241,4 @@ void  App_TimeTickHook(void)
 {
     IWDG_ReloadCounter();
 }
-
-
-
 

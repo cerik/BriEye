@@ -7,7 +7,7 @@
 // Log:
 //=============================================================================
 #include <stdio.h>
-#include "database.h" 
+#include "sysdb.h" 
 #include "platform.h" 
 #include "ucos_ii.h"
 #include "uartdrv.h"
@@ -29,7 +29,7 @@ static OS_STK App_TaskStk[3][APP_TASK_STK_SIZE];
 
 //========================================================================
 //        Global variable defination
-dev_status_t gDevStatus;
+tatDevStatus gDevStatus;
 msg_fifo_t   gMsgFifo;
 OS_EVENT    *gFlickTskMailbox; 
 OS_EVENT    *gUsbCmdMailbox;
@@ -44,21 +44,17 @@ static void App_FlickTask(void *p_arg);
 
 
 //========================================================================
-//   MIAN ENTRY                                              
+//   MIAN ENTRY
 //
 int main(void)
 {
-    UINT8 os_err;
+    UINT8 os_err,err_code=0;
 
-    //App init
     InitGpio(); 
-    InitUart1();
+    InitUart();
     init_crcccitt_tab();
-
     InitCounterTimer();
-
-    load_brieye_db();
-    load_dark_db();
+    LoadSysDb();
 
     USB_Init();
     USB_Connect(true);
@@ -69,46 +65,34 @@ int main(void)
     OSInit();             /* Initialize "uC/OS-II, The Real-Time Kernel".         */
 
     OS_CPU_SysTickInit(); /* Initialize the SysTick.   */
-#if (OS_TASK_STAT_EN > 0)
-    OSStatInit();         /* Determine CPU capacity.   */
-#endif
     os_err = OSTaskCreate(App_UartCmdTask,0,&App_TaskStk[0][APP_TASK_STK_SIZE - 1],(INT8U) APP_TASK_UART_PRIO);
     if(OS_ERR_NONE != os_err)
     {
-        DEBUG_MSG(1,"\n\r");
+        err_code = 1;
         goto ERROR;
     }
-#if (OS_TASK_NAME_SIZE >= 11)
-    OSTaskNameSet(APP_TASK_UART_PRIO, (UINT8 *)"Uart Cmd Handler Task",&os_err);
-#endif
 
     os_err = OSTaskCreate(App_UsbCmdTask,0,&App_TaskStk[1][APP_TASK_STK_SIZE - 1],(INT8U) APP_TASK_USB_PRIO);
     if(OS_ERR_NONE != os_err)
     {
-        DEBUG_MSG(1,"\n\r");
+        err_code = 2;
         goto ERROR;
     }
-#if (OS_TASK_NAME_SIZE >= 11)
-    OSTaskNameSet(APP_TASK_USB_PRIO,(UINT8 *)"Usb Cmd Handler Task",&os_err);
-#endif
 
     os_err = OSTaskCreate(App_FlickTask,0,&App_TaskStk[2][APP_TASK_STK_SIZE - 1],(INT8U) APP_TASK_FLICK_PRIO);
     if(OS_ERR_NONE != os_err)
     {
-        DEBUG_MSG(1,"\n\r");
+        err_code = 3;
         goto ERROR;
     }
-#if (OS_TASK_NAME_SIZE >= 11)
-    OSTaskNameSet(APP_TASK_FLICK_PRIO,(UINT8 *)"Usb Flick Task",&os_err);
-#endif
 
     gFlickTskMailbox = OSMboxCreate((void *) 0); 
-    //gUsbCmdMailbox   = OSMboxCreate((void *) 0); 
+    gUsbCmdMailbox   = OSMboxCreate((void *) 0); 
     OSTimeSet(0);
     OSStart();  /* Start multitasking (i.e. give control to uC/OS-II).  */
 
 ERROR:
-    printf("error:%d\r\n",os_err);
+    printf("error:%d,%d\r\n",os_err,err_code);
     return 0;
 }
 

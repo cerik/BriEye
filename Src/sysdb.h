@@ -25,22 +25,8 @@
  ******************************************************************************************
  ******************************************************************************************
  */
-struct tagBrieyeArgs{
-    FLOAT32 user_dat;      /*User defined date */
-    UINT32  version;       /*Firmware Version+Calibration Data*/
-    UINT16  sample_freq;
-    UINT16  sample_number;
-    UINT16  sample_remove;
-    FLOAT32 rgb_matrix[8][4][3];
-};
-
-struct tagLinearArgs{
-    FLOAT32 dark_matrix[8][4][3];
-};
-
-struct tagDarkCalibArgs{
-    FLOAT32 offset[3];
-    FLOAT32 ad[3];  
+struct tagSysDb{
+    FLOAT32 normal_matrix[8][4][3];
 };
 
 /*
@@ -52,11 +38,10 @@ struct tagDarkCalibArgs{
  ******************************************************************************************
  ******************************************************************************************
  */
-#define BRIEYE_ARGS_SIZE    sizeof(struct tagBrieyeArgs) /* total size: 808 */
-#define LINEAR_ARGS_SIZE    sizeof(struct tagLinearArgs) /* total size: 768 */
+#define SYS_DB_SIZE    sizeof(struct tagSysDb)
 
-#define LINEAR_ARGS_ADDR    (PARAM_FLASH_ADDR)
-#define BRIEYE_ARGS_ADDR    (PARAM_FLASH_ADDR + FLASH_PAGE_SIZE) 
+#define SYS_DB_ADDR    (PARAM_FLASH_ADDR)
+#define OTHER_DB_ADDR  (PARAM_FLASH_ADDR + FLASH_PAGE_SIZE) 
 
 /*
  ******************************************************************************************
@@ -65,9 +50,9 @@ struct tagDarkCalibArgs{
  ******************************************************************************************
  ******************************************************************************************
  */
-extern  struct tagBrieyeArgs gt_ccd;  
-extern  struct tagLinearArgs gt_linearg;
-extern  struct tagDarkCalibArgs gt_darkcalib;
+extern  struct tagSysDb gSysDb;  
+//extern  struct tagLinearArgs gt_linearg;
+//extern  struct tagDarkCalibArgs gt_darkcalib;
 
 /*
  ******************************************************************************************
@@ -78,15 +63,11 @@ extern  struct tagDarkCalibArgs gt_darkcalib;
  ******************************************************************************************
  ******************************************************************************************
  */
-void   load_default_param(void);
-UINT16 read_brieye_args(void *pMsg);
-UINT16 read_dark_args(void *pMsg);
-UINT16 write_brieye_args(const void *const pMsg);
-UINT16 write_dark_args(const void *const pMsg);
+void   LoadDefaultDb(void);
+UINT16 ReadSysDb(void *pMsg);
+UINT16 WriteSysDb(const void *const pMsg);
 
-UINT8  load_brieye_db(void);
-UINT8  load_dark_db(void);
-UINT8  save_brieye_db(void);
-UINT8  save_dark_db(void);
+UINT8  LoadSysDb(void);
+UINT8  SaveSysDb(void);
 
 #endif /* _PARAM_H_ */

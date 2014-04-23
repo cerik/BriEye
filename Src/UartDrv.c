@@ -98,8 +98,8 @@ label:  goto label;
 //   Config:
 //      115200 bps;
 //      8 data bit;1 stop bit;No parity;No flow ctrl;
-//
-void InitUart1(void)
+//=============================================================================
+void InitUart(void)
 {
     NVIC_InitTypeDef NVIC_InitStructure;
     GPIO_InitTypeDef GPIO_InitStructure;
@@ -199,19 +199,16 @@ UINT16 SerialPutData(const void *const pMsg,UINT16 size)
     return OS_NO_ERR;
 }
 
-/*
- *---------------------------------------------------------
- * Description:
- *   Uart1 Interrupt Handler
- *
- * Notes:
- *  EXTIO6 -- PB6
- *  EXTIO7 -- PB7  
- *
- * Edit Log:
- *  2014.04.20--Cerik,Modified
- *---------------------------------------------------------
- */
+//=============================================================================
+// Description:
+//   Uart1 Interrupt Handler
+// Notes:
+//  EXTIO6 -- PB6
+//  EXTIO7 -- PB7  
+//
+// Edit Log:
+//  2014.04.20--Cerik,Modified
+//=============================================================================
 void USART1_IRQHandler(void)
 {
     if(USART_GetFlagStatus(USART1,USART_FLAG_RXNE)==SET)

@@ -6,8 +6,16 @@
 //=============================================================================
 // Log:
 //=============================================================================
-void InitUart(void);
-void SerialFlush(void);
-UINT8 SerialGetChar(void);
-UINT8 SerialPutChar(UINT8 dat);
-UINT16 SerialPutData(void *pMsg,UINT16 size);
+#include "datatype.h"
+
+UINT8 char2hex(UINT8 ch) 
+{ 
+    if((ch>='0')&&(ch<='9')) 
+        return ch-'0'; 
+    else if((ch>='A')&&(ch<='F')) 
+        return ch-'A' + 0x0A; 
+    else if((ch>='a')&&(ch<='f')) 
+        return ch - 'a' + 0x0A; 
+    else 
+        return ch; 
+} 
