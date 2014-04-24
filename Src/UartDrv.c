@@ -6,27 +6,26 @@
 //=============================================================================
 // Log:
 //=============================================================================
-#include <stdio.h>
-#include <stdio.h>
-#include "misc.h"
-#include "ucos_ii.h"
-#include "datatype.h"
 #include "stm32f10x_usart.h"
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_rcc.h"
+#include "datatype.h"
+#include "ucos_ii.h"
+#include "misc.h"
+#include "dbg.h"
 
 #define RX_BUFFER_SIZE 20
 #define TX_BUFFER_SIZE 20
 
 struct {
     UINT8    RxBuffer[RX_BUFFER_SIZE];        //Rx Buffer
-    UINT8    TxBuffer[TX_BUFFER_SIZE];        //Tx Buffer
+    //UINT8    TxBuffer[TX_BUFFER_SIZE];        //Tx Buffer
     UINT8    RxBufferOutPtr;                  //Rx Buffer Out Pointer
     UINT8    RxBufferInPtr;                   //Rx Buffer In Pointer
     UINT8    RxBufferCnt;                     //Rx Buffer Counter
-    UINT8    TxBufferOutPtr;                  //Tx Buffer Out Pointer
-    UINT8    TxBufferInPtr;                   //Tx Buffer In  Pointer
-    //OS_EVENT *RxEventPtr;                     //Rx Event Pointer
+    //UINT8    TxBufferOutPtr;                  //Tx Buffer Out Pointer
+    //UINT8    TxBufferInPtr;                   //Tx Buffer In  Pointer
+    OS_EVENT *RxEventPtr;                     //Rx Event Pointer
     //OS_EVENT *TxEventPtr;                     //Tx Event Pointer
 }tagUartCtrl;
 
@@ -58,8 +57,21 @@ FILE __stdin;
  */
 UINT8 getch(BOOL block)
 {
-    while (!(USART1->SR & USART_FLAG_RXNE) && block);
-    return (UINT8)(USART1->DR & 0x1FF);
+    //while (!(USART1->SR & USART_FLAG_RXNE) && block);
+    //return (UINT8)(USART1->DR & 0x1FF);
+
+    UINT8 ErrMsg;
+    UINT8 rxdata;
+
+    OSSemPend(tagUartCtrl.RxEventPtr,0,&ErrMsg);
+    rxdata=tagUartCtrl.RxBuffer[tagUartCtrl.RxBufferOutPtr];
+
+    tagUartCtrl.RxBufferOutPtr = (tagUartCtrl.RxBufferOutPtr+1)%RX_BUFFER_SIZE;
+    if(tagUartCtrl.RxBufferCnt > 0)
+    {
+        tagUartCtrl.RxBufferCnt--;
+    }
+    return (rxdata);
 }
 
 /*
@@ -70,15 +82,25 @@ UINT8 getch(BOOL block)
  *    2011.08.06--CCZY--Create
  *---------------------------------------------------------
  */
-void putch(UINT8 ch)
+UINT8 putch(UINT8 dat)
 {
     while (!(USART1->SR & USART_FLAG_TXE));
-    USART1->DR = (ch & 0x1FF);
+    USART1->DR = (dat & 0x1FF);
+    return dat;
+
+    //UINT8 err;
+    //OSSemPend(tagUartCtrl.TxEventPtr,0,&err);
+    //if(err!=OS_NO_ERR)
+    //{
+    //    return err;
+    //}
+    //tagUartCtrl.TxBuffer[tagUartCtrl.TxBufferInPtr]=dat;
+    //tagUartCtrl.TxBufferInPtr = (tagUartCtrl.TxBufferInPtr+1)%TX_BUFFER_SIZE;
+    //return err;
 }
 
 int fputc(int ch, FILE *f) {
-    putch(ch);
-    return ch;
+    return putch(ch);
 }
 int fgetc(FILE *f) {
     return getch(true);
@@ -99,20 +121,24 @@ label:  goto label;
 //      115200 bps;
 //      8 data bit;1 stop bit;No parity;No flow ctrl;
 //=============================================================================
+void InitUartPart2(void)
+{
+    tagUartCtrl.RxEventPtr=OSSemCreate(0);
+    //tagUartCtrl.TxEventPtr=OSSemCreate(TX_BUFFER_SIZE-1);    //create the semaphore with the cnt value of TX_BUFFER_SIZE -1
+    if(tagUartCtrl.RxEventPtr==(void *)0)  return;
+    tagUartCtrl.RxBufferInPtr=0;
+    tagUartCtrl.RxBufferOutPtr=0;
+    tagUartCtrl.RxBufferCnt=0;
+    //tagUartCtrl.TxBufferInPtr=0;
+    //tagUartCtrl.TxBufferOutPtr=0;
+    USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
+    DEBUG_MSG(1,"%d\r\n",tagUartCtrl.RxEventPtr);
+}
 void InitUart(void)
 {
     NVIC_InitTypeDef NVIC_InitStructure;
     GPIO_InitTypeDef GPIO_InitStructure;
     USART_InitTypeDef USART_InitStructure; 
-
-    //tagUartCtrl.RxEventPtr=OSSemCreate(0);
-    //tagUartCtrl.TxEventPtr=OSSemCreate(TX_BUFFER_SIZE-1);    //create the semaphore with the cnt value of TX_BUFFER_SIZE -1
-    //if(tagUartCtrl.RxEventPtr==(void *)0)  return;
-    tagUartCtrl.RxBufferInPtr=0;
-    tagUartCtrl.RxBufferOutPtr=0;
-    tagUartCtrl.TxBufferInPtr=0;
-    tagUartCtrl.TxBufferOutPtr=0;
-    tagUartCtrl.RxBufferCnt=0;
     
     RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOA | RCC_APB2Periph_USART1,ENABLE);
 
@@ -142,9 +168,8 @@ void InitUart(void)
     USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
 
     USART_Init(USART1, &USART_InitStructure); 
-    USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
     //USART_ITConfig(USART1, USART_IT_TXE, ENABLE);
-    //USART_ClearFlag(USART1,USART_FLAG_TXE);
+    USART_ClearFlag(USART1,USART_FLAG_TXE);
     USART_ClearFlag(USART1,USART_FLAG_TC);
     USART_Cmd(USART1, ENABLE);
 }
@@ -154,7 +179,7 @@ UINT8 SerialGetChar(void)
     UINT8 ErrMsg;
     UINT8 rxdata;
 
-    //OSSemPend(tagUartCtrl.RxEventPtr,0,&ErrMsg);
+    OSSemPend(tagUartCtrl.RxEventPtr,0,&ErrMsg);
     rxdata=tagUartCtrl.RxBuffer[tagUartCtrl.RxBufferOutPtr];
 
     tagUartCtrl.RxBufferOutPtr = (tagUartCtrl.RxBufferOutPtr+1)%RX_BUFFER_SIZE;
@@ -167,36 +192,33 @@ UINT8 SerialGetChar(void)
 
 UINT8 SerialPutChar(UINT8 dat)
 {
-    UINT8 err;
-
+    //UINT8 err;
     //OSSemPend(tagUartCtrl.TxEventPtr,0,&err);
-    if(err!=OS_NO_ERR)
-    {
-        return err;
-    }
-    tagUartCtrl.TxBuffer[tagUartCtrl.TxBufferInPtr]=dat;
-    tagUartCtrl.TxBufferInPtr = (tagUartCtrl.TxBufferInPtr+1)%TX_BUFFER_SIZE;
-    USART_SendData(USART1,dat);
-    
-    return OS_NO_ERR;
+    //if(err!=OS_NO_ERR)
+    //{
+    //    return err;
+    //}
+    //tagUartCtrl.TxBuffer[tagUartCtrl.TxBufferInPtr]=dat;
+    //tagUartCtrl.TxBufferInPtr = (tagUartCtrl.TxBufferInPtr+1)%TX_BUFFER_SIZE;
+
+    while (!(USART1->SR & USART_FLAG_TXE));
+    USART1->DR = (dat & 0x1FF);
+    return dat;
 }
 
 void SerialFlush(void)
 {
     tagUartCtrl.RxBufferInPtr=0;
     tagUartCtrl.RxBufferOutPtr=0;
-    tagUartCtrl.TxBufferInPtr=0;
-    tagUartCtrl.TxBufferOutPtr=0;
     tagUartCtrl.RxBufferCnt=0;
+    //tagUartCtrl.TxBufferInPtr=0;
+    //tagUartCtrl.TxBufferOutPtr=0;
 }
 
 UINT16 SerialPutData(const void *const pMsg,UINT16 size)
 {
     UINT8 *p = (UINT8*)pMsg;
-    for(;size>0;size++)
-    {
-        SerialPutChar(*p++);
-    }
+    for(;size>0;size++) SerialPutChar(*p++);
     return OS_NO_ERR;
 }
 
@@ -220,18 +242,18 @@ void USART1_IRQHandler(void)
             tagUartCtrl.RxBuffer[tagUartCtrl.RxBufferInPtr]=USART_ReceiveData(USART1);
             tagUartCtrl.RxBufferInPtr = (tagUartCtrl.RxBufferInPtr+1)%RX_BUFFER_SIZE;
             tagUartCtrl.RxBufferCnt++;
-            //OSSemPost(tagUartCtrl.RxEventPtr); //POST TO A SEMAPHORE
+            OSSemPost(tagUartCtrl.RxEventPtr); //POST TO A SEMAPHORE
         }
     }
     if(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==SET)
     {//Tx Complete
         USART_ClearFlag(USART1,USART_FLAG_TXE);
-        if(tagUartCtrl.TxBufferOutPtr != tagUartCtrl.TxBufferInPtr)
-        {
-            USART_SendData(USART1,tagUartCtrl.TxBuffer[tagUartCtrl.TxBufferOutPtr]);
-            tagUartCtrl.TxBufferOutPtr = (tagUartCtrl.TxBufferOutPtr+1)%TX_BUFFER_SIZE;
-            //OSSemPost(tagUartCtrl.TxEventPtr);
-        }
+        //if(tagUartCtrl.TxBufferOutPtr != tagUartCtrl.TxBufferInPtr)
+        //{
+        //    USART_SendData(USART1,tagUartCtrl.TxBuffer[tagUartCtrl.TxBufferOutPtr]);
+        //    tagUartCtrl.TxBufferOutPtr = (tagUartCtrl.TxBufferOutPtr+1)%TX_BUFFER_SIZE;
+        //    OSSemPost(tagUartCtrl.TxEventPtr);
+        //}
     }
 }
 

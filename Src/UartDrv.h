@@ -7,6 +7,7 @@
 // Log:
 //=============================================================================
 void InitUart(void);
+void InitUartPart2(void);
 void SerialFlush(void);
 UINT8 SerialGetChar(void);
 UINT8 SerialPutChar(UINT8 dat);

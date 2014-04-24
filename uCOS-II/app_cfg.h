@@ -51,7 +51,8 @@
 
 #define  APP_TASK_FLICK_PRIO       6
 #define  APP_TASK_USB_PRIO         9
-#define  APP_TASK_UART_PRIO        12
+#define  APP_TASK_UART_PRIO        5
+#define  APP_TASK_START_PRIO       100
 
 
 /*

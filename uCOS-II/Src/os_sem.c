@@ -20,7 +20,6 @@
 * licensing fee.
 *********************************************************************************************************
 */
-
 #ifndef  OS_MASTER_FILE
 #include  "ucos_ii.h"
 #endif
@@ -166,8 +165,6 @@ OS_EVENT  *OSSemDel (OS_EVENT *pevent, INT8U opt, INT8U *perr)
 #if OS_CRITICAL_METHOD == 3                                /* Allocate storage for CPU status register */
     OS_CPU_SR  cpu_sr = 0;
 #endif
-
-
 
 #if OS_ARG_CHK_EN > 0
     if (perr == (INT8U *)0) {                              /* Validate 'perr'                          */

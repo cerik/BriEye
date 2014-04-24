@@ -6,13 +6,12 @@
 //=============================================================================
 // Log:
 //=============================================================================
-#include <stdio.h>
-#include "sysdb.h" 
 #include "platform.h" 
 #include "ucos_ii.h"
 #include "uartdrv.h"
 #include "MsgFifo.h"
-#include "debug.h"
+#include "sysdb.h" 
+#include "dbg.h"
 #include "cpu.h"
 #include "crc.h"
 #include "cmd.h"
@@ -25,19 +24,20 @@ extern void USB_Connect (BOOL con);
 
 //========================================================================
 //       Local Global variable defination
-static OS_STK App_TaskStk[3][APP_TASK_STK_SIZE];
+static OS_STK App_TaskStk[4][APP_TASK_STK_SIZE];
 
 //========================================================================
 //        Global variable defination
 tatDevStatus gDevStatus;
 msg_fifo_t   gMsgFifo;
-//OS_EVENT    *gFlickTskMailbox; 
-//OS_EVENT    *gUsbCmdMailbox;
+OS_EVENT    *gFlickTskMailbox; 
+OS_EVENT    *gUsbCmdMailbox;
 
 
 //========================================================================
 //        Local Function definition
 //
+//static void App_TaskStart(void* p_arg);
 static void App_UartCmdTask(void* p_arg);
 static void App_UsbCmdTask(void* p_arg);
 static void App_FlickTask(void *p_arg);
@@ -45,56 +45,107 @@ static void App_FlickTask(void *p_arg);
 
 //========================================================================
 //   MIAN ENTRY
-//
 int main(void)
 {
     UINT8 os_err,err_code=0;
 
     InitGpio(); 
     InitUart();
+    
     init_crcccitt_tab();
     InitCounterTimer();
     LoadSysDb();
 
+    InitWatchDog();
     USB_Init();
     USB_Connect(true);
-    InitWatchDog();
 
-    //uCos init
     CPU_IntDis();         /* Disable all ints until we are ready to accept them.  */
     OSInit();             /* Initialize "uC/OS-II, The Real-Time Kernel".         */
-
     OS_CPU_SysTickInit(); /* Initialize the SysTick.   */
-    os_err = OSTaskCreate(App_UartCmdTask,0,&App_TaskStk[0][APP_TASK_STK_SIZE - 1],(INT8U) APP_TASK_UART_PRIO);
+    
+    gFlickTskMailbox = OSMboxCreate((void *) 0); 
+    gUsbCmdMailbox   = OSMboxCreate((void *) 0);
+    
+    os_err = OSTaskCreate(App_UartCmdTask,0,&App_TaskStk[1][APP_TASK_STK_SIZE - 1],(INT8U) APP_TASK_UART_PRIO);
     if(OS_ERR_NONE != os_err)
     {
         err_code = 1;
         goto ERROR;
     }
 
-    os_err = OSTaskCreate(App_UsbCmdTask,0,&App_TaskStk[1][APP_TASK_STK_SIZE - 1],(INT8U) APP_TASK_USB_PRIO);
+    os_err = OSTaskCreate(App_UsbCmdTask,0,&App_TaskStk[2][APP_TASK_STK_SIZE - 1],(INT8U) APP_TASK_USB_PRIO);
     if(OS_ERR_NONE != os_err)
     {
         err_code = 2;
         goto ERROR;
     }
 
-    os_err = OSTaskCreate(App_FlickTask,0,&App_TaskStk[2][APP_TASK_STK_SIZE - 1],(INT8U) APP_TASK_FLICK_PRIO);
+    os_err = OSTaskCreate(App_FlickTask,0,&App_TaskStk[3][APP_TASK_STK_SIZE - 1],(INT8U) APP_TASK_FLICK_PRIO);
     if(OS_ERR_NONE != os_err)
     {
         err_code = 3;
         goto ERROR;
     }
-
-    //gFlickTskMailbox = OSMboxCreate((void *) 0); 
-    //gUsbCmdMailbox   = OSMboxCreate((void *) 0); 
-    OSTimeSet(0);
-    OSStart();  /* Start multitasking (i.e. give control to uC/OS-II).  */
-
+    InitUartPart2();
+    OSStart();
 ERROR:
     printf("error:%d,%d\r\n",os_err,err_code);
-    return 0;
+    while(1);
+
+   
 }
+
+#if 0
+static void App_TaskStart(void* p_arg)
+{
+    UINT8 os_err,err_code=0;
+    
+    InitGpio(); 
+    InitUart();
+    
+    init_crcccitt_tab();
+    InitCounterTimer();
+    LoadSysDb();
+
+    InitWatchDog();
+    USB_Init();
+    USB_Connect(true);
+
+    gFlickTskMailbox = OSMboxCreate((void *) 0); 
+    gUsbCmdMailbox   = OSMboxCreate((void *) 0);
+    InitUartPart2();
+    os_err = OSTaskCreate(App_UartCmdTask,0,&App_TaskStk[1][APP_TASK_STK_SIZE - 1],(INT8U) APP_TASK_UART_PRIO);
+    if(OS_ERR_NONE != os_err)
+    {
+        err_code = 1;
+        goto ERROR;
+    }
+
+    os_err = OSTaskCreate(App_UsbCmdTask,0,&App_TaskStk[2][APP_TASK_STK_SIZE - 1],(INT8U) APP_TASK_USB_PRIO);
+    if(OS_ERR_NONE != os_err)
+    {
+        err_code = 2;
+        goto ERROR;
+    }
+
+    os_err = OSTaskCreate(App_FlickTask,0,&App_TaskStk[3][APP_TASK_STK_SIZE - 1],(INT8U) APP_TASK_FLICK_PRIO);
+    if(OS_ERR_NONE != os_err)
+    {
+        err_code = 3;
+        goto ERROR;
+    }
+    
+    while(1)
+    {
+        OSTimeDlyHMSM(1,0,0,0);
+    }
+ERROR:
+    printf("error:%d,%d\r\n",os_err,err_code);
+    while(1);
+
+}
+#endif
 
 /*
 *********************************************************************************************************
@@ -115,9 +166,9 @@ static void App_UartCmdTask(void* p_arg)
 {
     while(1)
     {
-        DEBUG_MSG(1,"App_TaskUartCmdHandler:%d\r\n",p_arg);
-        //SerialGetChar();
-        OSTimeDlyHMSM(0, 0, 1, 0);
+        DEBUG_MSG(1,"%d\r\n",p_arg);
+        printf("%c\r\n",SerialGetChar());
+        //OSTimeDlyHMSM(0, 0, 1, 0);
     }
 }
 
@@ -142,8 +193,8 @@ static void App_UsbCmdTask(void* p_arg)
     
     while (true)
     {
-        OSTimeDlyHMSM(0, 0, 1, 0);
-        DEBUG_MSG(1,"App_TaskUsbCmdHandler:%d\r\n",1);
+        OSTimeDlyHMSM(0, 0, 3, 0);
+        DEBUG_MSG(1,"%d\r\n",1);
         //OSMboxPend(gFlickTskMailbox, 0, &err);
     }
 }
@@ -170,8 +221,8 @@ static void App_FlickTask(void *p_arg)
     while(1)
     {
         //OSMboxPend(gFlickTskMailbox, 0, &err);
-        DEBUG_MSG(CMD_DEBUG," \n\r");
-        OSTimeDlyHMSM(0, 0, 1, 0);
+        DEBUG_MSG(CMD_DEBUG," \r\n");
+        OSTimeDlyHMSM(0, 0, 5, 0);
     }
 }
 

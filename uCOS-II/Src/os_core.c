@@ -1209,7 +1209,6 @@ void  OS_EventWaitListInit (OS_EVENT *pevent)
 #endif
     INT8U   i;
 
-
     pevent->OSEventGrp = 0;                      /* No task waiting on event                           */
     ptbl               = &pevent->OSEventTbl[0];
 

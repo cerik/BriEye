@@ -1,5 +1,5 @@
-#ifndef __DEBUG__H__
-#define __DEBUG__H__
+#ifndef __DBG__H__
+#define __DBG__H__
 
 #include <stdio.h>
 

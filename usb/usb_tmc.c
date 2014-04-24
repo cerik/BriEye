@@ -20,7 +20,7 @@
 #include "ucos_ii.h"
 #include "usb_lib.h"
 #include "usb_tmc.h"
-#include "debug.h"
+#include "dbg.h"
 
 /* Private define ------------------------------------------------------------*/
 extern OS_EVENT *gUsbCmdMailbox;
