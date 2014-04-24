@@ -41,7 +41,7 @@
 #include "error.h"
 #include "scpi.h"
 #include "fifo.h"
-#include "database.h"
+#include "sysdb.h"
 
 
 #define SCPI_INPUT_BUFFER_LENGTH 100
@@ -65,7 +65,7 @@ static int32_t SCPI_Error(scpi_t * context, int_fast16_t err) {
 }
 
 static int32_t SCPI_Write(scpi_t * context, const char * data, int32_t len) {
-    while(len--) putch(*data++);
+    //while(len--) putch(*data++);
     return len;
 }
 
@@ -122,7 +122,6 @@ static scpi_result_t CFG_Frequency(scpi_t * context) {
     //char bf[15];
     // read first parameter if present
     if (SCPI_ParamNumber(context, &param1, FALSE)) {
-        gt_ccd.sample_freq = param1.value;
         //SCPI_NumberToStr(context, &param1, bf, 15);
         //SCPI_ResultString(context,bf);
         return SCPI_RES_OK;
@@ -135,7 +134,7 @@ static scpi_result_t CFG_Frequency(scpi_t * context) {
 static scpi_result_t CFG_FrequencyQ(scpi_t * context) {
     char bf[15];
     scpi_number_t param1;
-    param1.value = gt_ccd.sample_freq ;
+    param1.value = 123 ;
     param1.type = SCPI_NUM_NUMBER;
     SCPI_NumberToStr(context, &param1, bf, 15);
     SCPI_ResultString(context,bf);
@@ -146,7 +145,7 @@ static scpi_result_t CFG_Count(scpi_t * context) {
     scpi_number_t param1;
     // read first parameter if present
     if (SCPI_ParamNumber(context, &param1, FALSE)) {
-        gt_ccd.sample_number = param1.value;
+        //gt_ccd.sample_number = param1.value;
         return SCPI_RES_OK;
     }
     else
@@ -158,7 +157,7 @@ static scpi_result_t CFG_Count(scpi_t * context) {
 static scpi_result_t CFG_CountQ(scpi_t * context) {
     char bf[15];
     scpi_number_t param1;
-    param1.value = gt_ccd.sample_number ;
+    param1.value = 123 ;
     param1.type = SCPI_NUM_NUMBER;
     SCPI_NumberToStr(context, &param1, bf, 15);
     SCPI_ResultString(context,bf);
@@ -169,7 +168,7 @@ static scpi_result_t CFG_Remove(scpi_t * context) {
     scpi_number_t param1;
     // read first parameter if present
     if (SCPI_ParamNumber(context, &param1, FALSE)) {
-        gt_ccd.sample_remove = param1.value;
+        //gt_ccd.sample_remove = param1.value;
         return SCPI_RES_OK;
     }
     else
@@ -181,7 +180,7 @@ static scpi_result_t CFG_Remove(scpi_t * context) {
 static scpi_result_t CFG_RemoveQ(scpi_t * context) {
     char bf[15];
     scpi_number_t param1;
-    param1.value = gt_ccd.sample_remove ;
+    //param1.value = gt_ccd.sample_remove ;
     param1.type = SCPI_NUM_NUMBER;
     SCPI_NumberToStr(context, &param1, bf, 15);
     SCPI_ResultString(context,bf);

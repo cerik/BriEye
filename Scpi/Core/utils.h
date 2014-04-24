@@ -64,7 +64,7 @@ extern "C" {
     bool_t matchPattern(const char * pattern, size_t pattern_len, const char * str, size_t str_len) LOCAL;
     bool_t matchCommand(const char * pattern, const char * cmd, size_t len) LOCAL;
     bool_t composeCompoundCommand(char * ptr_prev, size_t len_prev, char ** pptr, size_t * plen);
-
+	uint8_t char2hex(uint8_t ch) ;
 #if !HAVE_STRNLEN
     size_t BSD_strnlen(const char *s, size_t maxlen);
 #endif

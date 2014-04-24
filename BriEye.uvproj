@@ -350,7 +350,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_XL=1</Define>
               <Undefine></Undefine>
-              <IncludePath>.\Src;.\usb;.\Bsp;.\Bsp\inc;.\Bsp\src;.\Bsp\cmsis;.\uCOS-II;.\uCOS-II\Src;.\uCOS-II\Lib;.\uCOS-II\Cpu;.\uCOS-II\Ports;.\uCOS-II\Lib\Ports</IncludePath>
+              <IncludePath>.\Src;.\usb;.\Bsp;.\Bsp\inc;.\Bsp\src;.\Bsp\cmsis;.\uCOS-II;.\uCOS-II\Src;.\uCOS-II\Lib;.\uCOS-II\Cpu;.\uCOS-II\Ports;.\uCOS-II\Lib\Ports;.\Scpi;.\Scpi\Core</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -485,11 +485,6 @@
               <FileName>UartDrv.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Src\UartDrv.c</FilePath>
-            </File>
-            <File>
-              <FileName>utils.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Src\utils.c</FilePath>
             </File>
             <File>
               <FileName>sysdb.c</FileName>
@@ -660,6 +655,61 @@
               <FileName>os_dbg.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\uCOS-II\Ports\os_dbg.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Scpi</GroupName>
+          <Files>
+            <File>
+              <FileName>debug.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Scpi\Core\debug.c</FilePath>
+            </File>
+            <File>
+              <FileName>error.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Scpi\Core\error.c</FilePath>
+            </File>
+            <File>
+              <FileName>fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Scpi\Core\fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>ieee488.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Scpi\Core\ieee488.c</FilePath>
+            </File>
+            <File>
+              <FileName>minimal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Scpi\Core\minimal.c</FilePath>
+            </File>
+            <File>
+              <FileName>parser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Scpi\Core\parser.c</FilePath>
+            </File>
+            <File>
+              <FileName>snprintf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Scpi\Core\snprintf.c</FilePath>
+            </File>
+            <File>
+              <FileName>units.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Scpi\Core\units.c</FilePath>
+            </File>
+            <File>
+              <FileName>utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Scpi\Core\utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>scip-def.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Scpi\scip-def.c</FilePath>
             </File>
           </Files>
         </Group>

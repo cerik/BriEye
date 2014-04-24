@@ -74,6 +74,18 @@ const char * strnpbrk(const char *str, size_t size, const char *set) {
     return (NULL);
 }
 
+uint8_t char2hex(uint8_t ch) 
+{ 
+    if((ch>='0')&&(ch<='9')) 
+        return ch-'0'; 
+    else if((ch>='A')&&(ch<='F')) 
+        return ch-'A' + 0x0A; 
+    else if((ch>='a')&&(ch<='f')) 
+        return ch - 'a' + 0x0A; 
+    else 
+        return ch; 
+} 
+
 /**
  * Converts signed 32b integer value to string
  * @param val   integer value
