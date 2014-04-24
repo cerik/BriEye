@@ -208,10 +208,13 @@ u8 *TMC_GetProtocolValue(u16 Length)
 
 u8 *TMC_initiate_abort_bulk_out(u16 Length)
 {
-    gTmcLayerInfo.rxState = TMC_IDLE;
+    tagTmcBulkMsgHeader *pBulkOutHeader;
 
+    pBulkOutHeader = tmcGetBulkOutHeader();
+    tmcResetRxState();
+    
     gCtrlCmdBuffer[0] = STATUS_SUCCESS;
-    gCtrlCmdBuffer[1] = gTmcLayerInfo.lastTmcBulkOutHeader.bTag;
+    gCtrlCmdBuffer[1] = pBulkOutHeader->bTag;
 
     //cmd_buffer[1]=(u8)pInformation->USBwValues.w &0xFF;
     //
@@ -222,24 +225,30 @@ u8 *TMC_initiate_abort_bulk_out(u16 Length)
 
 u8 *TMC_check_abort_bulk_out_status(u16 Length)
 {
+    UINT32 rxDatSize;
+
+    rxDatSize = tmcRxDataSize();
     gCtrlCmdBuffer[0]=STATUS_SUCCESS;
     gCtrlCmdBuffer[1]=0x00;
     gCtrlCmdBuffer[2]=0x00;
     gCtrlCmdBuffer[3]=0x00;
 
     //NBYTES_RXD
-    gCtrlCmdBuffer[4]=(gTmcLayerInfo.rxDatCount>>0) & 0xFF;
-    gCtrlCmdBuffer[5]=(gTmcLayerInfo.rxDatCount>>8) & 0xFF;
-    gCtrlCmdBuffer[6]=(gTmcLayerInfo.rxDatCount>>16)& 0xFF;;
-    gCtrlCmdBuffer[7]=(gTmcLayerInfo.rxDatCount>>24)& 0xFF;
+    gCtrlCmdBuffer[4]=(rxDatSize>>0) & 0xFF;
+    gCtrlCmdBuffer[5]=(rxDatSize>>8) & 0xFF;
+    gCtrlCmdBuffer[6]=(rxDatSize>>16)& 0xFF;;
+    gCtrlCmdBuffer[7]=(rxDatSize>>24)& 0xFF;
     pInformation->Ctrl_Info.Usb_wLength=8;
     return gCtrlCmdBuffer;
 }
 
 u8 *TMC_initiate_abort_bulk_in(u16 Length)
 {
-    gCtrlCmdBuffer[0]=STATUS_SUCCESS;
-    gCtrlCmdBuffer[1]=gTmcLayerInfo.lastTmcBulkInHeader.bTag;
+    tagTmcBulkMsgHeader *pBulkInHeader;
+
+    pBulkInHeader = tmcGetBulkInHeader();
+    gCtrlCmdBuffer[0] = STATUS_SUCCESS;
+    gCtrlCmdBuffer[1] = pBulkInHeader->bTag;
     //gCtrlCmdBuffer[1]=(u8)pInformation->USBwValues.w &0xFF;
     //pInformation.Ctrl_Info.PacketSize=2;
     //abort action
@@ -264,7 +273,7 @@ u8 *TMC_check_abort_bulk_in_status(u16 Length)
 
 u8 *TMC_initiate_clear(u16 Length)
 {
-    gTmcLayerInfo.rxState = TMC_IDLE;
+    tmcResetRxState();
     gCtrlCmdBuffer[0]=STATUS_SUCCESS;
     pInformation->Ctrl_Info.Usb_wLength=1;
     //

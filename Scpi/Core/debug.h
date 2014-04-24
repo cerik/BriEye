@@ -35,7 +35,7 @@
  */
 
 #ifndef SCPI_DEBUG_H
-#define	SCPI_DEBUG_H
+#define SCPI_DEBUG_H
 
 #include "types.h"
 
@@ -51,7 +51,7 @@ extern "C" {
     bool_t SCPI_DebugCommand(scpi_t * context);
 
 
-#ifdef	__cplusplus
+#ifdef  __cplusplus
 }
 #endif
 

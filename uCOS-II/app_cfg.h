@@ -48,10 +48,11 @@
 *                                            TASK PRIORITIES
 *********************************************************************************************************
 */
-#define  APP_TASK_START_PRIO                    3
-#define  APP_TASK_UART_PRIO                     12
-#define  APP_TASK_USB_PRIO                      8
-#define  APP_TASK_FLICK_PRIO                    9
+
+#define  APP_TASK_FLICK_PRIO       6
+#define  APP_TASK_USB_PRIO         9
+#define  APP_TASK_UART_PRIO        12
+
 
 /*
 *********************************************************************************************************
@@ -59,15 +60,14 @@
 *                             Size of the task stacks (# of OS_STK entries)
 *********************************************************************************************************
 */
-#define  APP_TASK_STK_SIZE                 64
+#define  APP_TASK_STK_SIZE         64
 
 /*
 *********************************************************************************************************
 *                                                  LIB
 *********************************************************************************************************
 */
-
-#define  uC_CFG_OPTIMIZE_ASM_EN                 DEF_ENABLED
-#define  LIB_STR_CFG_FP_EN                      DEF_DISABLED
+#define  uC_CFG_OPTIMIZE_ASM_EN    DEF_ENABLED
+#define  LIB_STR_CFG_FP_EN         DEF_DISABLED
 
 #endif

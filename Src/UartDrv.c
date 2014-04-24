@@ -26,8 +26,8 @@ struct {
     UINT8    RxBufferCnt;                     //Rx Buffer Counter
     UINT8    TxBufferOutPtr;                  //Tx Buffer Out Pointer
     UINT8    TxBufferInPtr;                   //Tx Buffer In  Pointer
-    OS_EVENT *RxEventPtr;                     //Rx Event Pointer
-    OS_EVENT *TxEventPtr;                     //Tx Event Pointer
+    //OS_EVENT *RxEventPtr;                     //Rx Event Pointer
+    //OS_EVENT *TxEventPtr;                     //Tx Event Pointer
 }tagUartCtrl;
 
 /*
@@ -105,9 +105,9 @@ void InitUart(void)
     GPIO_InitTypeDef GPIO_InitStructure;
     USART_InitTypeDef USART_InitStructure; 
 
-    tagUartCtrl.RxEventPtr=OSSemCreate(0);
-    tagUartCtrl.TxEventPtr=OSSemCreate(TX_BUFFER_SIZE-1);    //create the semaphore with the cnt value of TX_BUFFER_SIZE -1
-    if(tagUartCtrl.RxEventPtr==(void *)0)  return;
+    //tagUartCtrl.RxEventPtr=OSSemCreate(0);
+    //tagUartCtrl.TxEventPtr=OSSemCreate(TX_BUFFER_SIZE-1);    //create the semaphore with the cnt value of TX_BUFFER_SIZE -1
+    //if(tagUartCtrl.RxEventPtr==(void *)0)  return;
     tagUartCtrl.RxBufferInPtr=0;
     tagUartCtrl.RxBufferOutPtr=0;
     tagUartCtrl.TxBufferInPtr=0;
@@ -125,13 +125,13 @@ void InitUart(void)
     // USART1_TX -> PA9 
     // USART1_RX -> PA10
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP; 
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
 
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;  
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
 
     USART_InitStructure.USART_BaudRate = 115200;
@@ -143,8 +143,9 @@ void InitUart(void)
 
     USART_Init(USART1, &USART_InitStructure); 
     USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
-    USART_ITConfig(USART1, USART_IT_TXE, ENABLE);
-    USART_ClearFlag(USART1,USART_FLAG_TXE);
+    //USART_ITConfig(USART1, USART_IT_TXE, ENABLE);
+    //USART_ClearFlag(USART1,USART_FLAG_TXE);
+    USART_ClearFlag(USART1,USART_FLAG_TC);
     USART_Cmd(USART1, ENABLE);
 }
 
@@ -153,7 +154,7 @@ UINT8 SerialGetChar(void)
     UINT8 ErrMsg;
     UINT8 rxdata;
 
-    OSSemPend(tagUartCtrl.RxEventPtr,0,&ErrMsg);
+    //OSSemPend(tagUartCtrl.RxEventPtr,0,&ErrMsg);
     rxdata=tagUartCtrl.RxBuffer[tagUartCtrl.RxBufferOutPtr];
 
     tagUartCtrl.RxBufferOutPtr = (tagUartCtrl.RxBufferOutPtr+1)%RX_BUFFER_SIZE;
@@ -168,7 +169,7 @@ UINT8 SerialPutChar(UINT8 dat)
 {
     UINT8 err;
 
-    OSSemPend(tagUartCtrl.TxEventPtr,0,&err);
+    //OSSemPend(tagUartCtrl.TxEventPtr,0,&err);
     if(err!=OS_NO_ERR)
     {
         return err;
@@ -219,7 +220,7 @@ void USART1_IRQHandler(void)
             tagUartCtrl.RxBuffer[tagUartCtrl.RxBufferInPtr]=USART_ReceiveData(USART1);
             tagUartCtrl.RxBufferInPtr = (tagUartCtrl.RxBufferInPtr+1)%RX_BUFFER_SIZE;
             tagUartCtrl.RxBufferCnt++;
-            OSSemPost(tagUartCtrl.RxEventPtr); //POST TO A SEMAPHORE
+            //OSSemPost(tagUartCtrl.RxEventPtr); //POST TO A SEMAPHORE
         }
     }
     if(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==SET)
@@ -229,7 +230,7 @@ void USART1_IRQHandler(void)
         {
             USART_SendData(USART1,tagUartCtrl.TxBuffer[tagUartCtrl.TxBufferOutPtr]);
             tagUartCtrl.TxBufferOutPtr = (tagUartCtrl.TxBufferOutPtr+1)%TX_BUFFER_SIZE;
-            OSSemPost(tagUartCtrl.TxEventPtr);
+            //OSSemPost(tagUartCtrl.TxEventPtr);
         }
     }
 }

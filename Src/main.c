@@ -31,8 +31,8 @@ static OS_STK App_TaskStk[3][APP_TASK_STK_SIZE];
 //        Global variable defination
 tatDevStatus gDevStatus;
 msg_fifo_t   gMsgFifo;
-OS_EVENT    *gFlickTskMailbox; 
-OS_EVENT    *gUsbCmdMailbox;
+//OS_EVENT    *gFlickTskMailbox; 
+//OS_EVENT    *gUsbCmdMailbox;
 
 
 //========================================================================
@@ -86,8 +86,8 @@ int main(void)
         goto ERROR;
     }
 
-    gFlickTskMailbox = OSMboxCreate((void *) 0); 
-    gUsbCmdMailbox   = OSMboxCreate((void *) 0); 
+    //gFlickTskMailbox = OSMboxCreate((void *) 0); 
+    //gUsbCmdMailbox   = OSMboxCreate((void *) 0); 
     OSTimeSet(0);
     OSStart();  /* Start multitasking (i.e. give control to uC/OS-II).  */
 
@@ -113,11 +113,11 @@ ERROR:
 */
 static void App_UartCmdTask(void* p_arg)
 {
-    OSTimeDlyHMSM(0, 0, 1, 0);
     while(1)
     {
         DEBUG_MSG(1,"App_TaskUartCmdHandler:%d\r\n",p_arg);
-        SerialGetChar();
+        //SerialGetChar();
+        OSTimeDlyHMSM(0, 0, 1, 0);
     }
 }
 
@@ -138,13 +138,13 @@ static void App_UartCmdTask(void* p_arg)
 */
 static void App_UsbCmdTask(void* p_arg)
 {
-    UINT8 err;
+    //UINT8 err;
     
     while (true)
     {
         OSTimeDlyHMSM(0, 0, 1, 0);
         DEBUG_MSG(1,"App_TaskUsbCmdHandler:%d\r\n",1);
-        OSMboxPend(gFlickTskMailbox, 0, &err);
+        //OSMboxPend(gFlickTskMailbox, 0, &err);
     }
 }
 
@@ -165,12 +165,13 @@ static void App_UsbCmdTask(void* p_arg)
 */
 static void App_FlickTask(void *p_arg)
 {
-    UINT8  err;
+    //UINT8  err;
 
     while(1)
     {
-        OSMboxPend(gFlickTskMailbox, 0, &err);
+        //OSMboxPend(gFlickTskMailbox, 0, &err);
         DEBUG_MSG(CMD_DEBUG," \n\r");
+        OSTimeDlyHMSM(0, 0, 1, 0);
     }
 }
 
