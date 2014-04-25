@@ -55,7 +55,7 @@ int main(void)
 
     USB_Init();
     USB_Connect(true);
-
+    InitWatchDog();
     CPU_IntDis();         /* Disable all ints until we are ready to accept them.  */
     OSInit();             /* Initialize "uC/OS-II, The Real-Time Kernel".         */
     OS_CPU_SysTickInit(); /* Initialize the SysTick.   */
@@ -84,7 +84,7 @@ int main(void)
         goto ERROR;
     }
     InitUartPart2();
-    InitWatchDog();
+    
     OSStart();
 ERROR:
     printf("error:%d,%d\r\n",os_err,err_code);
