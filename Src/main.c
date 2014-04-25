@@ -91,57 +91,6 @@ ERROR:
     while(1);
 }
 
-#if 0
-static void App_TaskStart(void* p_arg)
-{
-    UINT8 os_err,err_code=0;
-    
-    InitGpio(); 
-    InitUart();
-    
-    init_crcccitt_tab();
-    InitCounterTimer();
-    LoadSysDb();
-
-    InitWatchDog();
-    USB_Init();
-    USB_Connect(true);
-
-    gFlickTskMailbox = OSMboxCreate((void *) 0); 
-    gUsbCmdMailbox   = OSMboxCreate((void *) 0);
-    InitUartPart2();
-    os_err = OSTaskCreate(App_UartCmdTask,0,&App_TaskStk[1][APP_TASK_STK_SIZE - 1],(INT8U) APP_TASK_UART_PRIO);
-    if(OS_ERR_NONE != os_err)
-    {
-        err_code = 1;
-        goto ERROR;
-    }
-
-    os_err = OSTaskCreate(App_UsbCmdTask,0,&App_TaskStk[2][APP_TASK_STK_SIZE - 1],(INT8U) APP_TASK_USB_PRIO);
-    if(OS_ERR_NONE != os_err)
-    {
-        err_code = 2;
-        goto ERROR;
-    }
-
-    os_err = OSTaskCreate(App_FlickTask,0,&App_TaskStk[3][APP_TASK_STK_SIZE - 1],(INT8U) APP_TASK_FLICK_PRIO);
-    if(OS_ERR_NONE != os_err)
-    {
-        err_code = 3;
-        goto ERROR;
-    }
-    
-    while(1)
-    {
-        OSTimeDlyHMSM(1,0,0,0);
-    }
-ERROR:
-    printf("error:%d,%d\r\n",os_err,err_code);
-    while(1);
-
-}
-#endif
-
 /*
 *********************************************************************************************************
 *                                          App_UartCmdTask()
