@@ -33,7 +33,7 @@ extern "C" {
     BOOL MsgFifoAdd(msg_fifo_t * fifo, UINT8 value);
     BOOL MsgFifoRemove(msg_fifo_t * fifo, UINT8 * value);
     BOOL MsgFifoCount(msg_fifo_t * fifo, INT16 * value);
-    void *MsgFifiBuf(msg_fifo_t *fifo);
+    void *MsgFifoPtr(msg_fifo_t *fifo);
 
 #ifdef  __cplusplus
 }

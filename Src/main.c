@@ -27,17 +27,15 @@ extern void USB_Connect (BOOL con);
 static OS_STK App_TaskStk[4][APP_TASK_STK_SIZE];
 
 //========================================================================
-//        Global variable defination
+//       Global variable defination
 tatDevStatus gDevStatus;
 msg_fifo_t   gMsgFifo;
 OS_EVENT    *gFlickTskMailbox; 
 OS_EVENT    *gUsbCmdMailbox;
 
-
 //========================================================================
-//        Local Function definition
+//       Local Function definition
 //
-//static void App_TaskStart(void* p_arg);
 static void App_UartCmdTask(void* p_arg);
 static void App_UsbCmdTask(void* p_arg);
 static void App_FlickTask(void *p_arg);
@@ -92,8 +90,6 @@ int main(void)
 ERROR:
     printf("error:%d,%d\r\n",os_err,err_code);
     while(1);
-
-   
 }
 
 #if 0
