@@ -52,7 +52,7 @@ int main(void)
     
     init_crcccitt_tab();
     InitCounterTimer();
-    LoadSysDb();
+    //LoadSysDb();
 
     InitWatchDog();
     USB_Init();
