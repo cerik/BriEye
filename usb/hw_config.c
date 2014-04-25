@@ -155,27 +155,27 @@ void DisableClock(void)
 *******************************************************************************/
 void Get_SerialNum(void)
 {
-  u32 Device_Serial0, Device_Serial1, Device_Serial2;
-  Device_Serial0 = 0x66e0032;//*(u32*)(0x1FFFF7E8);
-  Device_Serial1 = 0x66e0032;//*(u32*)(0x1FFFF7EC);
-  Device_Serial2 = 0x66e0032;//*(u32*)(0x1FFFF7F0);
+  UINT32 Device_Serial0, Device_Serial1, Device_Serial2;
+  Device_Serial0 = 0x66e0032;//*(UINT32*)(0x1FFFF7E8);
+  Device_Serial1 = 0x66e0032;//*(UINT32*)(0x1FFFF7EC);
+  Device_Serial2 = 0x66e0032;//*(UINT32*)(0x1FFFF7F0);
   
   if (Device_Serial0 != 0)
   {
-    TMC_StringSerial[2]  = (u8)(Device_Serial0  & 0x000000FF);  
-    TMC_StringSerial[4]  = (u8)((Device_Serial0 & 0x0000FF00) >> 8);
-    TMC_StringSerial[6]  = (u8)((Device_Serial0 & 0x00FF0000) >> 16);
-    TMC_StringSerial[8]  = (u8)((Device_Serial0 & 0xFF000000) >> 24);
+    TMC_StringSerial[2]  = (UINT8)(Device_Serial0  & 0x000000FF);  
+    TMC_StringSerial[4]  = (UINT8)((Device_Serial0 & 0x0000FF00) >> 8);
+    TMC_StringSerial[6]  = (UINT8)((Device_Serial0 & 0x00FF0000) >> 16);
+    TMC_StringSerial[8]  = (UINT8)((Device_Serial0 & 0xFF000000) >> 24);
     
-    TMC_StringSerial[10] = (u8)(Device_Serial1  & 0x000000FF);  
-    TMC_StringSerial[12] = (u8)((Device_Serial1 & 0x0000FF00) >> 8);
-    TMC_StringSerial[14] = (u8)((Device_Serial1 & 0x00FF0000) >> 16);
-    TMC_StringSerial[16] = (u8)((Device_Serial1 & 0xFF000000) >> 24);
+    TMC_StringSerial[10] = (UINT8)(Device_Serial1  & 0x000000FF);  
+    TMC_StringSerial[12] = (UINT8)((Device_Serial1 & 0x0000FF00) >> 8);
+    TMC_StringSerial[14] = (UINT8)((Device_Serial1 & 0x00FF0000) >> 16);
+    TMC_StringSerial[16] = (UINT8)((Device_Serial1 & 0xFF000000) >> 24);
     
-    TMC_StringSerial[18] = (u8)(Device_Serial2  & 0x000000FF);  
-    TMC_StringSerial[20] = (u8)((Device_Serial2 & 0x0000FF00) >> 8);
-    TMC_StringSerial[22] = (u8)((Device_Serial2 & 0x00FF0000) >> 16);
-    TMC_StringSerial[24] = (u8)((Device_Serial2 & 0xFF000000) >> 24);
+    TMC_StringSerial[18] = (UINT8)(Device_Serial2  & 0x000000FF);  
+    TMC_StringSerial[20] = (UINT8)((Device_Serial2 & 0x0000FF00) >> 8);
+    TMC_StringSerial[22] = (UINT8)((Device_Serial2 & 0x00FF0000) >> 16);
+    TMC_StringSerial[24] = (UINT8)((Device_Serial2 & 0xFF000000) >> 24);
   }
 }
 void USB_Connect (BOOL con) 

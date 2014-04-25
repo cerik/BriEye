@@ -21,13 +21,13 @@ BOOL MsgFifoAdd(msg_fifo_t * fifo, UINT8 value) {
     fifo->data[fifo->wr] = value;
     fifo->wr = (fifo->wr + 1) % (fifo->size + 1);
 
-    return true;
+    return TRUE;
 }
 
 BOOL MsgFifoRemove(msg_fifo_t * fifo, UINT8 * value) {
     /* FIFO empty? */
     if (fifo->wr == fifo->rd) {
-        return false;
+        return FALSE;
     }
 
     if(value) {
@@ -36,7 +36,7 @@ BOOL MsgFifoRemove(msg_fifo_t * fifo, UINT8 * value) {
 
     fifo->rd = (fifo->rd + 1) % (fifo->size + 1);
 
-    return true;
+    return TRUE;
 }
 
 BOOL MsgFifoCount(msg_fifo_t * fifo, INT16 * value) {
@@ -44,7 +44,7 @@ BOOL MsgFifoCount(msg_fifo_t * fifo, INT16 * value) {
     if (*value < 0) {
         *value += (fifo->size + 1);
     }
-    return true;
+    return TRUE;
 }
 
 void *MsgFifoPtr(msg_fifo_t *fifo)

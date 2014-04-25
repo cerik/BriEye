@@ -24,7 +24,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 VUINT32 bDeviceState = UNCONNECTED; /* USB device status */
-volatile const BOOL fSuspendEnabled = true;  /* true when suspend is possible */
+volatile const BOOL fSuspendEnabled = TRUE;  /* TRUE when suspend is possible */
 
 struct
 {
@@ -47,7 +47,7 @@ struct
 RESULT PowerOn(void)
 {
   /*** cable plugged-in ? ***/
-  USB_Cable_Config(true);
+  USB_Cable_Config(TRUE);
 
   /*** CNTR_PWDN = 0; CNTR_FRES=1:Force USB Reset ***/
   _SetCNTR(CNTR_FRES); 
@@ -72,7 +72,7 @@ RESULT PowerOff()
   /* clear interrupt status register */
   _SetISTR(0);
   /* Disable the Pull-Up*/
-  USB_Cable_Config(false);
+  USB_Cable_Config(FALSE);
   /* switch-off device */
   _SetCNTR(CNTR_FRES + CNTR_PDWN);
   /* sw variables reset */

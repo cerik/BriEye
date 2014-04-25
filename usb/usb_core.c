@@ -37,7 +37,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 u16_u8 StatusInfo;
-BOOL Data_Mul_MaxPacketSize = false;
+BOOL Data_Mul_MaxPacketSize = FALSE;
 /* Private function prototypes -----------------------------------------------*/
 static void DataStageOut(void);
 static void DataStageIn(void);
@@ -76,7 +76,6 @@ UINT8 *Standard_GetConfiguration(UINT16 Length)
 *******************************************************************************/
 RESULT Standard_SetConfiguration(void)
 {
-
   if ((pInformation->USBwValue0 <=
       Device_Table.Total_Configuration) && (pInformation->USBwValue1 == 0)
       && (pInformation->USBwIndex == 0)) /*call Back usb spec 2.0*/
@@ -491,12 +490,12 @@ void DataStageIn(void)
 
   if ((save_wLength == 0) && (ControlState == LAST_IN_DATA))
   {
-    if(Data_Mul_MaxPacketSize == true)
+    if(Data_Mul_MaxPacketSize == TRUE)
     {
       /* No more data to send and empty packet */
       Send0LengthData();
       ControlState = LAST_IN_DATA;
-      Data_Mul_MaxPacketSize = false;
+      Data_Mul_MaxPacketSize = FALSE;
     }
     else 
     {
@@ -811,11 +810,11 @@ void Data_Setup0(void)
     {
       if (pInformation->Ctrl_Info.Usb_wLength < pProperty->MaxPacketSize)
       {
-        Data_Mul_MaxPacketSize = false;
+        Data_Mul_MaxPacketSize = FALSE;
       }
       else if ((pInformation->Ctrl_Info.Usb_wLength % pProperty->MaxPacketSize) == 0)
       {
-        Data_Mul_MaxPacketSize = true;
+        Data_Mul_MaxPacketSize = TRUE;
       }
     }   
 

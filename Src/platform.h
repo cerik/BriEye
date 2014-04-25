@@ -23,9 +23,9 @@
 
 // Define the STM32F10x hardware depending on the used evaluation board
 //#ifdef USE_STM32F103RD
-//  #define FLASH_PAGE_SIZE    ((u16)0x400)	//1K for stm32f103rb
+//  #define FLASH_PAGE_SIZE    ((UINT16)0x400)	//1K for stm32f103rb
 //#elif defined USE_STM3210E_EVAL
-//  #define FLASH_PAGE_SIZE    ((u16)0x800) //2K
+//  #define FLASH_PAGE_SIZE    ((UINT16)0x800) //2K
 //#endif
 
 

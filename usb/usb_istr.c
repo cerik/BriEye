@@ -26,7 +26,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 volatile UINT16 wIstr;  /* ISTR register last read value */
-//volatile u8 bIntPackSOF = 0;  /* SOFs received between 2 consecutive packets */
+//volatile UINT8 bIntPackSOF = 0;  /* SOFs received between 2 consecutive packets */
 
 /* Extern variables ----------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/

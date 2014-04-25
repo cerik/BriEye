@@ -103,7 +103,7 @@ int fputc(int ch, FILE *f) {
     return putch(ch);
 }
 int fgetc(FILE *f) {
-    return getch(true);
+    return getch(TRUE);
 }
 void _ttywrch(int ch) {
     putch(ch);

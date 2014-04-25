@@ -92,6 +92,6 @@ UINT8 SaveSysDb(const struct tagSysDb * const pSysDb)
     const UINT32* src = (UINT32* )(&pSysDb);
     FLASH_Status FLASHStatus;
 
-    FLASHStatus=Flash_Write_Word(dst, src, SYS_DB_SIZE/4,true);
+    FLASHStatus=Flash_Write_Word(dst, src, SYS_DB_SIZE/4,TRUE);
     return (FLASHStatus == FLASH_COMPLETE)?0:1;
 }

@@ -48,8 +48,8 @@ static tagTmcLayerInfo gTmcLayerInfo={
     TERR_NONE,//tmcLastError
     0,        //rxCount
     0,        //txCount
-    true,     //rxFinished
-    false,    //txFinished
+    TRUE,     //rxFinished
+    FALSE,    //txFinished
 };
 
 //===================================================================================
@@ -68,7 +68,7 @@ static UINT8 tmcLayerRxBuffer[USB_BUF_SIZE]={0};
 //===================================================================================
 static void tmcMsgAnalize(void)
 {
-    if(true == gTmcLayerInfo.rxFinished) //all data have been received.
+    if(TRUE == gTmcLayerInfo.rxFinished) //all data have been received.
     {
         switch(gTmcLayerInfo.lastTmcBulkOutHeader.bID)
         {
@@ -106,7 +106,7 @@ void EP1_OUT_Callback(void)
     {
     case TMC_IDLE:
         //New transfer, clear rxFinished flag.
-        gTmcLayerInfo.rxFinished = false;
+        gTmcLayerInfo.rxFinished = FALSE;
 
         //Init the data count of the first transaction(not include header info), and save the newest pkg header.
         gTmcLayerInfo.rxDatCount = PMAToUserBufferCopy(tmcLayerRxBuffer,ENDP1_RXADDR,GetEPRxCount(ENDP1)) - TMC_HEADER_SIZE;
@@ -133,7 +133,7 @@ void EP1_OUT_Callback(void)
         if(gTmcLayerInfo.rxDatCount < MAXHEADERDATASIZE || 
            tmcBulkOutHeaderPtr->transferSize <= MAXHEADERDATASIZE)
         {//This mean the data transmited in this transcation are all received.
-            gTmcLayerInfo.rxFinished = true;
+            gTmcLayerInfo.rxFinished = TRUE;
         }
         else
         {
@@ -155,7 +155,7 @@ void EP1_OUT_Callback(void)
             gTmcLayerInfo.rxDatCount += PMAToUserBufferCopy(tmcLayerRxBuffer + TMC_HEADER_SIZE + gTmcLayerInfo.rxDatCount,ENDP1_RXADDR,GetEPRxCount(ENDP1));
             if( gTmcLayerInfo.lastTmcBulkOutHeader.transferSize <= gTmcLayerInfo.rxDatCount )
             {//OK,data have been received finished.
-                gTmcLayerInfo.rxFinished   = true;
+                gTmcLayerInfo.rxFinished   = TRUE;
                 gTmcLayerInfo.tmcLastError = TERR_NONE;
                 gRxState      = TMC_IDLE;
             }
@@ -164,7 +164,7 @@ void EP1_OUT_Callback(void)
     default:
         break;
     }
-    if(true == gTmcLayerInfo.rxFinished)
+    if(TRUE == gTmcLayerInfo.rxFinished)
     {
         tmcMsgAnalize();
     }
@@ -181,7 +181,7 @@ L_END:
 //===================================================================================
 void EP2_IN_Callback(void)
 {
-    gTmcLayerInfo.txFinished = true;
+    gTmcLayerInfo.txFinished = TRUE;
 }
 
 //===================================================================================
@@ -192,7 +192,7 @@ void EP2_IN_Callback(void)
 //===================================================================================
 void RESET_Callback(void)
 {
-    gTmcLayerInfo.txFinished = true;
+    gTmcLayerInfo.txFinished = TRUE;
 }
 
 //===================================================================================
@@ -222,7 +222,7 @@ UINT32 tmcSendData(const void * const pBuffer,const UINT32 bufLen)
     //First package
     //Wait previous transmit finished.
     StartCounter(&counter,50);//50ms
-    while(false == gTmcLayerInfo.txFinished)
+    while(FALSE == gTmcLayerInfo.txFinished)
     {
         if(CounterArrived(&counter))
         {
@@ -245,7 +245,7 @@ UINT32 tmcSendData(const void * const pBuffer,const UINT32 bufLen)
     for(index=0,cpyIndex=0;(index < xmitLen) && (index < MAXHEADERDATASIZE);index++,cpyIndex++)
         tmcLayerTxBuffer[TMC_HEADER_SIZE + cpyIndex] = pSrc[cpyIndex]; 
 
-    gTmcLayerInfo.txFinished = false;
+    gTmcLayerInfo.txFinished = FALSE;
     UserToPMABufferCopy(tmcLayerTxBuffer,ENDP2,ENDP2_TXADDR,TMC_HEADER_SIZE + index);
     gTmcLayerInfo.txDatCount = cpyIndex;
     SetEPTxValid(ENDP2);
@@ -254,7 +254,7 @@ UINT32 tmcSendData(const void * const pBuffer,const UINT32 bufLen)
     while(gTmcLayerInfo.txDatCount<xmitLen)
     {
         StartCounter(&counter,50);//50ms
-        while(false == gTmcLayerInfo.txFinished)
+        while(FALSE == gTmcLayerInfo.txFinished)
         {
             if(CounterArrived(&counter))
             {
@@ -263,7 +263,7 @@ UINT32 tmcSendData(const void * const pBuffer,const UINT32 bufLen)
             }
         }
         for(index=0;index<EP_MAXPKGSIZE && cpyIndex<xmitLen;index++,cpyIndex++) tmcLayerTxBuffer[index] = pSrc[cpyIndex];
-        gTmcLayerInfo.txFinished = false;
+        gTmcLayerInfo.txFinished = FALSE;
         gTmcLayerInfo.txDatCount += UserToPMABufferCopy(tmcLayerTxBuffer,ENDP2,ENDP2_TXADDR,index);
         SetEPTxValid(ENDP2);
     }
@@ -291,7 +291,7 @@ UINT32 tmcGetData( void *buffer, UINT32 bufSize)
     
     //__disable_irq();//disable all interrupt 
 
-    if( false == tmcIsRxFinished())  goto L_ERROR;
+    if( FALSE == tmcIsRxFinished())  goto L_ERROR;
 
     datSize = tmcRxDataSize();
     if(bufSize < datSize) goto L_ERROR;
@@ -326,7 +326,7 @@ BOOL tmcIsRxFinished(void)
 }
 void tmcRxFinishedClear(void)
 {
-    gTmcLayerInfo.rxFinished=false;
+    gTmcLayerInfo.rxFinished=FALSE;
     gTmcLayerInfo.rxDatCount=0;
 }
 

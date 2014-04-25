@@ -9,7 +9,6 @@
 #ifndef __USB_REPORT_H
 #define __USB_REPORT_H
 
-#include "usb_type.h"
 #include "usb_desc.h"
 #include "usb_type.h"
 

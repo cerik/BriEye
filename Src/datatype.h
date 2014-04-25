@@ -22,7 +22,7 @@ typedef     signed long  long  INT64;
 typedef volatile   signed int  VINT32;
 typedef volatile unsigned int  VUINT32;
 
-typedef enum {false=0,true=1} BOOL;
+typedef enum {FALSE=0,TRUE=1} BOOL;
 typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 
 #define NaN32 0x7FFFFFFF

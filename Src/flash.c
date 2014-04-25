@@ -12,7 +12,7 @@
 #define PRINT_DEBUG
 
 /* Private variables */  
-static vu32 WRPR_Value = 0xFFFFFFFF, ProtectedPages = 0x0;
+static VUINT32 WRPR_Value = 0xFFFFFFFF, ProtectedPages = 0x0;
 static volatile TestStatus MemoryProgramStatus;
 
 // used to backup all data of a page
@@ -83,7 +83,7 @@ static FLASH_Status Flash_Write(const UINT32 beginAddr, const void* buf,
         FLASH_ClearFlag(FLASH_FLAG_BSY | FLASH_FLAG_EOP
                 |FLASH_FLAG_PGERR |FLASH_FLAG_WRPRTERR);    
 
-        if(safe==true)  Page_Backup(PageBakupBuf);
+        if(safe==TRUE)  Page_Backup(PageBakupBuf);
     //Erase FLASH pages which will be modified
         for(pgIndex = bPage; pgIndex <= ePage; pgIndex++)
         {
@@ -106,7 +106,7 @@ static FLASH_Status Flash_Write(const UINT32 beginAddr, const void* buf,
             bAddr = beginAddr;
             while((bufIndex < bufLen) && (MemoryProgramStatus != FAILED))
             {
-                if((*(vu32*) bAddr) != (UINT32)((UINT32*)buf)[bufIndex++]) 
+                if((*(VUINT32*) bAddr) != (UINT32)((UINT32*)buf)[bufIndex++]) 
                     MemoryProgramStatus = FAILED;
                 bAddr += 4;
             }
@@ -124,7 +124,7 @@ static FLASH_Status Flash_Write(const UINT32 beginAddr, const void* buf,
             bAddr = beginAddr;
             while((bufIndex < bufLen) && (MemoryProgramStatus != FAILED))
             {
-                if((*(vu32*) bAddr) != (UINT16)((UINT16*)buf)[bufIndex++]) 
+                if((*(VUINT32*) bAddr) != (UINT16)((UINT16*)buf)[bufIndex++]) 
                     MemoryProgramStatus = FAILED;
                 bAddr += 2;
             }   
@@ -148,7 +148,7 @@ static FLASH_Status Flash_Write(const UINT32 beginAddr, const void* buf,
 FLASH_Status Flash_Write_HalfWord(const UINT32 beginAddr, 
                 const UINT16* buf, const UINT8 len,const BOOL safe)
 {            
-    return Flash_Write(beginAddr,buf,len,HALFWORD,false);
+    return Flash_Write(beginAddr,buf,len,HALFWORD,FALSE);
 }
 
 /*****************************************************************************
@@ -166,7 +166,7 @@ FLASH_Status Flash_Write_HalfWord(const UINT32 beginAddr,
 FLASH_Status Flash_Write_Word(const UINT32 beginAddr, 
                 const UINT32* buf, const UINT8 len,const BOOL safe)
 {            
-    return Flash_Write(beginAddr,buf,len,WORD,false);
+    return Flash_Write(beginAddr,buf,len,WORD,FALSE);
 }
 
 /*****************************************************************************
@@ -217,7 +217,7 @@ FLASH_Status Flash_Erase_Page(const UINT32 addr)
         eAddr=addr + FLASH_PAGE_SIZE;
         while((bAddr < eAddr) && (MemoryProgramStatus != FAILED))
         {
-            if((*(vu32*) bAddr) != 0xFFFF) MemoryProgramStatus = FAILED;
+            if((*(VUINT32*) bAddr) != 0xFFFF) MemoryProgramStatus = FAILED;
             bAddr += 2;
         }
     }   

@@ -175,7 +175,7 @@ BOOL CounterArrived(tagCounter *counter)
         counter->ms -= (counter->t1 < counter->t0)?(counter->t1 + 0xFFFFFFFF - counter->t0):(counter->t1 - counter->t0);
         counter->t0 = counter->t1;
     }
-    return (counter->ms > 0)?false:true;
+    return (counter->ms > 0)?FALSE:TRUE;
 }
 
 //=============================================================================

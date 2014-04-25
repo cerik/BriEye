@@ -54,7 +54,7 @@ int main(void)
     InitCounterTimer();
 
     USB_Init();
-    USB_Connect(true);
+    USB_Connect(TRUE);
     InitWatchDog();
     CPU_IntDis();         /* Disable all ints until we are ready to accept them.  */
     OSInit();             /* Initialize "uC/OS-II, The Real-Time Kernel".         */
@@ -135,7 +135,7 @@ static void App_UsbCmdTask(void* p_arg)
 {
     //UINT8 err;
     
-    while (true)
+    while (TRUE)
     {
         OSTimeDlyHMSM(0, 0, 3, 0);
         DEBUG_MSG(1,"%d\r\n",1);

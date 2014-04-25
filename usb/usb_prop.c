@@ -24,14 +24,14 @@
 #include "usb_tmc.h"
 #include "debug.h"
 
-u8 capability = 1;
+UINT8 capability = 1;
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-u32 ProtocolValue;
+UINT32 ProtocolValue;
 tagTmcSpecRequest gTmcSpecReq={0};
-static u8 gCtrlCmdBuffer[24]={0};
+static UINT8 gCtrlCmdBuffer[24]={0};
 
 /* -------------------------------------------------------------------------- */
 /*  Structures initializations */
@@ -78,25 +78,25 @@ USER_STANDARD_REQUESTS User_Standard_Requests =
 
 ONE_DESCRIPTOR Device_Descriptor =
 {
-  (u8*)TMC_DeviceDescriptor,
+  (UINT8*)TMC_DeviceDescriptor,
   TMC_SIZ_DEVICE_DESC
 };
 
 ONE_DESCRIPTOR Config_Descriptor =
 {
-  (u8*)TMC_ConfigDescriptor,
+  (UINT8*)TMC_ConfigDescriptor,
   TMC_SIZ_CONFIG_DESC
 };
 
 
 ONE_DESCRIPTOR String_Descriptor[6] =
 {
-  {(u8*)TMC_StringLangID, TMC_SIZ_STRING_LANGID},
-  {(u8*)TMC_StringVendor, TMC_SIZ_STRING_VENDOR},
-  {(u8*)TMC_StringProduct,TMC_SIZ_STRING_PRODUCT},
-  {(u8*)TMC_StringSerial, TMC_SIZ_STRING_SERIAL},
-  {(u8*)TMC_StringConfiguration,TMC_SIZ_STRING_CONFIGURE},
-  {(u8*)TMC_StrintInterface,TMC_SIZ_STRING_INTERFACE},
+  {(UINT8*)TMC_StringLangID, TMC_SIZ_STRING_LANGID},
+  {(UINT8*)TMC_StringVendor, TMC_SIZ_STRING_VENDOR},
+  {(UINT8*)TMC_StringProduct,TMC_SIZ_STRING_PRODUCT},
+  {(UINT8*)TMC_StringSerial, TMC_SIZ_STRING_SERIAL},
+  {(UINT8*)TMC_StringConfiguration,TMC_SIZ_STRING_CONFIGURE},
+  {(UINT8*)TMC_StrintInterface,TMC_SIZ_STRING_INTERFACE},
 };
 
 /* Extern variables ----------------------------------------------------------*/
@@ -113,7 +113,7 @@ ONE_DESCRIPTOR String_Descriptor[6] =
 * Output         : None.
 * Return         : The address of the device descriptor.
 *******************************************************************************/
-u8 *TMC_GetDeviceDescriptor(u16 Length)
+UINT8 *TMC_GetDeviceDescriptor(UINT16 Length)
 {
   return Standard_GetDescriptorData(Length, &Device_Descriptor);
 }
@@ -125,7 +125,7 @@ u8 *TMC_GetDeviceDescriptor(u16 Length)
 * Output         : None.
 * Return         : The address of the configuration descriptor.
 *******************************************************************************/
-u8 *TMC_GetConfigDescriptor(u16 Length)
+UINT8 *TMC_GetConfigDescriptor(UINT16 Length)
 {
   return Standard_GetDescriptorData(Length, &Config_Descriptor);
 }
@@ -137,9 +137,9 @@ u8 *TMC_GetConfigDescriptor(u16 Length)
 * Output         : None.
 * Return         : The address of the string descriptors.
 *******************************************************************************/
-u8 *TMC_GetStringDescriptor(u16 Length)
+UINT8 *TMC_GetStringDescriptor(UINT16 Length)
 {
-  u8 wValue0 = pInformation->USBwValue0;
+  UINT8 wValue0 = pInformation->USBwValue0;
   if (wValue0 > 5)
   {
     return NULL;
@@ -159,7 +159,7 @@ u8 *TMC_GetStringDescriptor(u16 Length)
 * Output         : None.
 * Return         : USB_SUCCESS or USB_UNSUPPORT.
 *******************************************************************************/
-RESULT TMC_Get_Interface_Setting(u8 Interface, u8 AlternateSetting)
+RESULT TMC_Get_Interface_Setting(UINT8 Interface, UINT8 AlternateSetting)
 {
   if (AlternateSetting > 0)
   {
@@ -181,7 +181,7 @@ RESULT TMC_Get_Interface_Setting(u8 Interface, u8 AlternateSetting)
 *******************************************************************************/
 RESULT TMC_SetProtocol(void)
 {
-  u8 wValue0 = pInformation->USBwValue0;
+  UINT8 wValue0 = pInformation->USBwValue0;
   ProtocolValue = wValue0;
   return USB_SUCCESS;
 }
@@ -193,7 +193,7 @@ RESULT TMC_SetProtocol(void)
 * Output         : None.
 * Return         : address of the protcol value.
 *******************************************************************************/
-u8 *TMC_GetProtocolValue(u16 Length)
+UINT8 *TMC_GetProtocolValue(UINT16 Length)
 {
   if (Length == 0)
   {
@@ -202,11 +202,11 @@ u8 *TMC_GetProtocolValue(u16 Length)
   }
   else
   {
-    return (u8 *)(&ProtocolValue);
+    return (UINT8 *)(&ProtocolValue);
   }
 }
 
-u8 *TMC_initiate_abort_bulk_out(u16 Length)
+UINT8 *TMC_initiate_abort_bulk_out(UINT16 Length)
 {
     tagTmcBulkMsgHeader *pBulkOutHeader;
 
@@ -216,14 +216,14 @@ u8 *TMC_initiate_abort_bulk_out(u16 Length)
     gCtrlCmdBuffer[0] = STATUS_SUCCESS;
     gCtrlCmdBuffer[1] = pBulkOutHeader->bTag;
 
-    //cmd_buffer[1]=(u8)pInformation->USBwValues.w &0xFF;
+    //cmd_buffer[1]=(UINT8)pInformation->USBwValues.w &0xFF;
     //
     //abort action
     pInformation->Ctrl_Info.Usb_wLength=2;
     return gCtrlCmdBuffer;
 }
 
-u8 *TMC_check_abort_bulk_out_status(u16 Length)
+UINT8 *TMC_check_abort_bulk_out_status(UINT16 Length)
 {
     UINT32 rxDatSize;
 
@@ -242,20 +242,20 @@ u8 *TMC_check_abort_bulk_out_status(u16 Length)
     return gCtrlCmdBuffer;
 }
 
-u8 *TMC_initiate_abort_bulk_in(u16 Length)
+UINT8 *TMC_initiate_abort_bulk_in(UINT16 Length)
 {
     tagTmcBulkMsgHeader *pBulkInHeader;
 
     pBulkInHeader = tmcGetBulkInHeader();
     gCtrlCmdBuffer[0] = STATUS_SUCCESS;
     gCtrlCmdBuffer[1] = pBulkInHeader->bTag;
-    //gCtrlCmdBuffer[1]=(u8)pInformation->USBwValues.w &0xFF;
+    //gCtrlCmdBuffer[1]=(UINT8)pInformation->USBwValues.w &0xFF;
     //pInformation.Ctrl_Info.PacketSize=2;
     //abort action
     pInformation->Ctrl_Info.Usb_wLength=2;
     return gCtrlCmdBuffer;
 }
-u8 *TMC_check_abort_bulk_in_status(u16 Length)
+UINT8 *TMC_check_abort_bulk_in_status(UINT16 Length)
 {
     gCtrlCmdBuffer[0]=STATUS_SUCCESS;
     gCtrlCmdBuffer[1]=0x00;
@@ -271,7 +271,7 @@ u8 *TMC_check_abort_bulk_in_status(u16 Length)
     return gCtrlCmdBuffer;
 }
 
-u8 *TMC_initiate_clear(u16 Length)
+UINT8 *TMC_initiate_clear(UINT16 Length)
 {
     tmcResetRxState();
     gCtrlCmdBuffer[0]=STATUS_SUCCESS;
@@ -281,7 +281,7 @@ u8 *TMC_initiate_clear(u16 Length)
     return gCtrlCmdBuffer;
 }
 
-u8 *TMC_check_clear_status(u16 Length)
+UINT8 *TMC_check_clear_status(UINT16 Length)
 {
     gCtrlCmdBuffer[0]=STATUS_SUCCESS;
     gCtrlCmdBuffer[1]=0;
@@ -291,9 +291,9 @@ u8 *TMC_check_clear_status(u16 Length)
     return gCtrlCmdBuffer;
 }
 
-u8 *TMC_get_capabilities(u16 Length)
+UINT8 *TMC_get_capabilities(UINT16 Length)
 {
-    u8 i;
+    UINT8 i;
     for(i=0;i<24;i++) gCtrlCmdBuffer[i]=0;
     gCtrlCmdBuffer[0]=STATUS_SUCCESS;
     //bcdUSBTMC
@@ -437,9 +437,9 @@ void TMC_Status_Out (void)
 * Output         : None.
 * Return         : USB_UNSUPPORT or USB_SUCCESS.
 *******************************************************************************/
-RESULT TMC_Data_Setup(u8 RequestNo)
+RESULT TMC_Data_Setup(UINT8 RequestNo)
 {
-    u8 *(*CopyRoutine)(u16);
+    UINT8 *(*CopyRoutine)(UINT16);
     
     CopyRoutine = NULL;
     switch(pInformation->USBbmRequestType)
@@ -503,7 +503,7 @@ RESULT TMC_Data_Setup(u8 RequestNo)
 * Output         : None.
 * Return         : USB_UNSUPPORT or USB_SUCCESS.
 *******************************************************************************/
-RESULT TMC_NoData_Setup(u8 RequestNo)
+RESULT TMC_NoData_Setup(UINT8 RequestNo)
 {
     if ((Type_Recipient == (CLASS_REQUEST | INTERFACE_RECIPIENT))
       && (RequestNo == SET_PROTOCOL))
