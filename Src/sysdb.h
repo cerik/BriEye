@@ -50,7 +50,8 @@ struct tagSysDb{
  ******************************************************************************************
  ******************************************************************************************
  */
-extern  struct tagSysDb gSysDb;  
+extern const struct tagSysDb * const gSysDbPtr;
+//extern  struct tagSysDb gSysDb;
 //extern  struct tagLinearArgs gt_linearg;
 //extern  struct tagDarkCalibArgs gt_darkcalib;
 

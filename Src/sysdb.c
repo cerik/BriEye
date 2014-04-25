@@ -6,6 +6,7 @@
 //=============================================================================
 #include "sysdb.h"
 
+const struct tagSysDb gSysDbBlk __attribute__((section("SYSDB_SECTION"),used));
 struct tagSysDb gSysDb;
 
 //=============================================================================
@@ -26,7 +27,7 @@ void LoadDefaultDb(void)
             {
                 gSysDb.normal_matrix[7][i][j]=0;
             }
-        }  
+        }
     }
 }
 
@@ -41,7 +42,7 @@ UINT16 ReadSysDb(void *pMsg)
     UINT16 i,j,k,m;
     UINT8 *tmp;
     UINT8 *p=(UINT8*)pMsg;
-    
+
     for(i=0;i<8;i++)
     {
         for(j=0;j<4;j++)
