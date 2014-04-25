@@ -52,9 +52,7 @@ int main(void)
     
     init_crcccitt_tab();
     InitCounterTimer();
-    //LoadSysDb();
 
-    InitWatchDog();
     USB_Init();
     USB_Connect(true);
 
@@ -86,6 +84,7 @@ int main(void)
         goto ERROR;
     }
     InitUartPart2();
+    InitWatchDog();
     OSStart();
 ERROR:
     printf("error:%d,%d\r\n",os_err,err_code);
