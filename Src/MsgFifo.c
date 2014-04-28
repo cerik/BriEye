@@ -47,7 +47,7 @@ BOOL MsgFifoCount(msg_fifo_t * fifo, INT16 * value) {
     return TRUE;
 }
 
-void *MsgFifoPtr(msg_fifo_t *fifo)
+void *MsgFifiBuf(msg_fifo_t *fifo)
 {
     return fifo->data;
 }

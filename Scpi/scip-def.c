@@ -32,16 +32,15 @@
  * @brief  SCPI Command Defination
  * 
  */
-#include <string.h>
 #include <stdio.h>
-#include "platform.h"
 #include "datatype.h"
 #include "parser.h"
+#include "sysdb.h"
 #include "utils.h"
 #include "error.h"
 #include "scpi.h"
 #include "fifo.h"
-#include "sysdb.h"
+
 
 
 #define SCPI_INPUT_BUFFER_LENGTH 100

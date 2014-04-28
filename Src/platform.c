@@ -10,7 +10,6 @@
 #include "stm32f10x_iwdg.h"
 #include "stm32f10x_tim.h"
 #include "stm32f10x_rcc.h"
-#include "clock_config.h"
 #include "datatype.h"
 #include "ucos_ii.h"
 #include "misc.h"
@@ -22,9 +21,9 @@
  * Global Varibale & Macro & Function Declaration
  **********************************************************
  */
-#define SYSCLK  48000000    //48M
-#define HCLK    48000000    //48M
-#define APB1    24000000    //24M 
+//#define SYSCLK  48000000    //48M
+//#define HCLK    48000000    //48M
+//#define APB1    24000000    //24M 
 
 /*
  *---------------------------------------------------------
@@ -71,16 +70,16 @@ UINT32  OS_CPU_SysTickClkFreq (void)
  *   Independent Watchdog Configure
  *   IWDGCLK = 40 kHz
  *   WDT Timeout = 5s
- ****************************************************/
-#define __IWDG_PERIOD      5000000        //unit:us ;here is 5000ms  = 5s          
-#define __IWGDCLK          (40000UL/(0x04<<__IWDG_PR))
-#define __IWDG_RLR         (__IWDG_PERIOD*__IWGDCLK/1000000UL-1)
-
-void InitWatchDog(void)
+ *   CNT_CLK = 40 kHz / 256 = 156.25 Hz
+ ****************************************************/ 
+#define __IWGDCLK     (40000UL/(0x04<<IWDG_Prescaler_256))
+void InitWatchDog(UINT32 ms)
 {
+    UINT16 reload;
+    reload = ms*__IWGDCLK/1000UL-1;
     IWDG_ReloadCounter();// enable write to PR, RLR
     IWDG_SetPrescaler(IWDG_Prescaler_256);//clk = 40 kHz / 256 = 156.25 Hz
-    IWDG_SetReload(__IWDG_RLR);
+    IWDG_SetReload(reload);
     IWDG_ReloadCounter();
     IWDG_Enable();
 }
@@ -122,6 +121,7 @@ void InitGpio(void)
     GPIO_WriteBit(GPIOD,GPIO_Pin_1,Bit_SET);
 }
 
+#if 0
 //=============================================================================
 //  Timer4 : Free Running Timer,CNT++ every 1ms.
 // Note:
@@ -154,6 +154,7 @@ void InitCounterTimer(void)
     TIM_ITConfig(TIM4,TIM_IT_Update,ENABLE);
     TIM_Cmd(TIM4, ENABLE);
 }
+#endif
 
 /*
  ***************************************************
@@ -198,18 +199,16 @@ void DataBusMode(GPIOMODE mode)
     GPIO_Init(GPIOA, &GPIO_InitStructure);
 }
 
+#if 0
 void TIM4_IRQHandler (void) 
 { 
     // check interrupt source
     if( TIM_GetITStatus(TIM4 , TIM_IT_Update) != RESET ) 
     {
         TIM_ClearITPendingBit(TIM4 , TIM_FLAG_Update);
-        gSysTickCounter++;
-#ifdef TIMER_DEBUG
-        printf("2:0x%.2x\n\r",TIM2->SR);
-#endif
     }
 }
+
 
 /*
  *---------------------------------------------------------
@@ -236,9 +235,11 @@ void EXTI0_IRQHandler(void)
         EXTI->PR |= (1<<7);
     }
 }
+#endif
 
 void  App_TimeTickHook(void)
 {
     IWDG_ReloadCounter();
+    gSysTickCounter++;
 }
 

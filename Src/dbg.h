@@ -1,5 +1,5 @@
-#ifndef __DBG__H__
-#define __DBG__H__
+#ifndef _DBG_H_
+#define _DBG_H_
 
 #include <stdio.h>
 

@@ -76,6 +76,7 @@ UINT8 *Standard_GetConfiguration(UINT16 Length)
 *******************************************************************************/
 RESULT Standard_SetConfiguration(void)
 {
+
   if ((pInformation->USBwValue0 <=
       Device_Table.Total_Configuration) && (pInformation->USBwValue1 == 0)
       && (pInformation->USBwIndex == 0)) /*call Back usb spec 2.0*/

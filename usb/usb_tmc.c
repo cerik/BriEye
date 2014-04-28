@@ -74,11 +74,11 @@ static void tmcMsgAnalize(void)
         {
         case DEV_DEP_MSG_OUT: //This is the host Write operation,not read operation
             gTmcLayerInfo.txDatCount   = 0;
-            //OSMboxPost(gUsbCmdMailbox,(void*)0x01);//Host Write
+            OSMboxPost(gUsbCmdMailbox,(void*)0x01);//Host Write
             DEBUG_MSG(TMC_DEBUG,"\n");
             break;
         case REQUEST_DEV_DEP_MSG_IN: //This is the host read operation,not write operation.
-            //OSMboxPost(gUsbCmdMailbox,(void*)0x02);//Host Read
+            OSMboxPost(gUsbCmdMailbox,(void*)0x02);//Host Read
             memcpy((UINT8*)&gTmcLayerInfo.lastTmcBulkInHeader,
                    (const void *)&gTmcLayerInfo.lastTmcBulkOutHeader,TMC_HEADER_SIZE);
             DEBUG_MSG(TMC_DEBUG,"txDatCount:%d\n",gTmcLayerInfo.txDatCount);

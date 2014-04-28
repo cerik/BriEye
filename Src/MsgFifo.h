@@ -8,8 +8,8 @@
  * 
  */
 
-#ifndef SCPI_FIFO_H
-#define SCPI_FIFO_H
+#ifndef _MSG_FIFO_H
+#define _MSG_FIFO_H
 
 #include "datatype.h"
 
@@ -33,7 +33,7 @@ extern "C" {
     BOOL MsgFifoAdd(msg_fifo_t * fifo, UINT8 value);
     BOOL MsgFifoRemove(msg_fifo_t * fifo, UINT8 * value);
     BOOL MsgFifoCount(msg_fifo_t * fifo, INT16 * value);
-    void *MsgFifoPtr(msg_fifo_t *fifo);
+    void *MsgFifiBuf(msg_fifo_t *fifo);
 
 #ifdef  __cplusplus
 }

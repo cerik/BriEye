@@ -3,6 +3,16 @@
 //  This chip is Bigendin
 //=============================================================================
 // Create by Cerik
+//  
+// System Clock Configuration
+//     HSI = 8MHz
+//     SYSCLK=PLLCLK = 48MHz = 8MHz/2 * 12
+//     HCLK=48MHz
+//     PCLK2(APB2)=12MHz
+//     PCLK1(APB1)=24MHz
+//     USBCLK = 48MHz
+//     FCLK = 48MHz
+//     SysTickCLK=HCLK/8=8MHz
 //=============================================================================
 // Log:
 //=============================================================================
@@ -11,10 +21,11 @@
 #include "uartdrv.h"
 #include "MsgFifo.h"
 #include "sysdb.h" 
-#include "dbg.h"
 #include "cpu.h"
 #include "crc.h"
 #include "cmd.h"
+#include "dbg.h"
+
 
 //========================================================================
 //        External Function definition
@@ -27,18 +38,18 @@ extern void USB_Connect (BOOL con);
 static OS_STK App_TaskStk[4][APP_TASK_STK_SIZE];
 
 //========================================================================
-//       Global variable defination
-tatDevStatus gDevStatus;
-msg_fifo_t   gMsgFifo;
-OS_EVENT    *gFlickTskMailbox; 
-OS_EVENT    *gUsbCmdMailbox;
-
-//========================================================================
-//       Local Function definition
+//        Local Function definition
 //
 static void App_UartCmdTask(void* p_arg);
 static void App_UsbCmdTask(void* p_arg);
 static void App_FlickTask(void *p_arg);
+
+//========================================================================
+//        Global variable defination
+tatDevStatus gDevStatus;
+msg_fifo_t   gMsgFifo;
+OS_EVENT    *gFlickTskMailbox; 
+OS_EVENT    *gUsbCmdMailbox;
 
 
 //========================================================================
@@ -51,11 +62,12 @@ int main(void)
     InitUart();
     
     init_crcccitt_tab();
-    InitCounterTimer();
+    LoadSysDb();
 
     USB_Init();
     USB_Connect(TRUE);
-    InitWatchDog();
+    InitWatchDog(5000);
+
     CPU_IntDis();         /* Disable all ints until we are ready to accept them.  */
     OSInit();             /* Initialize "uC/OS-II, The Real-Time Kernel".         */
     OS_CPU_SysTickInit(); /* Initialize the SysTick.   */
@@ -84,11 +96,12 @@ int main(void)
         goto ERROR;
     }
     InitUartPart2();
-    
     OSStart();
 ERROR:
     printf("error:%d,%d\r\n",os_err,err_code);
     while(1);
+
+   
 }
 
 /*
@@ -112,7 +125,6 @@ static void App_UartCmdTask(void* p_arg)
     {
         DEBUG_MSG(1,"%d\r\n",p_arg);
         printf("%c\r\n",SerialGetChar());
-        //OSTimeDlyHMSM(0, 0, 1, 0);
     }
 }
 

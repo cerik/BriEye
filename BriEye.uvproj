@@ -402,11 +402,6 @@
               <FilePath>.\Bsp\src\stm32f10x_iwdg.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f10x_wwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Bsp\src\stm32f10x_wwdg.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f10x_gpio.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Bsp\src\stm32f10x_gpio.c</FilePath>

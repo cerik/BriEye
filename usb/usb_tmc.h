@@ -6,16 +6,14 @@
 // Description  : Header file TMC protocol layer.
 //====================================================================
 
-#ifndef __USB_REPORT_H
-#define __USB_REPORT_H
+#ifndef _USB_TMC_H_
+#define _USB_TMC_H_
 
 #include "usb_desc.h"
-#include "usb_type.h"
 
-#if defined ( __CC_ARM   )
+#if defined ( __CC_ARM )
 #pragma anon_unions
 #endif
-
 
 typedef enum {
     DEV_DEP_MSG_OUT=1,
@@ -67,7 +65,7 @@ typedef struct {
     };
 }tagTmcBulkMsgHeader;
 
-#define TMC_HEADER_SIZE    sizeof(tagTmcBulkMsgHeader) //12 Byte
+#define TMC_HEADER_SIZE    sizeof(tagTmcBulkMsgHeader) //Must 12 Byte
 #define USB_BUF_SIZE       1024
 
 #define EP_MAXPKGSIZE      64 //Must be aligned with 4 byte
@@ -95,7 +93,6 @@ typedef struct
     BOOL                rxFinished;    // wheaher the bulk-out msg have been received completelly.
     BOOL                txFinished;    // wheaher the respone msg have been send completely. 
 }tagTmcLayerInfo;
-
 
 void tmcResetRxState(void);
 tagTmcError tmcLastError(void);

@@ -4,8 +4,8 @@
 //=============================================================================
 // Log:
 //=============================================================================/*
-#ifndef _PARAM_H_
-#define _PARAM_H_
+#ifndef _SYSDB_H_
+#define _SYSDB_H_
 
 #include "flash.h"
 
@@ -33,12 +33,13 @@ struct tagSysDb{
  ******************************************************************************************
  ******************************************************************************************
  *
- *   Please reference the Scatter file
+ *   
  *
  ******************************************************************************************
  ******************************************************************************************
  */
 #define SYS_DB_SIZE    sizeof(struct tagSysDb)
+
 #define SYS_DB_ADDR    (PARAM_FLASH_ADDR)
 #define OTHER_DB_ADDR  (PARAM_FLASH_ADDR + FLASH_PAGE_SIZE) 
 
@@ -49,7 +50,9 @@ struct tagSysDb{
  ******************************************************************************************
  ******************************************************************************************
  */
-extern const struct tagSysDb gSysDbBlk __attribute__((section("SYSDB_SECTION"),used));
+extern  struct tagSysDb gSysDb;  
+//extern  struct tagLinearArgs gt_linearg;
+//extern  struct tagDarkCalibArgs gt_darkcalib;
 
 /*
  ******************************************************************************************
@@ -60,9 +63,11 @@ extern const struct tagSysDb gSysDbBlk __attribute__((section("SYSDB_SECTION"),u
  ******************************************************************************************
  ******************************************************************************************
  */
-UINT16 ReadSysDb(void *const pMsg);
+void   LoadDefaultDb(void);
+UINT16 ReadSysDb(void *pMsg);
 UINT16 WriteSysDb(const void *const pMsg);
-UINT8  LoadSysDb(struct tagSysDb *const pSysDb);
-UINT8  SaveSysDb(const struct tagSysDb * const pSysDb);
+
+UINT8  LoadSysDb(void);
+UINT8  SaveSysDb(void);
 
 #endif /* _PARAM_H_ */

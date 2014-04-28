@@ -5,8 +5,8 @@
 // Log:
 //=============================================================================
 
-#ifndef _MSP_TYPES_H_
-#define _MSP_TYPES_H_
+#ifndef _DATATYPES_H_
+#define _DATATYPES_H_
 
 typedef         unsigned char  UINT8;
 typedef           signed char  INT8;
@@ -25,16 +25,12 @@ typedef volatile unsigned int  VUINT32;
 typedef enum {FALSE=0,TRUE=1} BOOL;
 typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 
-#define NaN32 0x7FFFFFFF
-#define NaN16 0x7FFF
-
 #define NULLCHAR  '\0'
 #define NULL      0
 
 #define MAXUINT8  0xFF
 #define MAXUINT16 0xFFFF
 #define MAXUINT32 0xFFFFFFFF
-
 
 typedef struct {
     UINT8 lastUartCmd;
@@ -46,8 +42,7 @@ typedef struct {
     }devStatus;
 }tatDevStatus;
 
-typedef enum{GPIO_IN_MODE=0,GPIO_OUT_MODE=1}GPIOMODE;
-
+typedef enum{GPIO_IN_MODE=0,GPIO_OUT_MODE=1} GPIOMODE;
 typedef struct{
     INT32 ms;
     UINT32 t0,t1;

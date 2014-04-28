@@ -6,8 +6,8 @@
 //=============================================================================
 // Log:
 //=============================================================================
-#ifndef __GPIO_H__
-#define __GPIO_H__
+#ifndef _PLATFORM_H_
+#define _PLATFORM_H_
 
 #include "datatype.h"
 
@@ -28,14 +28,12 @@
 //  #define FLASH_PAGE_SIZE    ((UINT16)0x800) //2K
 //#endif
 
-
 //=============================================================================
 // Export Function
 //=============================================================================
 void InitGpio(void);
-void InitCounterTimer(void);
-void InitWatchDog(void);
-void WaitMs(UINT32 millisecond);
+void WaitMs(UINT32 ms);
+void InitWatchDog(UINT32 ms);
 void DataBusMode(GPIOMODE mode);
 void StartCounter(tagCounter *counter,INT32 ms);
 BOOL CounterArrived(tagCounter *counter);

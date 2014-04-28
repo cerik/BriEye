@@ -77,29 +77,29 @@ UINT8 *TMC_GetHIDDescriptor(UINT16 Length);
 
 /* Exported define -----------------------------------------------------------*/
 #define CustomHID_GetConfiguration          NOP_Process
-//#define CustomHID_SetConfiguration          NOP_Process
+//#define CustomHID_SetConfiguration        NOP_Process
 #define CustomHID_GetInterface              NOP_Process
 #define CustomHID_SetInterface              NOP_Process
 #define CustomHID_GetStatus                 NOP_Process
 #define CustomHID_ClearFeature              NOP_Process
 #define CustomHID_SetEndPointFeature        NOP_Process
 #define CustomHID_SetDeviceFeature          NOP_Process
-//#define CustomHID_SetDeviceAddress          NOP_Process
+//#define CustomHID_SetDeviceAddress        NOP_Process
 
 // USB TMC Request Value
 #define INITIATE_ABORT_BULK_OUT     0x01
 #define CHECK_ABORT_BULK_OUT_STATUS 0x02
 #define INITIATE_ABORT_BULK_IN      0x03
 #define CHECK_ABORT_BULK_IN_STATUS  0x04
-#define INITIATE_CLEAR      0x05
-#define CHECK_CLEAR_STATUS  0x06
-#define GET_CAPABILITIES    0x07
+#define INITIATE_CLEAR              0x05
+#define CHECK_CLEAR_STATUS          0x06
+#define GET_CAPABILITIES            0x07
 
 //typedef enum _TMC_STATUS
 //{
-#define STATUS_SUCCESS  0x01
-#define STATUS_PENDING  0x02
-#define STATUS_FAILED   0x80
+#define STATUS_SUCCESS      0x01
+#define STATUS_PENDING      0x02
+#define STATUS_FAILED       0x80
 #define STATUS_TRANSFER_NOT_IN_PROGRESS 0x81
 #define STATUS_SPLIT_NOT_IN_PROGRESS    0x82
 #define STATUS_SPLIT_IN_PROGRESS        0x83
