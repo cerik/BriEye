@@ -76,8 +76,8 @@ UINT32  OS_CPU_SysTickClkFreq (void)
 void InitWatchDog(UINT32 ms)
 {
     UINT16 reload;
-    reload = ms*__IWGDCLK/1000UL-1;
-    IWDG_ReloadCounter();// enable write to PR, RLR
+    reload = ms* 40000UL/(0x04<<IWDG_Prescaler_256)/1000UL-1;
+    IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
     IWDG_SetPrescaler(IWDG_Prescaler_256);//clk = 40 kHz / 256 = 156.25 Hz
     IWDG_SetReload(reload);
     IWDG_ReloadCounter();
