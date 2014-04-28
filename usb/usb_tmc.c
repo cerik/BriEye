@@ -48,8 +48,8 @@ static tagTmcLayerInfo gTmcLayerInfo={
     TERR_NONE,//tmcLastError
     0,        //rxCount
     0,        //txCount
-    TRUE,     //rxFinished
-    FALSE,    //txFinished
+    FALSE,     //rxFinished
+    TRUE,    //txFinished
 };
 
 //===================================================================================
