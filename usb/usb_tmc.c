@@ -125,8 +125,13 @@ static tagTmcLayerInfo gTmcLayerInfo={
     TERR_NONE,//tmcLastError
     0,        //rxCount
     0,        //txCount
+<<<<<<< HEAD
     FALSE,    //rxFinished
     TRUE,     //txFinished
+=======
+    FALSE,     //rxFinished
+    TRUE,    //txFinished
+>>>>>>> 501f3b228fda90eef38c4f635aeb6143d9379306
 };
 
 //===================================================================================
