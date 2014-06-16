@@ -6,13 +6,17 @@
 //=============================================================================
 // Log:
 //=============================================================================
+#include <stdio.h>
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_iwdg.h"
+#include "stm32f10x_exti.h"
 #include "stm32f10x_tim.h"
 #include "stm32f10x_rcc.h"
+#include "stm32f10x_spi.h"
 #include "datatype.h"
 #include "ucos_ii.h"
 #include "misc.h"
+#include "ad7731.h"
 
 #pragma import(__use_no_semihosting_swi)
 
@@ -56,7 +60,7 @@
  */
 static UINT32 gSysTickCounter=0;
 
-//=============================================================================
+//**********************************************************
 //  Tick Cycle = 1ms
 //
 UINT32  OS_CPU_SysTickClkFreq (void)
@@ -76,8 +80,8 @@ UINT32  OS_CPU_SysTickClkFreq (void)
 void InitWatchDog(UINT32 ms)
 {
     UINT16 reload;
-    reload = ms*__IWGDCLK/1000UL-1;
-    IWDG_ReloadCounter();// enable write to PR, RLR
+    reload = ms* 40000UL/(0x04<<IWDG_Prescaler_256)/1000UL-1;
+    IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
     IWDG_SetPrescaler(IWDG_Prescaler_256);//clk = 40 kHz / 256 = 156.25 Hz
     IWDG_SetReload(reload);
     IWDG_ReloadCounter();
@@ -85,76 +89,215 @@ void InitWatchDog(UINT32 ms)
 }
 
 /*
- *---------------------------------------------------------
+ ***********************************************************
  * Description:
- *   Configure the communication port with FPGA, include
- *   PB.[0,1,5,6,7,8,9,10,11,12,13,14,15]
- *   PA.[0,1,2,3,4,5,6,7]
- *   PD.[0,1]
  * 
  * Edit Log:
  *  2011.08.06--CCZY--Create
- *---------------------------------------------------------
+ ***********************************************************
  */
 void InitGpio(void)
 { 
     GPIO_InitTypeDef GPIO_InitStructure;
 
-    jtag_remap();
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOB, ENABLE);
     
-    //PA14
+    // PC.[0,1,2,3,] --> Output,Push-pull
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14;
-    GPIO_Init(GPIOA, &GPIO_InitStructure);
+    GPIO_Init(GPIOC, &GPIO_InitStructure);
 
-    //PD0,PD1
+    // PC.[6~9] are connected with the interface connect of the device.
+    // We don't know its function, so just configured it with output + push-pull.
+    // It's default value is 0.
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1;
-    GPIO_Init(GPIOD, &GPIO_InitStructure);
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_Init(GPIOC, &GPIO_InitStructure);
+
+    //PB1 -->LCD_BUSY,Input pull-down.
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+    GPIO_Init(GPIOC, &GPIO_InitStructure);
     
-    //set data bus as 0x0
-    GPIO_Write(GPIOB,0xFFFF);
-    GPIO_Write(GPIOA,0xFFFF);
-
-    GPIO_WriteBit(GPIOD,GPIO_Pin_0,Bit_SET);
-    GPIO_WriteBit(GPIOD,GPIO_Pin_1,Bit_SET);
+    //GPIO_Write(GPIOC,0x0000);
+    
 }
 
-#if 0
-//=============================================================================
-//  Timer4 : Free Running Timer,CNT++ every 1ms.
-// Note:
-//   PCLK1 = base clock=24MHz
-void InitCounterTimer(void)
+//**********************************************************
+// Set the IMGSW1 ~ IMGSW4
+// Only the low four bits are valid.
+void SetSWx(UINT8 value)
 {
-    TIM_TimeBaseInitTypeDef  TIM4_TimeBaseStructure;
+    UINT16 tmp;
+    tmp = GPIO_ReadInputData(GPIOC) & 0xFFF0;
+    GPIO_Write(GPIOC,tmp | (value&0xF));
+}
 
-    NVIC_InitTypeDef NVIC_InitStructure;
+//**********************************************************
+// Set the PC6 ~ PC
+// Only the low four bits are valid.
+void SetDbgPort(UINT8 value)
+{
+    UINT16 tmp;
+    tmp = GPIO_ReadInputData(GPIOC) & 0xFC3F;
+    tmp |= (value&0xf)<<6;
+    GPIO_Write(GPIOC,tmp);
+}
+
+BOOL LcdReady(void)
+{
+    return GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_1)?FALSE:TRUE;
+}
+
+//**********************************************************
+//  Init the External Interrupt for the Button 1 & 2;
+// 
+void InitExtInterrupt(void)
+{
+    NVIC_InitTypeDef NVIC_InitStructure; 
+    EXTI_InitTypeDef EXTI_InitStructure;
+    GPIO_InitTypeDef GPIO_InitStructure;
+
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO,ENABLE);
     
-    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
-    NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;  
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    //PA1 = Button 1
+    //PA2 = Button 2
+    // Configure Key Button GPIO Pin as input floating (Key Button EXTI Line)
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+    
+    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
 
-    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4 , ENABLE);
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI2_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+    
+    /* Connect Key Button EXTI Line to Key Button GPIO Pin */
+    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource1);
+    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource2);
 
-    TIM_DeInit(TIM4);
-    /* Time Base configuration */
-    TIM4_TimeBaseStructure.TIM_Prescaler = __ARR(__TIMXCLK, __TIM4_PERIOD);
-    TIM4_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-    TIM4_TimeBaseStructure.TIM_Period = 0xFFFF;
-    TIM4_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
-    TIM4_TimeBaseStructure.TIM_RepetitionCounter = 0x0;
-    TIM_TimeBaseInit(TIM4,&TIM4_TimeBaseStructure);       
-
-    TIM_ClearFlag(TIM4, TIM_FLAG_Update);
-    TIM_ITConfig(TIM4,TIM_IT_Update,ENABLE);
-    TIM_Cmd(TIM4, ENABLE);
+    EXTI_ClearITPendingBit(EXTI_Line1);
+    EXTI_ClearITPendingBit(EXTI_Line2);
+  
+    /* Configure Key Button EXTI Line to generate an interrupt on falling edge */  
+    EXTI_InitStructure.EXTI_Line = EXTI_Line1 | EXTI_Line2;
+    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
+    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+    EXTI_Init(&EXTI_InitStructure);
 }
+
+//=================================================================
+//  PCLK1 = 24MHz , CLK_TIM2 = 2*PCLK1 = 48MHz
+//
+void InitTIM2()
+{
+    NVIC_InitTypeDef NVIC_InitStructure;
+    TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;
+
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2,ENABLE);
+    
+    NVIC_InitStructure.NVIC_IRQChannel=TIM2_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=1;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority=1;
+    NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
+    TIM_DeInit(TIM2);    
+    TIM_TimeBaseInitStruct.TIM_Period        = 1000; //1s
+    TIM_TimeBaseInitStruct.TIM_Prescaler     = 48000-1; 
+    TIM_TimeBaseInitStruct.TIM_ClockDivision = TIM_CKD_DIV1;
+    TIM_TimeBaseInitStruct.TIM_CounterMode   = TIM_CounterMode_Down;
+    
+    TIM_TimeBaseInit(TIM2,&TIM_TimeBaseInitStruct);
+    TIM_ClearFlag(TIM2, TIM_FLAG_Update);
+    TIM_ITConfig(TIM2,TIM_IT_Update,ENABLE);
+    TIM_Cmd(TIM2,ENABLE);
+}
+
+//**********************************************************
+// Initialize the ADC port: SPI1
+//  PA4 --> AD_Reset(GPIO)
+//  PA5 --> AD_SCLK (SPI)
+//  PA6 --> AD_MISO (SPI)
+//  PA7 --> AD_MOSI (SPI)
+//  PC4 --> AD_CS   (GPIO)
+//  PC5 --> AD_RDY  (GPIO)
+void InitSPI1(void)
+{
+    GPIO_InitTypeDef  GPIO_InitStructure;
+    SPI_InitTypeDef   SPI_InitStructure;
+
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC | RCC_APB2Periph_SPI1 | RCC_APB2Periph_AFIO,ENABLE);
+#if 1
+    //Reset Pin, Output,Push-pull
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+    //SCLK & MOSI,Output,Push-pull
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_7;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+    //MISO,Input,Input,Pull-up.
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+    //AD_CS
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_Init(GPIOC, &GPIO_InitStructure);
+   
+    //AD_RDY
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+    GPIO_Init(GPIOC, &GPIO_InitStructure);
+    
+    SPI_StructInit(&SPI_InitStructure);
+    SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_256;
+    SPI_InitStructure.SPI_CPHA =SPI_CPHA_2Edge;
+    SPI_InitStructure.SPI_CPOL =SPI_CPOL_High;
+    SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;
+    SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
+    SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;
+    SPI_InitStructure.SPI_Mode = SPI_Mode_Master;
+    SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;
+    SPI_Init(SPI1,&SPI_InitStructure);
+    SPI_Cmd(SPI1,ENABLE);
+#else
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC,ENABLE);
+    //Reset Pin, Output,Push-pull
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+    //AD_CS
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_Init(GPIOC, &GPIO_InitStructure);
 #endif
+}
 
 /*
  ***************************************************
@@ -179,67 +322,53 @@ BOOL CounterArrived(tagCounter *counter)
     return (counter->ms > 0)?FALSE:TRUE;
 }
 
-//=============================================================================
+//**********************************************************
 //
 void  WaitMs(UINT32 ms)
 {
     OSTimeDlyHMSM(0,0,ms/1000,ms%1000);
+    //UINT32 old;
+    //old = gSysTickCounter+ms;
+    //while(gSysTickCounter < old);
 }
-
-void DataBusMode(GPIOMODE mode)
-{
-    GPIO_InitTypeDef GPIO_InitStructure;
-
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_15 | GPIO_Pin_14 | GPIO_Pin_13 | GPIO_Pin_12 | GPIO_Pin_11| GPIO_Pin_10| GPIO_Pin_9| GPIO_Pin_8;
-    if(GPIO_IN_MODE == mode) GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
-    GPIO_Init(GPIOB, &GPIO_InitStructure);
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_6 | GPIO_Pin_5 | GPIO_Pin_4 | GPIO_Pin_3 | GPIO_Pin_2| GPIO_Pin_1| GPIO_Pin_0;
-    GPIO_Init(GPIOA, &GPIO_InitStructure);
-}
-
-#if 0
-void TIM4_IRQHandler (void) 
-{ 
-    // check interrupt source
-    if( TIM_GetITStatus(TIM4 , TIM_IT_Update) != RESET ) 
-    {
-        TIM_ClearITPendingBit(TIM4 , TIM_FLAG_Update);
-    }
-}
-
-
-/*
- *---------------------------------------------------------
- * Description:
- *   External Interrupt Handler
- *
- * Notes:
- *  EXTIO6 -- PB6
- *  EXTIO7 -- PB7  
- *
- * Edit Log:
- *  2011.08.06--CCZY--Create
- *---------------------------------------------------------
- */
-void EXTI0_IRQHandler(void)
-{
-    if (EXTI->PR & (1<<6)) // EXTI6 interrupt pending?
-    {
-        //Interrupt Event Code
-        EXTI->PR |= (1<<6);  // clear pending interrupt
-    }
-    else if(EXTI->PR & (1<<7)) //EXTI7 interrupt pending?
-    {
-        EXTI->PR |= (1<<7);
-    }
-}
-#endif
 
 void  App_TimeTickHook(void)
 {
-    IWDG_ReloadCounter();
+    //IWDG_ReloadCounter();
     gSysTickCounter++;
 }
 
+
+//**********************************************************
+// Button 1 Interrupt Service Routine
+// Input Line 1, PA1; Rising Edge Trigger.
+//
+void EXTI1_IRQHandler(void)
+{
+    if ( EXTI_GetITStatus(EXTI_Line1) != RESET )
+    {
+        EXTI_ClearITPendingBit(EXTI_Line1);
+        printf("Button 1 Released\n");
+    }
+}
+
+//**********************************************************
+// Button 1 Interrupt Service Routine
+// Input Line 2, PA2; Rising Edge Trigger.
+//
+void EXTI2_IRQHandler(void)
+{
+    if ( EXTI_GetITStatus(EXTI_Line2) != RESET )
+    {
+        EXTI_ClearITPendingBit(EXTI_Line2);
+        printf("Button 2 Released\n");
+    }
+}
+
+void TIM2_IRQHandler(void)
+{
+    if(SET == TIM_GetITStatus(TIM2,TIM_FLAG_Update))
+    {
+        TIM_ClearITPendingBit(TIM2 , TIM_FLAG_Update);
+    }
+}

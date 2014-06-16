@@ -33,6 +33,7 @@
  * 
  */
 #include <stdio.h>
+#include <string.h>
 #include "datatype.h"
 #include "parser.h"
 #include "sysdb.h"
@@ -41,11 +42,8 @@
 #include "scpi.h"
 #include "fifo.h"
 
-
-
 #define SCPI_INPUT_BUFFER_LENGTH 100
 
-static fifo_t fifo;
 static char scpi_input_buffer[SCPI_INPUT_BUFFER_LENGTH];
 static scpi_reg_val_t scpi_regs[SCPI_REG_COUNT];
 
@@ -63,9 +61,17 @@ static int32_t SCPI_Error(scpi_t * context, int_fast16_t err) {
     return err;
 }
 
+//==================================
+// Return The length have been send.
 static int32_t SCPI_Write(scpi_t * context, const char * data, int32_t len) {
     //while(len--) putch(*data++);
-    return len;
+    INT32 i=0;
+    while(i<len)
+    {
+        printf("%c",*data++);
+        i++;
+    }
+    return i;
 }
 
 static scpi_result_t SCPI_Control(scpi_t * context, scpi_ctrl_name_t ctrl, scpi_reg_val_t val) {
@@ -96,241 +102,135 @@ static scpi_result_t SCPI_Test(scpi_t * context) {
 //                                                                     =
 //======================================================================
 
-static scpi_result_t DMM_MeasureVoltageDcQ(scpi_t * context) {
-    scpi_number_t param1, param2;
-    char bf[15];
-    // read first parameter if present
-    if (SCPI_ParamNumber(context, &param1, FALSE)) {
-        SCPI_NumberToStr(context, &param1, bf, 15);
-        SCPI_ResultString(context,bf);
-    }
 
-    // read second paraeter if present
-    if (SCPI_ParamNumber(context, &param2, FALSE)) {
-        SCPI_NumberToStr(context, &param2, bf, 15);
-        SCPI_ResultString(context,bf);
-    }
+static scpi_result_t DMM_MatrixSave(scpi_t * context)
+{
+    SaveSysDb();
     return SCPI_RES_OK;
 }
 
-//===================================================================
-// Configure Command
-//===================================================================
-static scpi_result_t CFG_Frequency(scpi_t * context) {
-    scpi_number_t param1;
-    //char bf[15];
-    // read first parameter if present
-    if (SCPI_ParamNumber(context, &param1, FALSE)) {
-        //SCPI_NumberToStr(context, &param1, bf, 15);
-        //SCPI_ResultString(context,bf);
-        return SCPI_RES_OK;
-    }
-    else
-    {
-        return SCPI_RES_ERR;
-    }
-}
-static scpi_result_t CFG_FrequencyQ(scpi_t * context) {
-    char bf[15];
-    scpi_number_t param1;
-    param1.value = 123 ;
-    param1.type = SCPI_NUM_NUMBER;
-    SCPI_NumberToStr(context, &param1, bf, 15);
-    SCPI_ResultString(context,bf);
-    return SCPI_RES_OK;
-}
-
-static scpi_result_t CFG_Count(scpi_t * context) {
-    scpi_number_t param1;
-    // read first parameter if present
-    if (SCPI_ParamNumber(context, &param1, FALSE)) {
-        //gt_ccd.sample_number = param1.value;
-        return SCPI_RES_OK;
-    }
-    else
-    {
-        return SCPI_RES_ERR;
-    }
-}
-
-static scpi_result_t CFG_CountQ(scpi_t * context) {
-    char bf[15];
-    scpi_number_t param1;
-    param1.value = 123 ;
-    param1.type = SCPI_NUM_NUMBER;
-    SCPI_NumberToStr(context, &param1, bf, 15);
-    SCPI_ResultString(context,bf);
-    return SCPI_RES_OK;
-}
-
-static scpi_result_t CFG_Remove(scpi_t * context) {
-    scpi_number_t param1;
-    // read first parameter if present
-    if (SCPI_ParamNumber(context, &param1, FALSE)) {
-        //gt_ccd.sample_remove = param1.value;
-        return SCPI_RES_OK;
-    }
-    else
-    {
-        return SCPI_RES_ERR;
-    }
-}
-
-static scpi_result_t CFG_RemoveQ(scpi_t * context) {
-    char bf[15];
-    scpi_number_t param1;
-    //param1.value = gt_ccd.sample_remove ;
-    param1.type = SCPI_NUM_NUMBER;
-    SCPI_NumberToStr(context, &param1, bf, 15);
-    SCPI_ResultString(context,bf);
-    return SCPI_RES_OK;
-}
-
-//===================================================================
-// Device Measure Command
-//===================================================================
-static scpi_result_t DMM_CalibDbX(scpi_t * context,INT8 which)
+//===============================================================
+// Configure system database
+// normal_matrix[arg1][arg2][arg3]=arg4
+// arg1 & arg2 is interger
+// arg4 is float32.
+static scpi_result_t CFG_MatrixQ(scpi_t *context)
 {
-    scpi_number_t param1, param2;
-    char bf[15];
-    // read first parameter if present
-    if (SCPI_ParamNumber(context, &param1, FALSE)) {
-//        ABC[which][0]=param1.value;
-        SCPI_NumberToStr(context, &param1, bf, 15);
-        SCPI_ResultString(context,bf);
-    }
-
-    // read second paraeter if present
-    if (SCPI_ParamNumber(context, &param2, FALSE)) {
-//        ABC[which][1]=param2.value;
-        SCPI_NumberToStr(context, &param2, bf, 15);
-        SCPI_ResultString(context,bf);
-    }
-    return SCPI_RES_OK;
-}
-
-static scpi_result_t DMM_CalibDbA(scpi_t * context)
-{
-    return DMM_CalibDbX(context,0);
-}
-static scpi_result_t DMM_CalibDbB(scpi_t * context)
-{
-    return DMM_CalibDbX(context,1);
-}
-static scpi_result_t DMM_CalibDbC(scpi_t * context)
-{
-    return DMM_CalibDbX(context,2);
-}
-
-static scpi_result_t DMM_CalibDbXQ(scpi_t * context,INT8 which)
-{ 
-    char bf[15];
-    // read first parameter if present
-    SCPI_ResultString(context,bf);
-
-    // read second paraeter if present
-    SCPI_ResultString(context,bf);
-    return SCPI_RES_OK;
-}
-static scpi_result_t DMM_CalibDbAQ(scpi_t * context)
-{
-    return DMM_CalibDbXQ(context,0);
-}
-static scpi_result_t DMM_CalibDbBQ(scpi_t * context)
-{
-    return DMM_CalibDbXQ(context,1);
-}
-static scpi_result_t DMM_CalibDbCQ(scpi_t * context)
-{
-    return DMM_CalibDbXQ(context,2);
-}
-
-static scpi_result_t DMM_MeasRawVolt(scpi_t * context)
-{
-    //StartConversion(TRUE);
-    //while(!IsCovsCompleted());
-//    SCPI_ResultDouble(context,gAdState.PvCalc[0]);
-//    SCPI_ResultDouble(context,gAdState.PvCalc[1]);
-    return SCPI_RES_OK;
-}
-
-static scpi_result_t DMM_MeasTemperature(scpi_t * context)
-{
-    FLOAT32 T[3]={0,0,0};
-
-    //while(!IsCovsCompleted());
+    scpi_number_t param;
+    UINT8 i,j,k;
     
-    SCPI_ResultDouble(context,T[0]);
-    SCPI_ResultDouble(context,T[1]);
-    SCPI_ResultDouble(context,T[2]);
+    // read first parameter if present
+    if (SCPI_ParamNumber(context, &param, FALSE)) {
+        i = param.value;
+    }else{
+        return SCPI_RES_ERR;
+    }
+
+    // read second paraeter if present
+    if (SCPI_ParamNumber(context, &param, FALSE)) {
+        j = param.value;
+    }else{
+        return SCPI_RES_ERR;
+    }
+
+    // read third paraeter if present
+    if (SCPI_ParamNumber(context, &param, FALSE)) {
+        k = param.value;
+    }else{
+        return SCPI_RES_ERR;
+    }
+    SCPI_ResultDouble(context,GetMartix(i,j,k));
     return SCPI_RES_OK;
 }
 
-static scpi_result_t DMM_CalibDbSave(scpi_t * context)
+static scpi_result_t CFG_Matrix(scpi_t *context)
 {
-    //SaveDbToFlash();
+    scpi_number_t param;
+    FLOAT32 value;
+    UINT8 i,j,k;
+    
+    // read first parameter if present
+    if (SCPI_ParamNumber(context, &param, FALSE)) {
+        i = param.value;
+    }else{
+        return SCPI_RES_ERR;
+    }
+
+    // read second paraeter if present
+    if (SCPI_ParamNumber(context, &param, FALSE)) {
+        j = param.value;
+    }else{
+        return SCPI_RES_ERR;
+    }
+
+    // read third paraeter if present
+    if (SCPI_ParamNumber(context, &param, FALSE)) {
+        k = param.value;
+    }else{
+        return SCPI_RES_ERR;
+    }
+
+    // read fourth paraeter if present
+    if (SCPI_ParamNumber(context, &param, FALSE)) {
+        value = param.value;
+    }else{
+        return SCPI_RES_ERR;
+    }
+    SetMartix(i,j,k,value);
+    printf("[%d][%d][%d]=%f\r\n",i,j,k,value);
     return SCPI_RES_OK;
 }
 
-bool IsCmdlineTerminate(const char * cmd, INT32 len)
-{
-    return (NULL==strnpbrk(cmd, len, "\r\n"))?FALSE:TRUE;
-}
-
-static const scpi_command_t scpi_commands[] = {
+const scpi_command_t scpi_commands[] = {
     /* IEEE Mandated Commands (SCPI std V1999.0 4.1.1) */
-    {  "*CLS",SCPI_CoreCls,},
-    {  "*ESE",SCPI_CoreEse,},
-    { "*ESE?",SCPI_CoreEseQ,},
-    { "*ESR?",SCPI_CoreEsrQ,},
-    { "*IDN?",SCPI_CoreIdnQ,},
-    {  "*OPC",SCPI_CoreOpc,},
-    { "*OPC?",SCPI_CoreOpcQ,},
-    {  "*RST",SCPI_CoreRst,},
-    {  "*SRE",SCPI_CoreSre,},
-    { "*SRE?",SCPI_CoreSreQ,},
-    { "*STB?",SCPI_CoreStbQ,},
-    { "*TST?",SCPI_CoreTstQ,},
-    {  "*WAI",SCPI_CoreWai,},
+    {  "*CLS",SCPI_CoreCls},
+    {  "*ESE",SCPI_CoreEse},
+    { "*ESE?",SCPI_CoreEseQ},
+    { "*ESR?",SCPI_CoreEsrQ},
+    { "*IDN?",SCPI_CoreIdnQ},
+    {  "*OPC",SCPI_CoreOpc},
+    { "*OPC?",SCPI_CoreOpcQ},
+    {  "*RST",SCPI_CoreRst},
+    {  "*SRE",SCPI_CoreSre},
+    { "*SRE?",SCPI_CoreSreQ},
+    { "*STB?",SCPI_CoreStbQ},
+    { "*TST?",SCPI_CoreTstQ},
+    {  "*WAI",SCPI_CoreWai},
 
     /* Required SCPI commands (SCPI std V1999.0 4.2.1) */
-    {      "SYSTem:ERRor?",SCPI_SystemErrorNextQ,},
-    { "SYSTem:ERRor:NEXT?",SCPI_SystemErrorNextQ,},
-    {"SYSTem:ERRor:COUNt?",SCPI_SystemErrorCountQ,},
-    {    "SYSTem:VERSion?",SCPI_SystemVersionQ,},
+    {      "SYSTem:ERRor?",SCPI_SystemErrorNextQ},
+    { "SYSTem:ERRor:NEXT?",SCPI_SystemErrorNextQ},
+    {"SYSTem:ERRor:COUNt?",SCPI_SystemErrorCountQ},
+    {    "SYSTem:VERSion?",SCPI_SystemVersionQ},
 
-    {       "STATus:QUEStionable?",SCPI_StatusQuestionableEventQ,},
-    { "STATus:QUEStionable:EVENt?",SCPI_StatusQuestionableEventQ,},
-    { "STATus:QUEStionable:ENABle",SCPI_StatusQuestionableEnable,},
-    {"STATus:QUEStionable:ENABle?",SCPI_StatusQuestionableEnableQ,},
+    {       "STATus:QUEStionable?",SCPI_StatusQuestionableEventQ},
+    { "STATus:QUEStionable:EVENt?",SCPI_StatusQuestionableEventQ},
+    { "STATus:QUEStionable:ENABle",SCPI_StatusQuestionableEnable},
+    {"STATus:QUEStionable:ENABle?",SCPI_StatusQuestionableEnableQ},
     {              "STATus:PRESet",SCPI_StatusPreset,},
 
-    {        "CONFigure:FREQuency",CFG_Frequency,},
-    {       "CONFigure:FREQuency?",CFG_FrequencyQ,},
-    {            "CONFigure:COUnt",CFG_Count,},
-    {           "CONFigure:COUnt?",CFG_CountQ,},
-    {           "CONFigure:REMOve",CFG_Remove,},
-    {          "CONFigure:REMove?",CFG_RemoveQ,},
-    //{        "CONFigure:RGBMATrix",CFG_RGBMatrix,},
-    //{       "CONFigure:RGBMATrix?",CFG_RGBMatrixQ,},
-    //{       "CONFigure:DARKMATrix",CFG_DarkMatrix,},
-    //{      "CONFigure:DARKMATrix?",CFG_DarkMatrixQ,},
-    //{           "CONFigure:OFFSet",CFG_DarkOffset,},
-    //{          "CONFigure:OFFSet?",CFG_DarkOffsetQ,},
-    //{              "CONFigure:ADc",CFG_Adc,},
-    //{             "CONFigure:ADc?",CFG_AdcQ,},
-    //{             "CONFigure:DOOr",CFG_Door,},
-    //{             "CONFigure:SAVe",CFG_DBSave,},
-    
-    /* DMM */
-    {"MEASure:VOLTage:DC?",DMM_MeasureVoltageDcQ,},
-  //{       "MEASure:RAw?",DMM_Raw,},
-  //{       "MEASure:RGB?",DMM_MeasureRgbReq,},
-  //{       "MEASure:REG?",DMM_MeasureRegReq,},
-  //{     "MEASure:FLIck?",DMM_FlickReq,},
-  //{ "MEASure:FLIck:MAX?",DMM_FlickReq,},
-  //{ "MEASure:FLIck:MIN?",DMM_FlickReq,},
-    
+    /* CONF */
+    {         "CONFigure:MATrix",CFG_Matrix},
+    {        "CONFigure:MATrix?",CFG_MatrixQ},
+    {          "CONFigure:COUnt",0},
+    {         "CONFigure:COUnt?",0},
+    {      "CONFigure:FREQuency",0},
+    {     "CONFigure:FREQuency?",0},
+    {        "CONFigure:PRODuct",0},
+    {       "CONFigure:PRODuct?",0},
+    {           "CONFigure:DEte",0},
+    {          "CONFigure:DEte?",0},
+    {           "CONFigure:SAVe",DMM_MatrixSave},
+    {                "SYStem:ID",0},
+    {               "SYStem:ID?",0},
+    {          "SYStem:VERsion?",0},
+
+    /* MEAS */
+  //{"MEASure:VOLTage:DC?",MEAS_MeasureVoltageDcQ,},
+  //{       "MEASure:RAw?",MEAS_Raw,},
+  //{       "MEASure:RGB?",MEAS_MeasureRgbReq,},
+  //{       "MEASure:REG?",MEAS_MeasureRegReq,},
+  //{     "MEASure:FLIck?",MEAS_FlickReq,},
   //{"MEASure:VOLTage:DC:RATio?",SCPI_StubQ,},
   //{      "MEASure:VOLTage:AC?",SCPI_StubQ,},
   //{      "MEASure:CURRent:DC?",SCPI_StubQ,},
@@ -339,16 +239,6 @@ static const scpi_command_t scpi_commands[] = {
   //{     "MEASure:FRESistance?",SCPI_StubQ,},
   //{       "MEASure:FREQuency?",SCPI_StubQ,},
   //{          "MEASure:PERiod?",SCPI_StubQ,},
-    {"MEASure:RAWVolt?",DMM_MeasRawVolt,},
-    {"MEASure:TEMPerature?",DMM_MeasTemperature,},
-
-    {"CALIBrate:DB:A",DMM_CalibDbA,},
-    {"CALIBrate:DB:B",DMM_CalibDbB,},
-    {"CALIBrate:DB:C",DMM_CalibDbC,},
-    {"CALIBrate:DB:A?",DMM_CalibDbAQ,},
-    {"CALIBrate:DB:B?",DMM_CalibDbBQ,},
-    {"CALIBrate:DB:C?",DMM_CalibDbCQ,},
-    {"CALIBrate:DB:SAVE",DMM_CalibDbSave,},
     SCPI_CMD_LIST_END
 };
 
@@ -387,7 +277,5 @@ int ScpiInput(const char * data, INT32 len)
 
 void InitSCPI(void)
 {
-    fifo_init(&fifo);
     SCPI_Init(&scpi_context);
 }
-

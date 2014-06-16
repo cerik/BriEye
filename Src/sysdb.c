@@ -4,9 +4,37 @@
 //=============================================================================
 // Log:
 //=============================================================================
-#include "sysdb.h"
+#include "flash.h"
 
-struct tagSysDb gSysDb;
+/*
+ ******************************************************************************************
+ ******************************************************************************************
+ *
+ *   parameters define
+ *
+ ******************************************************************************************
+ ******************************************************************************************
+ */
+
+struct tagSysDb{
+    FLOAT32 normal_matrix[8][4][3];
+}gSysDb={0};
+
+#define SYS_DB_SIZE    sizeof(struct tagSysDb)
+
+#define SYS_DB_ADDR    (PARAM_FLASH_ADDR)
+#define OTHER_DB_ADDR  (PARAM_FLASH_ADDR + FLASH_PAGE_SIZE) 
+
+
+void SetMartix(UINT8 i,UINT8 j,UINT8 k,FLOAT32 value)
+{
+    gSysDb.normal_matrix[i%8][j%4][k%3] = value;
+}
+
+FLOAT32 GetMartix(UINT8 i,UINT8 j,UINT8 k)
+{
+    return gSysDb.normal_matrix[i%8][j%4][k%3];
+}
 
 //=============================================================================
 // Description : Initate all default parameter

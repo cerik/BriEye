@@ -39,7 +39,7 @@
 
 #include "types.h"
 
-#ifdef	__cplusplus
+#ifdef _cplusplus
 extern "C" {
 #endif
 
@@ -60,8 +60,8 @@ extern "C" {
     bool_t fifo_remove(fifo_t * fifo, int16_t * value);
     bool_t fifo_count(fifo_t * fifo, int16_t * value);
 
-#ifdef	__cplusplus
+#ifdef _cplusplus
 }
 #endif
 
-#endif	/* SCPI_FIFO_H */
+#endif /* SCPI_FIFO_H */

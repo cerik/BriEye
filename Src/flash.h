@@ -13,31 +13,6 @@
 
 /********************************************************** 
  * Private define : 
- *   STM32F103C8 :
-          Flash ----- 64k
-          SRAM -----20k 
- *    Flash of STM32F103C8: 0x08000000 ~ 0x0800FFFF
-
- *    Total Page=64 (1k/page) 
- **********************************************************/
-
-#define PARAM_SIZE     2   /* 2k 参数一共占了2k的空间 */
-#define FLASH_PAGE_SIZE  ((UINT16)0x400)      /*页大小,1K for STM32F103C8*/
-
-//#define FLASH_BASE       ((UINT32)0x08000000) /*Flash空间的起始地址*/
-#define FLASH_END        ((UINT32)0x0800FFFF) /*Flash空间的结束地址*/
-
-#define PARAM_FLASH_LENGTH   (PARAM_SIZE * FLASH_PAGE_SIZE)      /* parameter area size */ 
-#define PARAM_FLASH_ADDR     (FLASH_END - PARAM_FLASH_LENGTH + 1)/* start address where stored parameters */
-
-/********************************************************** 
- * Convert Function between page and physical address 
-***********************************************************/ 
-#define PAGE_TO_ADDR(page) (UINT32)((FLASH_BASE + (page) * FLASH_PAGE_SIZE)) 
-#define ADDR_TO_PAGE(addr) ((addr - FLASH_BASE)/FLASH_PAGE_SIZE)
-
-/********************************************************** 
- * Private define : 
  *    Flash of STM32F103RB: 0x08000000 ~ 0x0801FFFF
  *    Total Page=127 (1k/page) 
 ***********************************************************/
@@ -58,9 +33,23 @@
 //#define ADDR_TO_PAGE(addr) ((addr >= FLASH_BASE && addr <= FLASH_END)?\
 //                      ((addr - FLASH_BASE)/FLASH_PAGE_SIZE):-1)
 
+/********************************************************** 
+ * Private define : 
+ *   STM32F103C8 :
+          Flash ----- 64k
+          SRAM -----20k 
+ *    Flash of STM32F103C8: 0x08000000 ~ 0x0800FFFF
 
-#define HALFWORD sizeof(UINT16)
-#define WORD     sizeof(UINT32)
+ *    Total Page=64 (1k/page) 
+ **********************************************************/
+
+#define PARAM_SIZE           2   /* 2k 参数一共占了2k的空间 */
+#define FLASH_PAGE_SIZE      ((UINT16)0x400)      /*页大小,1K for STM32F103C8*/
+
+#define FLASH_END            ((UINT32)0x0800FFFF) /*Flash空间的结束地址*/
+
+#define PARAM_FLASH_LENGTH   (PARAM_SIZE * FLASH_PAGE_SIZE)      /* parameter area size */ 
+#define PARAM_FLASH_ADDR     (FLASH_END - PARAM_FLASH_LENGTH + 1)/* start address where stored parameters */
 
 
 /********************************************************************
@@ -96,7 +85,7 @@ UINT16 Flash_Read_HalfWord(UINT32 Address);*/
                    FLASH_TIMEOUT.
 ********************************************************************
 FLASH_Status Flash_Write_HalfWord(const UINT32 beginAddr, 
-        const UINT16* buf, const UINT8 len,const bool safe);*/
+        const UINT16* buf, const UINT8 len,const BOOL safe);*/
 
 /********************************************************************
  * Function Name : Flash_Write_Word

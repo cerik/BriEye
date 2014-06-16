@@ -1,12 +1,12 @@
 Dependencies for Project 'BriEye', Target '1': (DO NOT MODIFY !)
-F (.\Bsp\system_stm32f10x.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\system_stm32f10x.o" --depend ".\Output\system_stm32f10x.d")
+F (.\Bsp\system_stm32f10x.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\system_stm32f10x.o" --omf_browse ".\Output\system_stm32f10x.crf" --depend ".\Output\system_stm32f10x.d")
 I (Bsp\stm32f10x.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
-F (.\Bsp\src\stm32f10x_iwdg.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\stm32f10x_iwdg.o" --depend ".\Output\stm32f10x_iwdg.d")
+F (.\Bsp\src\stm32f10x_iwdg.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\stm32f10x_iwdg.o" --omf_browse ".\Output\stm32f10x_iwdg.crf" --depend ".\Output\stm32f10x_iwdg.d")
 I (.\Bsp\inc\stm32f10x_iwdg.h)(0x5358BC57)
 I (.\Bsp\stm32f10x.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
@@ -14,9 +14,10 @@ I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
-I (.\Src\datatype.h)(0x535DB627)
-F (.\Bsp\src\stm32f10x_gpio.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\stm32f10x_gpio.o" --depend ".\Output\stm32f10x_gpio.d")
-I (.\Bsp\inc\stm32f10x_gpio.h)(0x5358BC57)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+F (.\Bsp\src\stm32f10x_gpio.c)(0x5390788F)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\stm32f10x_gpio.o" --omf_browse ".\Output\stm32f10x_gpio.crf" --depend ".\Output\stm32f10x_gpio.d")
+I (.\Bsp\inc\stm32f10x_gpio.h)(0x53902E96)
 I (.\Bsp\stm32f10x.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
@@ -24,8 +25,9 @@ I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
 I (.\Bsp\inc\stm32f10x_rcc.h)(0x5358BC57)
-I (.\Src\datatype.h)(0x535DB627)
-F (.\Bsp\src\stm32f10x_flash.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\stm32f10x_flash.o" --depend ".\Output\stm32f10x_flash.d")
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+F (.\Bsp\src\stm32f10x_flash.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\stm32f10x_flash.o" --omf_browse ".\Output\stm32f10x_flash.crf" --depend ".\Output\stm32f10x_flash.d")
 I (.\Bsp\inc\stm32f10x_flash.h)(0x5358BC57)
 I (.\Bsp\stm32f10x.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
@@ -33,8 +35,9 @@ I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
-I (.\Src\datatype.h)(0x535DB627)
-F (.\Bsp\src\stm32f10x_rcc.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\stm32f10x_rcc.o" --depend ".\Output\stm32f10x_rcc.d")
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+F (.\Bsp\src\stm32f10x_rcc.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\stm32f10x_rcc.o" --omf_browse ".\Output\stm32f10x_rcc.crf" --depend ".\Output\stm32f10x_rcc.d")
 I (.\Bsp\inc\stm32f10x_rcc.h)(0x5358BC57)
 I (.\Bsp\stm32f10x.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
@@ -42,9 +45,10 @@ I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
-I (.\Src\datatype.h)(0x535DB627)
-F (.\Bsp\startup_stm32f10x.s)(0x5358BC57)(--cpu Cortex-M3 --apcs=interwork -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x --list ".\Output\startup_stm32f10x.lst" --xref -o ".\Output\startup_stm32f10x.o" --depend ".\Output\startup_stm32f10x.d")
-F (.\Bsp\src\stm32f10x_usart.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\stm32f10x_usart.o" --depend ".\Output\stm32f10x_usart.d")
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+F (.\Bsp\startup_stm32f10x.s)(0x5358BC57)(--cpu Cortex-M3 -g --apcs=interwork -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x --list ".\Output\startup_stm32f10x.lst" --xref -o ".\Output\startup_stm32f10x.o" --depend ".\Output\startup_stm32f10x.d")
+F (.\Bsp\src\stm32f10x_usart.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\stm32f10x_usart.o" --omf_browse ".\Output\stm32f10x_usart.crf" --depend ".\Output\stm32f10x_usart.d")
 I (Bsp\src\stm32f10x_usart.h)(0x5358BC57)
 I (.\Bsp\stm32f10x.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
@@ -53,9 +57,10 @@ I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
 I (.\Bsp\inc\stm32f10x_rcc.h)(0x5358BC57)
-I (.\Src\datatype.h)(0x535DB627)
-F (.\Bsp\src\stm32f10x_tim.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\stm32f10x_tim.o" --depend ".\Output\stm32f10x_tim.d")
-I (Bsp\src\stm32f10x_tim.h)(0x5358BC57)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+F (.\Bsp\src\stm32f10x_tim.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\stm32f10x_tim.o" --omf_browse ".\Output\stm32f10x_tim.crf" --depend ".\Output\stm32f10x_tim.d")
+I (Bsp\src\stm32f10x_tim.h)(0x5393BD99)
 I (.\Bsp\stm32f10x.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
@@ -63,10 +68,11 @@ I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
 I (.\Bsp\inc\stm32f10x_rcc.h)(0x5358BC57)
-I (.\Src\datatype.h)(0x535DB627)
-F (.\Bsp\cmsis\core_cm3.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\core_cm3.o" --depend ".\Output\core_cm3.d")
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+F (.\Bsp\cmsis\core_cm3.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\core_cm3.o" --omf_browse ".\Output\core_cm3.crf" --depend ".\Output\core_cm3.d")
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
-F (.\Bsp\src\misc.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\misc.o" --depend ".\Output\misc.d")
+F (.\Bsp\src\misc.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\misc.o" --omf_browse ".\Output\misc.crf" --depend ".\Output\misc.d")
 I (.\Bsp\inc\misc.h)(0x5358BC57)
 I (.\Bsp\stm32f10x.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
@@ -74,34 +80,63 @@ I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
-I (.\Src\datatype.h)(0x535DB627)
-F (.\Src\main.c)(0x535DB427)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\main.o" --depend ".\Output\main.d")
-I (Src\platform.h)(0x535DBB83)
-I (Src\datatype.h)(0x535DB627)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+F (.\Bsp\src\stm32f10x_exti.c)(0x5390339D)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\stm32f10x_exti.o" --omf_browse ".\Output\stm32f10x_exti.crf" --depend ".\Output\stm32f10x_exti.d")
+I (.\Bsp\inc\stm32f10x_exti.h)(0x4F5833EA)
+I (.\Bsp\stm32f10x.h)(0x5358BC57)
+I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
+I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
+I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
+I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+F (.\Bsp\src\stm32f10x_spi.c)(0x53943242)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\stm32f10x_spi.o" --omf_browse ".\Output\stm32f10x_spi.crf" --depend ".\Output\stm32f10x_spi.d")
+I (.\Bsp\inc\stm32f10x_spi.h)(0x539070EC)
+I (.\Bsp\stm32f10x.h)(0x5358BC57)
+I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
+I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
+I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
+I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
+I (.\Bsp\inc\stm32f10x_rcc.h)(0x5358BC57)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+F (.\Src\main.c)(0x5397F253)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\main.o" --omf_browse ".\Output\main.crf" --depend ".\Output\main.d")
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB0D286)
+I (.\Scpi\scpi-interface.h)(0x5396A7AD)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+I (.\Bsp\inc\stm32f10x_gpio.h)(0x53902E96)
+I (.\Bsp\stm32f10x.h)(0x5358BC57)
+I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
+I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
+I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
+I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
+I (Src\platform.h)(0x53907E24)
 I (.\uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
 I (.\uCOS-II\Ports\os_cpu.h)(0x5358BC57)
-I (Src\uartdrv.h)(0x535DB5E6)
-I (Src\MsgFifo.h)(0x535DB5B9)
-I (Src\sysdb.h)(0x535DB5CC)
-I (Src\flash.h)(0x5358BC57)
-I (.\Bsp\inc\stm32f10x_flash.h)(0x5358BC57)
-I (.\Bsp\stm32f10x.h)(0x5358BC57)
-I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
-I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
-I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
-I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
-I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
+I (Src\uartdrv.h)(0x53902D6F)
+I (.\usb\usb_tmc.h)(0x53902062)
+I (.\usb\usb_desc.h)(0x5358BC57)
+I (.\usb\usb_type.h)(0x5358BC57)
+I (Src\ad7731.h)(0x53940392)
+I (Src\sysdb.h)(0x53969E0C)
+I (.\Scpi\Core\types.h)(0x5390227F)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB0D27E)
 I (.\uCOS-II\Cpu\cpu.h)(0x5358BC57)
 I (.\uCOS-II\Cpu\cpu_def.h)(0x5358BC57)
 I (Src\crc.h)(0x535DB599)
-I (Src\cmd.h)(0x535DB5A6)
+I (Src\cmd.h)(0x53908073)
+I (Src\lcd.h)(0x5393277E)
 I (Src\dbg.h)(0x535DB587)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB0D286)
-F (.\Src\flash.c)(0x535DBBFD)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\flash.o" --depend ".\Output\flash.d")
+F (.\Src\flash.c)(0x5390801A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\flash.o" --omf_browse ".\Output\flash.crf" --depend ".\Output\flash.d")
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB0D286)
-I (Src\flash.h)(0x5358BC57)
 I (.\Bsp\inc\stm32f10x_flash.h)(0x5358BC57)
 I (.\Bsp\stm32f10x.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
@@ -109,9 +144,12 @@ I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
-I (Src\datatype.h)(0x535DB627)
-F (.\Src\platform.c)(0x535DB427)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\platform.o" --depend ".\Output\platform.d")
-I (.\Bsp\inc\stm32f10x_gpio.h)(0x5358BC57)
+I (Src\flash.h)(0x53908063)
+I (Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+F (.\Src\platform.c)(0x53971BA2)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\platform.o" --omf_browse ".\Output\platform.crf" --depend ".\Output\platform.d")
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB0D286)
+I (.\Bsp\inc\stm32f10x_gpio.h)(0x53902E96)
 I (.\Bsp\stm32f10x.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
@@ -119,33 +157,35 @@ I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
 I (.\Bsp\inc\stm32f10x_iwdg.h)(0x5358BC57)
-I (.\Bsp\src\stm32f10x_tim.h)(0x5358BC57)
+I (.\Bsp\inc\stm32f10x_exti.h)(0x4F5833EA)
+I (.\Bsp\src\stm32f10x_tim.h)(0x5393BD99)
 I (.\Bsp\inc\stm32f10x_rcc.h)(0x5358BC57)
-I (Src\datatype.h)(0x535DB627)
+I (.\Bsp\inc\stm32f10x_spi.h)(0x539070EC)
+I (Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
 I (.\uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
 I (.\uCOS-II\Ports\os_cpu.h)(0x5358BC57)
 I (.\Bsp\inc\misc.h)(0x5358BC57)
-F (.\Src\crc.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\crc.o" --depend ".\Output\crc.d")
-I (Src\datatype.h)(0x535DB627)
-F (.\Src\cmd.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\cmd.o" --depend ".\Output\cmd.d")
+I (Src\ad7731.h)(0x53940392)
+F (.\Src\crc.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\crc.o" --omf_browse ".\Output\crc.crf" --depend ".\Output\crc.d")
+I (Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+F (.\Src\cmd.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\cmd.o" --omf_browse ".\Output\cmd.crf" --depend ".\Output\cmd.d")
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB0D286)
-I (Src\platform.h)(0x535DBB83)
-I (Src\datatype.h)(0x535DB627)
-I (Src\uartdrv.h)(0x535DB5E6)
-I (.\usb\usb_tmc.h)(0x535DB9D6)
+I (Src\platform.h)(0x53907E24)
+I (Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+I (Src\uartdrv.h)(0x53902D6F)
+I (.\usb\usb_tmc.h)(0x53902062)
 I (.\usb\usb_desc.h)(0x5358BC57)
 I (.\usb\usb_type.h)(0x5358BC57)
 I (.\Scpi\Core\debug.h)(0x5358BC57)
-I (.\Scpi\Core\types.h)(0x5358BC57)
+I (.\Scpi\Core\types.h)(0x5390227F)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB0D27E)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
-I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
-F (.\Src\MsgFifo.c)(0x535DB427)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\msgfifo.o" --depend ".\Output\msgfifo.d")
-I (Src\MsgFifo.h)(0x535DB5B9)
-I (Src\datatype.h)(0x535DB627)
-F (.\Src\UartDrv.c)(0x535DB427)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\uartdrv.o" --depend ".\Output\uartdrv.d")
+F (.\Src\UartDrv.c)(0x53933796)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\uartdrv.o" --omf_browse ".\Output\uartdrv.crf" --depend ".\Output\uartdrv.d")
 I (.\Bsp\src\stm32f10x_usart.h)(0x5358BC57)
 I (.\Bsp\stm32f10x.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
@@ -153,9 +193,10 @@ I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
-I (.\Bsp\inc\stm32f10x_gpio.h)(0x5358BC57)
+I (.\Bsp\inc\stm32f10x_gpio.h)(0x53902E96)
 I (.\Bsp\inc\stm32f10x_rcc.h)(0x5358BC57)
-I (Src\datatype.h)(0x535DB627)
+I (Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
 I (.\uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
@@ -163,9 +204,8 @@ I (.\uCOS-II\Ports\os_cpu.h)(0x5358BC57)
 I (.\Bsp\inc\misc.h)(0x5358BC57)
 I (Src\dbg.h)(0x535DB587)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB0D286)
-F (.\Src\sysdb.c)(0x535DB427)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\sysdb.o" --depend ".\Output\sysdb.d")
-I (Src\sysdb.h)(0x535DB5CC)
-I (Src\flash.h)(0x5358BC57)
+F (.\Src\sysdb.c)(0x53969E01)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\sysdb.o" --omf_browse ".\Output\sysdb.crf" --depend ".\Output\sysdb.d")
+I (Src\flash.h)(0x53908063)
 I (.\Bsp\inc\stm32f10x_flash.h)(0x5358BC57)
 I (.\Bsp\stm32f10x.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
@@ -173,8 +213,35 @@ I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
-I (Src\datatype.h)(0x535DB627)
-F (.\usb\hw_config.c)(0x535DBBBA)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\hw_config.o" --depend ".\Output\hw_config.d")
+I (Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+F (.\Src\ad7731.c)(0x53943F9F)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\ad7731.o" --omf_browse ".\Output\ad7731.crf" --depend ".\Output\ad7731.d")
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB0D286)
+I (.\Bsp\inc\stm32f10x_gpio.h)(0x53902E96)
+I (.\Bsp\stm32f10x.h)(0x5358BC57)
+I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
+I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
+I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
+I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
+I (.\Bsp\inc\stm32f10x_spi.h)(0x539070EC)
+I (Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+I (Src\platform.h)(0x53907E24)
+I (Src\ad7731.h)(0x53940392)
+F (.\Src\lcd.c)(0x53932773)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\lcd.o" --omf_browse ".\Output\lcd.crf" --depend ".\Output\lcd.d")
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB0D286)
+I (.\Bsp\src\stm32f10x_usart.h)(0x5358BC57)
+I (.\Bsp\stm32f10x.h)(0x5358BC57)
+I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
+I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
+I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
+I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
+I (.\Bsp\inc\stm32f10x_gpio.h)(0x53902E96)
+I (Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+F (.\usb\hw_config.c)(0x538FCFA1)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\hw_config.o" --omf_browse ".\Output\hw_config.crf" --depend ".\Output\hw_config.d")
 I (.\Bsp\stm32f10x.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
@@ -183,7 +250,8 @@ I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
 I (.\Bsp\inc\stm32f10x_rcc.h)(0x5358BC57)
 I (usb\hw_config.h)(0x5358BC57)
-I (.\Src\datatype.h)(0x535DB627)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
 I (usb\usb_lib.h)(0x5358BC57)
 I (usb\usb_type.h)(0x5358BC57)
 I (usb\usb_regs.h)(0x5358BC57)
@@ -194,20 +262,22 @@ I (usb\usb_mem.h)(0x5358BC57)
 I (usb\usb_int.h)(0x5358BC57)
 I (usb\usb_desc.h)(0x5358BC57)
 I (usb\usb_pwr.h)(0x5358BC57)
-F (.\usb\usb_core.c)(0x535DB427)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_core.o" --depend ".\Output\usb_core.d")
+F (.\usb\usb_core.c)(0x535DB427)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_core.o" --omf_browse ".\Output\usb_core.crf" --depend ".\Output\usb_core.d")
 I (usb\usb_lib.h)(0x5358BC57)
 I (usb\usb_type.h)(0x5358BC57)
-I (.\Src\datatype.h)(0x535DB627)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
 I (usb\usb_regs.h)(0x5358BC57)
 I (usb\usb_def.h)(0x5358BC57)
 I (usb\usb_core.h)(0x5358BC57)
 I (usb\usb_init.h)(0x5358BC57)
 I (usb\usb_mem.h)(0x5358BC57)
 I (usb\usb_int.h)(0x5358BC57)
-F (.\usb\usb_desc.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_desc.o" --depend ".\Output\usb_desc.d")
+F (.\usb\usb_desc.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_desc.o" --omf_browse ".\Output\usb_desc.crf" --depend ".\Output\usb_desc.d")
 I (usb\usb_lib.h)(0x5358BC57)
 I (usb\usb_type.h)(0x5358BC57)
-I (.\Src\datatype.h)(0x535DB627)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
 I (usb\usb_regs.h)(0x5358BC57)
 I (usb\usb_def.h)(0x5358BC57)
 I (usb\usb_core.h)(0x5358BC57)
@@ -215,11 +285,12 @@ I (usb\usb_init.h)(0x5358BC57)
 I (usb\usb_mem.h)(0x5358BC57)
 I (usb\usb_int.h)(0x5358BC57)
 I (usb\usb_desc.h)(0x5358BC57)
-I (usb\usb_tmc.h)(0x535DB9D6)
-F (.\usb\usb_init.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_init.o" --depend ".\Output\usb_init.d")
+I (usb\usb_tmc.h)(0x53902062)
+F (.\usb\usb_init.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_init.o" --omf_browse ".\Output\usb_init.crf" --depend ".\Output\usb_init.d")
 I (usb\usb_lib.h)(0x5358BC57)
 I (usb\usb_type.h)(0x5358BC57)
-I (.\Src\datatype.h)(0x535DB627)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
 I (usb\usb_regs.h)(0x5358BC57)
 I (usb\usb_def.h)(0x5358BC57)
 I (usb\usb_core.h)(0x5358BC57)
@@ -227,20 +298,22 @@ I (usb\usb_init.h)(0x5358BC57)
 I (usb\usb_mem.h)(0x5358BC57)
 I (usb\usb_int.h)(0x5358BC57)
 I (usb\usb_conf.h)(0x5358BC57)
-F (.\usb\usb_int.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_int.o" --depend ".\Output\usb_int.d")
+F (.\usb\usb_int.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_int.o" --omf_browse ".\Output\usb_int.crf" --depend ".\Output\usb_int.d")
 I (usb\usb_lib.h)(0x5358BC57)
 I (usb\usb_type.h)(0x5358BC57)
-I (.\Src\datatype.h)(0x535DB627)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
 I (usb\usb_regs.h)(0x5358BC57)
 I (usb\usb_def.h)(0x5358BC57)
 I (usb\usb_core.h)(0x5358BC57)
 I (usb\usb_init.h)(0x5358BC57)
 I (usb\usb_mem.h)(0x5358BC57)
 I (usb\usb_int.h)(0x5358BC57)
-F (.\usb\usb_istr.c)(0x535DBB3E)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_istr.o" --depend ".\Output\usb_istr.d")
+F (.\usb\usb_istr.c)(0x535DBB3E)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_istr.o" --omf_browse ".\Output\usb_istr.crf" --depend ".\Output\usb_istr.d")
 I (usb\usb_lib.h)(0x5358BC57)
 I (usb\usb_type.h)(0x5358BC57)
-I (.\Src\datatype.h)(0x535DB627)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
 I (usb\usb_regs.h)(0x5358BC57)
 I (usb\usb_def.h)(0x5358BC57)
 I (usb\usb_core.h)(0x5358BC57)
@@ -252,21 +325,21 @@ I (usb\usb_pwr.h)(0x5358BC57)
 I (usb\usb_istr.h)(0x5358BC57)
 I (usb\usb_conf.h)(0x5358BC57)
 I (.\Scpi\Core\debug.h)(0x5358BC57)
-I (.\Scpi\Core\types.h)(0x5358BC57)
+I (.\Scpi\Core\types.h)(0x5390227F)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB0D27E)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
-I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
-F (.\usb\usb_mem.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_mem.o" --depend ".\Output\usb_mem.d")
+F (.\usb\usb_mem.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_mem.o" --omf_browse ".\Output\usb_mem.crf" --depend ".\Output\usb_mem.d")
 I (usb\usb_lib.h)(0x5358BC57)
 I (usb\usb_type.h)(0x5358BC57)
-I (.\Src\datatype.h)(0x535DB627)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
 I (usb\usb_regs.h)(0x5358BC57)
 I (usb\usb_def.h)(0x5358BC57)
 I (usb\usb_core.h)(0x5358BC57)
 I (usb\usb_init.h)(0x5358BC57)
 I (usb\usb_mem.h)(0x5358BC57)
 I (usb\usb_int.h)(0x5358BC57)
-F (.\usb\usb_prop.c)(0x535DBBCF)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_prop.o" --depend ".\Output\usb_prop.d")
+F (.\usb\usb_prop.c)(0x53901FF0)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_prop.o" --omf_browse ".\Output\usb_prop.crf" --depend ".\Output\usb_prop.d")
 I (.\Bsp\inc\stm32f10x_rcc.h)(0x5358BC57)
 I (.\Bsp\stm32f10x.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
@@ -276,7 +349,8 @@ I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
 I (usb\usb_lib.h)(0x5358BC57)
 I (usb\usb_type.h)(0x5358BC57)
-I (.\Src\datatype.h)(0x535DB627)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
 I (usb\usb_regs.h)(0x5358BC57)
 I (usb\usb_def.h)(0x5358BC57)
 I (usb\usb_core.h)(0x5358BC57)
@@ -287,12 +361,13 @@ I (usb\usb_conf.h)(0x5358BC57)
 I (usb\usb_prop.h)(0x535DBA64)
 I (usb\usb_pwr.h)(0x5358BC57)
 I (usb\hw_config.h)(0x5358BC57)
-I (usb\usb_tmc.h)(0x535DB9D6)
+I (usb\usb_tmc.h)(0x53902062)
 I (usb\usb_desc.h)(0x5358BC57)
-F (.\usb\usb_pwr.c)(0x535DB427)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_pwr.o" --depend ".\Output\usb_pwr.d")
+F (.\usb\usb_pwr.c)(0x535DB427)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_pwr.o" --omf_browse ".\Output\usb_pwr.crf" --depend ".\Output\usb_pwr.d")
 I (usb\usb_lib.h)(0x5358BC57)
 I (usb\usb_type.h)(0x5358BC57)
-I (.\Src\datatype.h)(0x535DB627)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
 I (usb\usb_regs.h)(0x5358BC57)
 I (usb\usb_def.h)(0x5358BC57)
 I (usb\usb_core.h)(0x5358BC57)
@@ -302,21 +377,23 @@ I (usb\usb_int.h)(0x5358BC57)
 I (usb\usb_conf.h)(0x5358BC57)
 I (usb\usb_pwr.h)(0x5358BC57)
 I (usb\hw_config.h)(0x5358BC57)
-F (.\usb\usb_regs.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_regs.o" --depend ".\Output\usb_regs.d")
+F (.\usb\usb_regs.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_regs.o" --omf_browse ".\Output\usb_regs.crf" --depend ".\Output\usb_regs.d")
 I (usb\usb_lib.h)(0x5358BC57)
 I (usb\usb_type.h)(0x5358BC57)
-I (.\Src\datatype.h)(0x535DB627)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
 I (usb\usb_regs.h)(0x5358BC57)
 I (usb\usb_def.h)(0x5358BC57)
 I (usb\usb_core.h)(0x5358BC57)
 I (usb\usb_init.h)(0x5358BC57)
 I (usb\usb_mem.h)(0x5358BC57)
 I (usb\usb_int.h)(0x5358BC57)
-F (.\usb\usb_tmc.c)(0x535DB8BB)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_tmc.o" --depend ".\Output\usb_tmc.d")
+F (.\usb\usb_tmc.c)(0x53932D54)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\usb_tmc.o" --omf_browse ".\Output\usb_tmc.crf" --depend ".\Output\usb_tmc.d")
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB0D286)
 I (usb\usb_conf.h)(0x5358BC57)
-I (.\Src\platform.h)(0x535DBB83)
-I (.\Src\datatype.h)(0x535DB627)
+I (.\Src\platform.h)(0x53907E24)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
 I (.\uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
@@ -329,66 +406,66 @@ I (usb\usb_core.h)(0x5358BC57)
 I (usb\usb_init.h)(0x5358BC57)
 I (usb\usb_mem.h)(0x5358BC57)
 I (usb\usb_int.h)(0x5358BC57)
-I (usb\usb_tmc.h)(0x535DB9D6)
+I (usb\usb_tmc.h)(0x53902062)
 I (usb\usb_desc.h)(0x5358BC57)
 I (.\Src\dbg.h)(0x535DB587)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB0D286)
-F (.\uCOS-II\Src\os_core.c)(0x5358FD52)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_core.o" --depend ".\Output\os_core.d")
+F (.\uCOS-II\Src\os_core.c)(0x5358FD52)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_core.o" --omf_browse ".\Output\os_core.crf" --depend ".\Output\os_core.d")
 I (uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
 I (.\uCOS-II\Ports\os_cpu.h)(0x5358BC57)
-F (.\uCOS-II\Src\os_flag.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_flag.o" --depend ".\Output\os_flag.d")
+F (.\uCOS-II\Src\os_flag.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_flag.o" --omf_browse ".\Output\os_flag.crf" --depend ".\Output\os_flag.d")
 I (uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
 I (.\uCOS-II\Ports\os_cpu.h)(0x5358BC57)
-F (.\uCOS-II\Src\os_mbox.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_mbox.o" --depend ".\Output\os_mbox.d")
+F (.\uCOS-II\Src\os_mbox.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_mbox.o" --omf_browse ".\Output\os_mbox.crf" --depend ".\Output\os_mbox.d")
 I (uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
 I (.\uCOS-II\Ports\os_cpu.h)(0x5358BC57)
-F (.\uCOS-II\Src\os_mem.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_mem.o" --depend ".\Output\os_mem.d")
+F (.\uCOS-II\Src\os_mem.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_mem.o" --omf_browse ".\Output\os_mem.crf" --depend ".\Output\os_mem.d")
 I (uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
 I (.\uCOS-II\Ports\os_cpu.h)(0x5358BC57)
-F (.\uCOS-II\Src\os_mutex.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_mutex.o" --depend ".\Output\os_mutex.d")
+F (.\uCOS-II\Src\os_mutex.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_mutex.o" --omf_browse ".\Output\os_mutex.crf" --depend ".\Output\os_mutex.d")
 I (uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
 I (.\uCOS-II\Ports\os_cpu.h)(0x5358BC57)
-F (.\uCOS-II\Src\os_q.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_q.o" --depend ".\Output\os_q.d")
+F (.\uCOS-II\Src\os_q.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_q.o" --omf_browse ".\Output\os_q.crf" --depend ".\Output\os_q.d")
 I (uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
 I (.\uCOS-II\Ports\os_cpu.h)(0x5358BC57)
-F (.\uCOS-II\Src\os_sem.c)(0x5358FD38)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_sem.o" --depend ".\Output\os_sem.d")
+F (.\uCOS-II\Src\os_sem.c)(0x5358FD38)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_sem.o" --omf_browse ".\Output\os_sem.crf" --depend ".\Output\os_sem.d")
 I (uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
 I (.\uCOS-II\Ports\os_cpu.h)(0x5358BC57)
-F (.\uCOS-II\Src\os_task.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_task.o" --depend ".\Output\os_task.d")
+F (.\uCOS-II\Src\os_task.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_task.o" --omf_browse ".\Output\os_task.crf" --depend ".\Output\os_task.d")
 I (uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
 I (.\uCOS-II\Ports\os_cpu.h)(0x5358BC57)
-F (.\uCOS-II\Src\os_time.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_time.o" --depend ".\Output\os_time.d")
+F (.\uCOS-II\Src\os_time.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_time.o" --omf_browse ".\Output\os_time.crf" --depend ".\Output\os_time.d")
 I (uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
 I (.\uCOS-II\Ports\os_cpu.h)(0x5358BC57)
-F (.\uCOS-II\Src\os_tmr.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_tmr.o" --depend ".\Output\os_tmr.d")
+F (.\uCOS-II\Src\os_tmr.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_tmr.o" --omf_browse ".\Output\os_tmr.crf" --depend ".\Output\os_tmr.d")
 I (uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
 I (.\uCOS-II\Ports\os_cpu.h)(0x5358BC57)
-F (.\uCOS-II\Cpu\cpu_a.asm)(0x5358BC57)(--cpu Cortex-M3 --apcs=interwork -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x --list ".\Output\cpu_a.lst" --xref -o ".\Output\cpu_a.o" --depend ".\Output\cpu_a.d")
-F (.\uCOS-II\Cpu\cpu_c.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\cpu_c.o" --depend ".\Output\cpu_c.d")
+F (.\uCOS-II\Cpu\cpu_a.asm)(0x5358BC57)(--cpu Cortex-M3 -g --apcs=interwork -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x --list ".\Output\cpu_a.lst" --xref -o ".\Output\cpu_a.o" --depend ".\Output\cpu_a.d")
+F (.\uCOS-II\Cpu\cpu_c.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\cpu_c.o" --omf_browse ".\Output\cpu_c.crf" --depend ".\Output\cpu_c.d")
 I (.\uCOS-II\Cpu\cpu.h)(0x5358BC57)
 I (.\uCOS-II\Cpu\cpu_def.h)(0x5358BC57)
 I (.\uCOS-II\Lib\lib_def.h)(0x5358BC57)
-F (.\uCOS-II\Lib\lib_str.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\lib_str.o" --depend ".\Output\lib_str.d")
+F (.\uCOS-II\Lib\lib_str.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\lib_str.o" --omf_browse ".\Output\lib_str.crf" --depend ".\Output\lib_str.d")
 I (uCOS-II\Lib\lib_str.h)(0x5358BC57)
 I (.\uCOS-II\Cpu\cpu.h)(0x5358BC57)
 I (.\uCOS-II\Cpu\cpu_def.h)(0x5358BC57)
@@ -399,14 +476,14 @@ I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\ctype.h)(0x4EB0D280)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\errno.h)(0x4EB0D284)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\limits.h)(0x4EB0D27E)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB0D286)
-F (.\uCOS-II\Lib\lib_mem.c)(0x535DBC23)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\lib_mem.o" --depend ".\Output\lib_mem.d")
+F (.\uCOS-II\Lib\lib_mem.c)(0x535DBC23)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\lib_mem.o" --omf_browse ".\Output\lib_mem.crf" --depend ".\Output\lib_mem.d")
 I (uCOS-II\Lib\lib_mem.h)(0x5358BC57)
 I (.\uCOS-II\Cpu\cpu.h)(0x5358BC57)
 I (.\uCOS-II\Cpu\cpu_def.h)(0x5358BC57)
 I (uCOS-II\Lib\lib_def.h)(0x5358BC57)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
-F (.\uCOS-II\Ports\os_cpu_a.asm)(0x5358BC57)(--cpu Cortex-M3 --apcs=interwork -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x --list ".\Output\os_cpu_a.lst" --xref -o ".\Output\os_cpu_a.o" --depend ".\Output\os_cpu_a.d")
-F (.\uCOS-II\Ports\os_cpu_c.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_cpu_c.o" --depend ".\Output\os_cpu_c.d")
+F (.\uCOS-II\Ports\os_cpu_a.asm)(0x5358BC57)(--cpu Cortex-M3 -g --apcs=interwork -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x --list ".\Output\os_cpu_a.lst" --xref -o ".\Output\os_cpu_a.o" --depend ".\Output\os_cpu_a.d")
+F (.\uCOS-II\Ports\os_cpu_c.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_cpu_c.o" --omf_browse ".\Output\os_cpu_c.crf" --depend ".\Output\os_cpu_c.d")
 I (.\uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
@@ -417,106 +494,116 @@ I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
 I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
-F (.\uCOS-II\Ports\os_dbg.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_dbg.o" --depend ".\Output\os_dbg.d")
+F (.\uCOS-II\Ports\os_dbg.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\os_dbg.o" --omf_browse ".\Output\os_dbg.crf" --depend ".\Output\os_dbg.d")
 I (.\uCOS-II\Src\ucos_ii.h)(0x535DB64B)
 I (.\uCOS-II\app_cfg.h)(0x53590838)
 I (.\uCOS-II\os_cfg.h)(0x5358BC57)
 I (.\uCOS-II\Ports\os_cpu.h)(0x5358BC57)
-F (.\Scpi\Core\debug.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\debug.o" --depend ".\Output\debug.d")
+F (.\Scpi\Core\debug.c)(0x53905EB7)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\debug.o" --omf_browse ".\Output\debug.crf" --depend ".\Output\debug.d")
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB0D286)
 I (Scpi\Core\debug.h)(0x5358BC57)
-I (Scpi\Core\types.h)(0x5358BC57)
+I (Scpi\Core\types.h)(0x5390227F)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB0D27E)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
-F (.\Scpi\Core\error.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\error.o" --depend ".\Output\error.d")
+I (.\Src\datatype.h)(0x53901D65)
+F (.\Scpi\Core\error.c)(0x539022BE)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\error.o" --omf_browse ".\Output\error.crf" --depend ".\Output\error.d")
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (Scpi\Core\parser.h)(0x5358BC57)
-I (Scpi\Core\types.h)(0x5358BC57)
+I (Scpi\Core\types.h)(0x5390227F)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB0D27E)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+I (.\Src\datatype.h)(0x53901D65)
 I (Scpi\Core\debug.h)(0x5358BC57)
 I (Scpi\Core\ieee488.h)(0x5358BC57)
 I (Scpi\Core\error.h)(0x5358BC57)
-I (Scpi\Core\fifo.h)(0x5358BC57)
-F (.\Scpi\Core\fifo.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\fifo.o" --depend ".\Output\fifo.d")
-I (Scpi\Core\fifo.h)(0x5358BC57)
-I (Scpi\Core\types.h)(0x5358BC57)
+I (Scpi\Core\fifo.h)(0x5397EF30)
+F (.\Scpi\Core\fifo.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\fifo.o" --omf_browse ".\Output\fifo.crf" --depend ".\Output\fifo.d")
+I (Scpi\Core\fifo.h)(0x5397EF30)
+I (Scpi\Core\types.h)(0x5390227F)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB0D27E)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
-F (.\Scpi\Core\ieee488.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\ieee488.o" --depend ".\Output\ieee488.d")
+I (.\Src\datatype.h)(0x53901D65)
+F (.\Scpi\Core\ieee488.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\ieee488.o" --omf_browse ".\Output\ieee488.crf" --depend ".\Output\ieee488.d")
 I (Scpi\Core\parser.h)(0x5358BC57)
-I (Scpi\Core\types.h)(0x5358BC57)
+I (Scpi\Core\types.h)(0x5390227F)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB0D27E)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+I (.\Src\datatype.h)(0x53901D65)
 I (Scpi\Core\debug.h)(0x5358BC57)
 I (Scpi\Core\ieee488.h)(0x5358BC57)
 I (Scpi\Core\error.h)(0x5358BC57)
 I (Scpi\Core\constants.h)(0x5358BC57)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB0D286)
-F (.\Scpi\Core\minimal.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\minimal.o" --depend ".\Output\minimal.d")
+F (.\Scpi\Core\minimal.c)(0x5358BC57)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\minimal.o" --omf_browse ".\Output\minimal.crf" --depend ".\Output\minimal.d")
 I (Scpi\Core\parser.h)(0x5358BC57)
-I (Scpi\Core\types.h)(0x5358BC57)
+I (Scpi\Core\types.h)(0x5390227F)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB0D27E)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+I (.\Src\datatype.h)(0x53901D65)
 I (Scpi\Core\debug.h)(0x5358BC57)
 I (Scpi\Core\minimal.h)(0x5358BC57)
 I (Scpi\Core\constants.h)(0x5358BC57)
 I (Scpi\Core\error.h)(0x5358BC57)
 I (Scpi\Core\ieee488.h)(0x5358BC57)
-F (.\Scpi\Core\parser.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\parser.o" --depend ".\Output\parser.d")
+F (.\Scpi\Core\parser.c)(0x539667C8)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\parser.o" --omf_browse ".\Output\parser.crf" --depend ".\Output\parser.d")
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\ctype.h)(0x4EB0D280)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB0D286)
 I (.\Scpi\config.h)(0x5358BC57)
 I (Scpi\Core\parser.h)(0x5358BC57)
-I (Scpi\Core\types.h)(0x5358BC57)
+I (Scpi\Core\types.h)(0x5390227F)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB0D27E)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+I (.\Src\datatype.h)(0x53901D65)
 I (Scpi\Core\debug.h)(0x5358BC57)
-I (Scpi\Core\utils.h)(0x5358BC57)
+I (Scpi\Core\utils.h)(0x5390222F)
 I (Scpi\Core\error.h)(0x5358BC57)
 I (Scpi\Core\constants.h)(0x5358BC57)
-F (.\Scpi\Core\snprintf.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\snprintf.o" --depend ".\Output\snprintf.d")
+F (.\Scpi\Core\snprintf.c)(0x53902BCA)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\snprintf.o" --omf_browse ".\Output\snprintf.crf" --depend ".\Output\snprintf.d")
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB0D286)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\ctype.h)(0x4EB0D280)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdarg.h)(0x4EB0D27C)
-F (.\Scpi\Core\units.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\units.o" --depend ".\Output\units.d")
+F (.\Scpi\Core\units.c)(0x53966D59)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\units.o" --omf_browse ".\Output\units.crf" --depend ".\Output\units.d")
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB0D286)
 I (Scpi\Core\parser.h)(0x5358BC57)
-I (Scpi\Core\types.h)(0x5358BC57)
+I (Scpi\Core\types.h)(0x5390227F)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB0D27E)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
+I (.\Src\datatype.h)(0x53901D65)
 I (Scpi\Core\debug.h)(0x5358BC57)
 I (Scpi\Core\units.h)(0x5358BC57)
-I (Scpi\Core\utils.h)(0x5358BC57)
+I (Scpi\Core\utils.h)(0x5390222F)
 I (.\Scpi\config.h)(0x5358BC57)
 I (Scpi\Core\error.h)(0x5358BC57)
-F (.\Scpi\Core\utils.c)(0x5358BC57)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\utils.o" --depend ".\Output\utils.d")
+F (.\Scpi\Core\utils.c)(0x5397FB63)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\utils.o" --omf_browse ".\Output\utils.crf" --depend ".\Output\utils.d")
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB0D286)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB0D284)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB0D286)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\ctype.h)(0x4EB0D280)
-I (Scpi\Core\utils.h)(0x5358BC57)
+I (Scpi\Core\utils.h)(0x5390222F)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
 I (.\Scpi\config.h)(0x5358BC57)
-I (Scpi\Core\types.h)(0x5358BC57)
+I (Scpi\Core\types.h)(0x5390227F)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB0D27E)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
-F (.\Scpi\scip-def.c)(0x535DBC82)(-c --cpu Cortex-M3 -O2 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\scip-def.o" --depend ".\Output\scip-def.d")
+I (.\Src\datatype.h)(0x53901D65)
+F (.\Scpi\scip-def.c)(0x5397FBB8)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --signed_chars -I.\Src -I.\usb -I.\Bsp -I.\Bsp\inc -I.\Bsp\src -I.\Bsp\cmsis -I.\uCOS-II -I.\uCOS-II\Src -I.\uCOS-II\Lib -I.\uCOS-II\Cpu -I.\uCOS-II\Ports -I.\uCOS-II\Lib\Ports -I.\Scpi -I.\Scpi\Core -I D:\ProgramFiles\Keil\ARM\RV31\INC -I D:\ProgramFiles\Keil\ARM\CMSIS\Include -I D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_XL="1" -o ".\Output\scip-def.o" --omf_browse ".\Output\scip-def.crf" --depend ".\Output\scip-def.d")
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB0D286)
-I (.\Src\datatype.h)(0x535DB627)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB0D286)
+I (.\Src\datatype.h)(0x53901D65)
+I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
 I (.\Scpi\Core\parser.h)(0x5358BC57)
-I (.\Scpi\Core\types.h)(0x5358BC57)
+I (.\Scpi\Core\types.h)(0x5390227F)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB0D27E)
 I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB0D284)
-I (D:\ProgramFiles\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB0D288)
 I (.\Scpi\Core\debug.h)(0x5358BC57)
-I (.\Scpi\Core\utils.h)(0x5358BC57)
+I (.\Src\sysdb.h)(0x53969E0C)
+I (.\Scpi\Core\utils.h)(0x5390222F)
 I (.\Scpi\config.h)(0x5358BC57)
 I (.\Scpi\Core\error.h)(0x5358BC57)
 I (.\Scpi\Core\scpi.h)(0x5358BC57)
@@ -524,12 +611,4 @@ I (.\Scpi\Core\ieee488.h)(0x5358BC57)
 I (.\Scpi\Core\constants.h)(0x5358BC57)
 I (.\Scpi\Core\minimal.h)(0x5358BC57)
 I (.\Scpi\Core\units.h)(0x5358BC57)
-I (.\Scpi\Core\fifo.h)(0x5358BC57)
-I (.\Src\sysdb.h)(0x535DB5CC)
-I (.\Src\flash.h)(0x5358BC57)
-I (.\Bsp\inc\stm32f10x_flash.h)(0x5358BC57)
-I (.\Bsp\stm32f10x.h)(0x5358BC57)
-I (.\Bsp\cmsis\core_cm3.h)(0x5358BC57)
-I (.\Bsp\cmsis\core_cmInstr.h)(0x5358BC57)
-I (.\Bsp\cmsis\core_cmFunc.h)(0x5358BC57)
-I (D:\ProgramFiles\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x515F9E29)
+I (.\Scpi\Core\fifo.h)(0x5397EF30)

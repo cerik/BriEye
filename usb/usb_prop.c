@@ -206,13 +206,10 @@ UINT8 *TMC_GetProtocolValue(UINT16 Length)
 
 UINT8 *TMC_initiate_abort_bulk_out(UINT16 Length)
 {
-    tagTmcBulkMsgHeader *pBulkOutHeader;
-
-    pBulkOutHeader = tmcGetBulkOutHeader();
     tmcResetRxState();
     
     gCtrlCmdBuffer[0] = STATUS_SUCCESS;
-    gCtrlCmdBuffer[1] = pBulkOutHeader->bTag;
+    gCtrlCmdBuffer[1] = tmcGetBulkOutTag();
 
     //cmd_buffer[1]=(UINT8)pInformation->USBwValues.w &0xFF;
     //
@@ -242,11 +239,8 @@ UINT8 *TMC_check_abort_bulk_out_status(UINT16 Length)
 
 UINT8 *TMC_initiate_abort_bulk_in(UINT16 Length)
 {
-    tagTmcBulkMsgHeader *pBulkInHeader;
-
-    pBulkInHeader = tmcGetBulkInHeader();
     gCtrlCmdBuffer[0] = STATUS_SUCCESS;
-    gCtrlCmdBuffer[1] = pBulkInHeader->bTag;
+    gCtrlCmdBuffer[1] = tmcGetBulkInTag();
     //gCtrlCmdBuffer[1]=(UINT8)pInformation->USBwValues.w &0xFF;
     //pInformation.Ctrl_Info.PacketSize=2;
     //abort action

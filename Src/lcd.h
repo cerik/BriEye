@@ -1,22 +1,23 @@
 //=============================================================================
 // File Description:
 //  This chip is Bigendin
+//  Lcd Operation Header File
 //=============================================================================
 // Create by Cerik
 //=============================================================================
 // Log:
 //=============================================================================
 
-#ifndef _UART_DRV_H
-#define _UART_DRV_H
 
-void InitUart(void);
-void InitLedUart(void);
-void InitUartPart2(void);
+#ifndef _LCD_HEADER_H_
+#define _LCD_HEADER_H_
 
-void SerialFlush(void);
-UINT8 SerialGetChar(void);
-UINT8 SerialPutChar(UINT8 dat);
-UINT16 SerialPutData(void *pMsg,UINT16 size);
+void LcdClearScreen(void);
+void LcdHandShake(void);
+BOOL LcdBusy(void);
+void LcdOpenDisplay(void);
+
+
 
 #endif
+

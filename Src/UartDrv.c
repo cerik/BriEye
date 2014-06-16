@@ -174,6 +174,46 @@ void InitUart(void)
     USART_Cmd(USART1, ENABLE);
 }
 
+void InitLedUart(void)
+{
+    //NVIC_InitTypeDef NVIC_InitStructure;
+    GPIO_InitTypeDef GPIO_InitStructure;
+    USART_InitTypeDef USART_InitStructure; 
+    
+    RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOB,ENABLE);
+    RCC_APB1PeriphClockCmd( RCC_APB1Periph_USART3,ENABLE);
+    //NVIC_InitStructure.NVIC_IRQChannel=USART3_IRQn;
+    //NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=0;
+    //NVIC_InitStructure.NVIC_IRQChannelSubPriority=1;
+    //NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;
+    //NVIC_Init(&NVIC_InitStructure);
+
+    // USART1_TX -> PB10 
+    // USART1_RX -> PB11
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+    USART_InitStructure.USART_BaudRate = 19200;
+    USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+    USART_InitStructure.USART_StopBits = USART_StopBits_1;
+    USART_InitStructure.USART_Parity = USART_Parity_No;
+    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+
+    USART_Init(USART3, &USART_InitStructure); 
+    //USART_ClearFlag(USART3,USART_FLAG_TXE);
+    //USART_ClearFlag(USART3,USART_FLAG_TC);
+    USART_Cmd(USART3, ENABLE);
+}
+
+
 UINT8 SerialGetChar(void)
 {
     UINT8 ErrMsg;
@@ -257,3 +297,36 @@ void USART1_IRQHandler(void)
     }
 }
 
+//=============================================================================
+// 
+//
+// 
+//  
+//  
+//
+// 
+//  
+//=============================================================================
+void USART3_IRQHandler(void)
+{
+    if(USART_GetFlagStatus(USART3,USART_FLAG_RXNE)==SET)
+    {//RX Interrupt
+        USART_ClearFlag(USART3,USART_FLAG_RXNE);
+        if(tagUartCtrl.RxBufferCnt < RX_BUFFER_SIZE)
+        {
+            tagUartCtrl.RxBuffer[tagUartCtrl.RxBufferInPtr]=USART_ReceiveData(USART3);
+            tagUartCtrl.RxBufferInPtr = (tagUartCtrl.RxBufferInPtr+1)%RX_BUFFER_SIZE;
+            tagUartCtrl.RxBufferCnt++;
+        }
+    }
+    if(USART_GetFlagStatus(USART3,USART_FLAG_TXE)==SET)
+    {//Tx Complete
+        USART_ClearFlag(USART3,USART_FLAG_TXE);
+        //if(tagUartCtrl.TxBufferOutPtr != tagUartCtrl.TxBufferInPtr)
+        //{
+        //    USART_SendData(USART1,tagUartCtrl.TxBuffer[tagUartCtrl.TxBufferOutPtr]);
+        //    tagUartCtrl.TxBufferOutPtr = (tagUartCtrl.TxBufferOutPtr+1)%TX_BUFFER_SIZE;
+        //    OSSemPost(tagUartCtrl.TxEventPtr);
+        //}
+    }
+}

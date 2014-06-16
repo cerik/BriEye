@@ -42,16 +42,10 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include "datatype.h"
 
 #ifdef  __cplusplus
 extern "C" {
-#endif
-
-#ifndef FALSE
-    #define FALSE 0
-#endif
-#ifndef TRUE
-    #define TRUE (!FALSE)
 #endif
 
     /* basic data types */

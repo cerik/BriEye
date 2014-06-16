@@ -77,6 +77,8 @@ int _strnicmp(const char* s1, const char* s2, size_t len) {
  * @param cmd - input command
  * @param len - max search length
  * @return position of terminator or len
+
+ * Cmd Terminator Flag include : [;, ,\r,\n,\t]
  */
 size_t cmdTerminatorPos(const char * cmd, size_t len) {
     const char * terminator = strnpbrk(cmd, len, "; \r\n\t");
@@ -245,8 +247,8 @@ static bool_t findCommand(scpi_t * context, const char * cmdline_ptr, size_t cmd
 /**
  * Parse one command line
  * @param context
- * @param data - complete command line
- * @param len - command line length
+ * @param data - complete command line, command field & parameter field.
+ * @param len - command line length.
  * @return 1 if the last evaluated command was found
  */
 int SCPI_Parse(scpi_t * context, char * data, size_t len) {
@@ -337,11 +339,19 @@ int SCPI_Input(scpi_t * context, const char * data, size_t len) {
         context->buffer.position += len;
         context->buffer.data[context->buffer.position] = 0;
 
+        //Skip the header space characters.
         ws = skipWhitespace(context->buffer.data, context->buffer.position);
+        //Return the cmd terminal position,otherwise return NULL. Cmd terminal flag: \n or \r
+        //This position include command field & parameter field.
         cmd_term = cmdlineTerminator(context->buffer.data + ws, context->buffer.position - ws);
         while (cmd_term != NULL) {
+            //curr_len = command field + parameter field.
             int curr_len = cmd_term - context->buffer.data;
+            
+            //Analizy the command
             result = SCPI_Parse(context, context->buffer.data + ws, curr_len - ws);
+
+            //Move the next command to the begining position of the buffer.
             memmove(context->buffer.data, cmd_term, context->buffer.position - curr_len);
             context->buffer.position -= curr_len;
     

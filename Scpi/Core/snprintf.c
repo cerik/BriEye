@@ -306,7 +306,7 @@ static unsigned int dopr(char *buffer, unsigned int maxlen, const char *format, 
                 fmtfp (buffer, &currlen, maxlen, fvalue, min, max, flags);
                 break;
             case 'c':
-                dopr_outch (buffer, &currlen, maxlen, va_arg (args, char));
+                dopr_outch (buffer, &currlen, maxlen, va_arg (args, int)); //origin code:  va_arg (args, char)
                 break;
             case 's':
                 strvalue = va_arg (args, char *);

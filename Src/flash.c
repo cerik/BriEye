@@ -7,9 +7,18 @@
                        functions,such as Write,Erase and Read.
 *****************************************************************/
 #include <stdio.h>
+#include "stm32f10x_flash.h"
 #include "flash.h"
 
-#define PRINT_DEBUG
+
+/********************************************************** 
+ * Convert Function between page and physical address 
+***********************************************************/ 
+#define PAGE_TO_ADDR(page) (UINT32)((FLASH_BASE + (page) * FLASH_PAGE_SIZE)) 
+#define ADDR_TO_PAGE(addr) ((addr - FLASH_BASE)/FLASH_PAGE_SIZE)
+
+#define HALFWORD sizeof(UINT16)
+#define WORD     sizeof(UINT32)
 
 /* Private variables */  
 static VUINT32 WRPR_Value = 0xFFFFFFFF, ProtectedPages = 0x0;

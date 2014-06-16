@@ -31,11 +31,20 @@
 //=============================================================================
 // Export Function
 //=============================================================================
-void InitGpio(void);
 void WaitMs(UINT32 ms);
+void InitGpio(void);
+void InitSPI1(void);
+void InitTIM2(void);
 void InitWatchDog(UINT32 ms);
-void DataBusMode(GPIOMODE mode);
+void InitExtInterrupt(void);
+
 void StartCounter(tagCounter *counter,INT32 ms);
 BOOL CounterArrived(tagCounter *counter);
+
+void SetDbgPort(UINT8 value);
+void SetSWx(UINT8 value);
+
+BOOL LcdReady(void);
+
 
 #endif

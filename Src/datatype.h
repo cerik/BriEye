@@ -8,6 +8,8 @@
 #ifndef _DATATYPES_H_
 #define _DATATYPES_H_
 
+#include <stdbool.h>
+
 typedef         unsigned char  UINT8;
 typedef           signed char  INT8;
 typedef        unsigned short  UINT16;
@@ -21,8 +23,10 @@ typedef     signed long  long  INT64;
 
 typedef volatile   signed int  VINT32;
 typedef volatile unsigned int  VUINT32;
+typedef bool BOOL;
+#define TRUE true
+#define FALSE false
 
-typedef enum {FALSE=0,TRUE=1} BOOL;
 typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 
 #define NULLCHAR  '\0'

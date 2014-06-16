@@ -301,10 +301,7 @@ void  OSTimeTickHook (void)
 #if OS_APP_HOOKS_EN > 0
     App_TimeTickHook();
 #endif
-    
-    IWDG->KR = 0xAAAA; 
-    IWDG->KR = 0xCCCC;
-    
+
 #if OS_TMR_EN > 0
     OSTmrCtr++;
     if (OSTmrCtr >= (OS_TICKS_PER_SEC / OS_TMR_CFG_TICKS_PER_SEC)) {

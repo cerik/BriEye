@@ -16,14 +16,20 @@
 //=============================================================================
 // Log:
 //=============================================================================
+#include <string.h>
+#include "scpi-interface.h"
+#include "stm32f10x_gpio.h"
 #include "platform.h" 
 #include "ucos_ii.h"
 #include "uartdrv.h"
-#include "MsgFifo.h"
+#include "usb_tmc.h"
+#include "ad7731.h"
 #include "sysdb.h" 
+#include "types.h"
 #include "cpu.h"
 #include "crc.h"
 #include "cmd.h"
+#include "lcd.h"
 #include "dbg.h"
 
 
@@ -31,7 +37,8 @@
 //        External Function definition
 //
 extern void USB_Init(void);
-extern void USB_Connect (BOOL con); 
+extern void USB_Connect (BOOL con);
+extern scpi_command_t scpi_commands[];
 
 //========================================================================
 //       Local Global variable defination
@@ -43,30 +50,29 @@ static OS_STK App_TaskStk[4][APP_TASK_STK_SIZE];
 static void App_UartCmdTask(void* p_arg);
 static void App_UsbCmdTask(void* p_arg);
 static void App_FlickTask(void *p_arg);
-
 //========================================================================
 //        Global variable defination
 tatDevStatus gDevStatus;
-msg_fifo_t   gMsgFifo;
 OS_EVENT    *gFlickTskMailbox; 
 OS_EVENT    *gUsbCmdMailbox;
-
 
 //========================================================================
 //   MIAN ENTRY
 int main(void)
 {
     UINT8 os_err,err_code=0;
-
+    
     InitGpio(); 
     InitUart();
-    
+    InitTIM2();
+#if 1
+    //InitExtInterrupt();
     init_crcccitt_tab();
     LoadSysDb();
 
-    USB_Init();
-    USB_Connect(TRUE);
-    InitWatchDog(5000);
+    //USB_Init();
+    //USB_Connect(TRUE);
+    //InitWatchDog(5000);
 
     CPU_IntDis();         /* Disable all ints until we are ready to accept them.  */
     OSInit();             /* Initialize "uC/OS-II, The Real-Time Kernel".         */
@@ -96,6 +102,10 @@ int main(void)
         goto ERROR;
     }
     InitUartPart2();
+#endif
+    //InitLedUart();
+    //InitSPI1();
+    InitSPI1();
     OSStart();
 ERROR:
     printf("error:%d,%d\r\n",os_err,err_code);
@@ -143,15 +153,22 @@ static void App_UartCmdTask(void* p_arg)
 * Note     : none.
 *********************************************************************************************************
 */
+char gTstCmd0[]={"CONFigure:MATrix 1,2,2,1234.567;MAT 3,1,2,1234.5342367\r"};
+char gTstCmd1[]={"CONF:MATrix 0,1,2,4566575.89768;CONF:MAT? 0,1,2\n"};
 static void App_UsbCmdTask(void* p_arg)
 {
-    //UINT8 err;
+    UINT8 err;
+    void *pmsgtype;
     
     while (TRUE)
     {
-        OSTimeDlyHMSM(0, 0, 3, 0);
+        OSTimeDlyHMSM(0, 0, 1, 0);
         DEBUG_MSG(1,"%d\r\n",1);
-        //OSMboxPend(gFlickTskMailbox, 0, &err);
+        //pmsgtype = OSMboxPend(gUsbCmdMailbox, 0, &err);
+            //get scpi data
+        //ScpiInput(tmcRxDataBufPtr(),tmcRxDataSize()); 
+        ScpiInput(gTstCmd1,sizeof(gTstCmd1)-1);
+        ScpiInput(gTstCmd0,sizeof(gTstCmd0)-1);
     }
 }
 
@@ -173,13 +190,19 @@ static void App_UsbCmdTask(void* p_arg)
 static void App_FlickTask(void *p_arg)
 {
     //UINT8  err;
-
+    //AdReset(false);
+    //AdCS(true);
     while(1)
     {
         //OSMboxPend(gFlickTskMailbox, 0, &err);
-        DEBUG_MSG(CMD_DEBUG," \r\n");
-        OSTimeDlyHMSM(0, 0, 5, 0);
-    }
+        DEBUG_MSG(CMD_DEBUG,"BUSY\r\n");;
+        OSTimeDlyHMSM(0, 0, 3, 0);
+        //LcdClearScreen();
+        //AdTest();
+        //AdReset(true);
+        OSTimeDlyHMSM(0, 0, 1, 0);
+        //AdReset(false);
+     }
 }
 
 /*

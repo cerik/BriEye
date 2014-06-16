@@ -40,7 +40,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
 #include "utils.h"
 
 static size_t patternSeparatorShortPos(const char * pattern, size_t len);
@@ -130,7 +129,7 @@ size_t longToStr(int32_t val, char * str, size_t len) {
  * @return number of bytes written to str (without '\0')
  */
 size_t doubleToStr(double val, char * str, size_t len) {
-    return snprintf(str, len, "%lg", val);
+    return snprintf(str, len, "%lf", val);
 }
 
 /**
@@ -356,7 +355,6 @@ bool_t locateStr(const char * str1, size_t len1, const char ** str2, size_t * le
     nfa.state = STATE_FIRST_WHITESPACE;
     nfa.startIdx = 0;
     nfa.stopIdx = 0;
-
 
     for (nfa.i = 0; nfa.i < len1; nfa.i++) {
         if(FALSE == locateStrAutomaton(&nfa, str1[nfa.i])) {
